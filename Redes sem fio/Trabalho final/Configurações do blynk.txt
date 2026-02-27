@@ -1,0 +1,7 @@
+Para o blynk funcionar, o token de autenticação deve estar de acordo com o projeto utilizado.
+Além de possuir as variaveis:
+V0 - botão de teste, default.
+V1 - botão de sinalização de ativação de sistema de sensores, default.
+V2 - caixa de texto que recebe string referente ao IP do ESP8266.
+V3 - caixa de texto que recebe string referente ao status do aplicativo.
+Lembre-se de dar input no codigo do id da sua rede e a senha, que são variaveis com seus respectivos nomes.

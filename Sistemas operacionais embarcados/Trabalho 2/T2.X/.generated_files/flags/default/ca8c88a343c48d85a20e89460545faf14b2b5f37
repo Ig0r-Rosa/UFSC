@@ -1,0 +1,1 @@
+ -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_default=$(CND_CONF)    -Wa,-g,--no-relax$(MP_EXTRA_AS_POST) C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\T2\T2.X\portasm_PIC24.S

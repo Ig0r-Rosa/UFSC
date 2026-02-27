@@ -1,0 +1,4 @@
+sudo chmod 777 /dev/ttyUSB0
+
+site para testar o esp32: wokwi.com
+da pra jogar o bin e ele testa

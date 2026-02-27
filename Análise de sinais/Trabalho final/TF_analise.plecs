@@ -1,0 +1,634 @@
+Plecs {
+  Name          "TF_analise"
+  Version       "4.5"
+  CircuitModel  "DiscStateSpace"
+  StartTime     "0.0"
+  TimeSpan      "299.111"
+  Timeout       ""
+  Solver        "FixedStepDiscrete"
+  MaxStep       "1e-3"
+  InitStep      "-1"
+  FixedStep     "1e-3"
+  Refine        "1"
+  ZCStepSize    "1e-9"
+  RelTol        "1e-3"
+  AbsTol        "-1"
+  TurnOnThreshold "0"
+  SyncFixedStepTasks "2"
+  UseSingleCommonBaseRate "2"
+  LossVariableLimitExceededMsg "3"
+  NegativeSwitchLossMsg "3"
+  DivisionByZeroMsg "3"
+  StiffnessDetectionMsg "2"
+  MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "3"
+  AssertionAction "1"
+  InitializationCommands ""
+  InitialState  "1"
+  SystemState   ""
+  TaskingMode   "1"
+  TaskConfigurations ""
+  CodeGenParameterInlining "2"
+  CodeGenFloatingPointFormat "2"
+  CodeGenAbsTimeUsageMsg "3"
+  CodeGenBaseName ""
+  CodeGenOutputDir ""
+  CodeGenExtraOpts ""
+  CodeGenTarget "Generic"
+  CodeGenTargetSettings ""
+  ExtendedMatrixPrecision "1"
+  MatrixSignificanceCheck "2"
+  EnableStateSpaceSplitting "2"
+  DisplayStateSpaceSplitting "1"
+  DiscretizationMethod "2"
+  ExternalModeSettings ""
+  AlgebraicLoopMethod "1"
+  AlgebraicLoopTolerance "1e-6"
+  ScriptsDialogGeometry ""
+  ScriptsDialogSplitterPos "0"
+  Schematic {
+    Location      [0, 23; 1366, 671]
+    ZoomFactor    2.24591
+    SliderPosition [0, 0]
+    ShowBrowser   off
+    BrowserWidth  100
+    Component {
+      Type          FromFile
+      Name          "X(t)"
+      Show          on
+      Position      [100, 150]
+      Direction     right
+      Flipped       off
+      Parameter {
+        Variable      "Filename"
+        Value         "datatf"
+        Show          off
+        Evaluate      off
+      }
+      Parameter {
+        Variable      "FileType"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Width"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "LeftExtrapolation"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "LeftValue"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Interpolation"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "RightExtrapolation"
+        Value         "3"
+        Show          off
+      }
+      Parameter {
+        Variable      "RightValue"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "LocateDiscontinuities"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalDemux
+      Name          "Demux"
+      Show          off
+      Position      [160, 150]
+      Direction     right
+      Flipped       on
+      Parameter {
+        Variable      "Width"
+        Value         "2"
+        Show          off
+      }
+    }
+    Component {
+      Type          TaskFrame
+      Name          "Sinal"
+      Show          on
+      Position      [155, 130]
+      Direction     up
+      Flipped       off
+      Frame         [-117, -62; 117, 62]
+      Parameter {
+        Variable      "Task"
+        Value         "Task"
+        Show          off
+      }
+    }
+    Component {
+      Type          CScript
+      Name          "Filtro passa-alta"
+      Show          on
+      Position      [315, 145]
+      Direction     up
+      Flipped       off
+      Parameter {
+        Variable      "DialogGeometry"
+        Value         "[0 22 1366 697]"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumInputs"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumOutputs"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumContStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumDiscStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumZCSignals"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "DirectFeedthrough"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Ts"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Parameters"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "LangStandard"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "GnuExtensions"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "RuntimeCheck"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "Declarations"
+        Value         base64 "ZmxvYXQgc2luYWw7ICAgICAgICAgICAvLyBFbnRyYWRhIGF0"
+"dWFsIHhbbl0KZmxvYXQgc2luYWxfYW50OyAgICAgICAvLyBFbnRyYWRhIGFudGVyaW9yIHhbbiAtI"
+"DFdCmZsb2F0IHNpbmFsX2ZpbmFsOyAgICAgLy8gU2HDrWRhIGF0dWFsIHlbbl0KZmxvYXQgc2luYW"
+"xfZmluYWxfYW50OyAvLyBTYcOtZGEgYW50ZXJpb3IgeVtuIC0gMV0KCiNkZWZpbmUgRlJFUV9DT1J"
+"URSAzLjBmIC8vIEZyZXF1w6puY2lhIGRlIGNvcnRlIGVtIEh6CiNkZWZpbmUgRlMgMTAwMC4wZiAg"
+"ICAgICAvLyBGcmVxdcOqbmNpYSBkZSBhbW9zdHJhZ2VtCgp2b2lkIHVwZGF0ZSgpCnsKICAgIC8vI"
+"ENhbGN1bGEgbyBjb2VmaWNpZW50ZSBkZSBmaWx0cm8gCiAgICBmbG9hdCBSQyA9IDEuMGYgLyAoMi"
+"4wZiAqIDMuMTQxNTlmICogRlJFUV9DT1JURSk7CiAgICBmbG9hdCBkdCA9IDEuMGYgLyBGUzsgLy8"
+"gUGVyw61vZG8gZGUgYW1vc3RyYWdlbQogICAgZmxvYXQgYWxwaGEgPSBSQyAvIChSQyArIGR0KTsK"
+"CiAgICAvLyBGaWx0cm8gcGFzc2EtYWx0YTogeVtuXSA9IGFscGhhICogKHlbbi0xXSArIHhbbl0gL"
+"SB4W24tMV0pCiAgICBzaW5hbF9maW5hbCA9IGFscGhhICogKHNpbmFsX2ZpbmFsX2FudCArIHNpbm"
+"FsIC0gc2luYWxfYW50KTsKCiAgICAvLyBBdHVhbGl6YSB2YWxvcmVzIGFudGVyaW9yZXMKICAgIHN"
+"pbmFsX2FudCA9IHNpbmFsOwogICAgc2luYWxfZmluYWxfYW50ID0gc2luYWxfZmluYWw7Cn0K"
+        Show          off
+      }
+      Parameter {
+        Variable      "StartFcn"
+        Value         "sinal = InputSignal(0,0);\n"
+"\n"
+"update();"
+        Show          off
+      }
+      Parameter {
+        Variable      "OutputFcn"
+        Value         "OutputSignal(0,0) = sinal_final;"
+        Show          off
+      }
+      Parameter {
+        Variable      "UpdateFcn"
+        Value         "sinal = InputSignal(0,0);\n"
+"\n"
+"update();"
+        Show          off
+      }
+      Parameter {
+        Variable      "DerivativeFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "TerminateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "StoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "RestoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+    }
+    Component {
+      Type          Scope
+      Name          "Scope5"
+      Show          off
+      Position      [560, 140]
+      Direction     up
+      Flipped       off
+      Location      [0, 27; 1366, 704]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACK/wCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADQA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAALwAAAisAAABmAP///wAAAAMAAAVWAAAAW/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABVYAAABQAP///wAABVYAAAIrAAAA"
+"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
+"AAAAA=="
+      SavedViews    "AAAAAgAAAAA="
+      HeaderState   "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAL8AMAAAAGAAAAB"
+"gAAAGQAAAAHAAAAZAAAAAQAAABkAAAABQAAAGQAAAAIAAAAZAAAAAkAAABkAAAFRQAAAAsBAAABAA"
+"AAAAAAAAAAAAAAZP////8AAACBAAAAAAAAAAsAAADEAAAAAQAAAAAAAABkAAAAAQAAAAAAAABkAAA"
+"AAQAAAAAAAABkAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAA"
+"AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAANVAAAAAQAAAAAAAAPoAAAAACQ="
+      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      Axes          "1"
+      TimeRange     "0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open          "0"
+      Ts            "-1"
+      SampleLimit   "0"
+      XAxisLabel    ""
+      ShowLegend    "2"
+      Axis {
+        Name          ""
+        AutoScale     1
+        MinValue      0
+        MaxValue      1
+        Signals       {"Sinal", "Sinal com filtro passa-alta"}
+        SignalTypes   [ ]
+        Untangle      0
+        KeepBaseline  off
+        BaselineValue 0
+      }
+      Fourier {
+        SingleXAxis       on
+        AxisLabel         "Frequency"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend on
+        Axis {
+          Name          ""
+          AutoScale     1
+          MinValue      0
+          MaxValue      1
+          Signals       {"Sinal", "Sinal com filtro passa-alta"}
+          Untangle      0
+          KeepBaseline  off
+          BaselineValue 0
+        }
+      }
+    }
+    Component {
+      Type          SignalMux
+      Name          "Mux"
+      Show          off
+      Position      [510, 145]
+      Direction     right
+      Flipped       off
+      Parameter {
+        Variable      "Width"
+        Value         "3"
+        Show          off
+      }
+    }
+    Component {
+      Type          SmallSignalResponse
+      Name          "Response"
+      Show          on
+      Position      [520, 190]
+      Direction     right
+      Flipped       off
+      Parameter {
+        Variable      "ShowReference"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "InvertReference"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          Reference
+      SrcComponent  "Components/Control/Small Signal Analysis/Loop Gain Meter"
+      Name          "Loop Gain Meter"
+      Show          on
+      Position      [210, 145]
+      Direction     down
+      Flipped       on
+      Frame         [-10, -10; 10, 10]
+      LabelPosition [0, 13]
+      LabelAlign    up
+      Parameter {
+        Variable      "invert"
+        Value         "2"
+        Show          off
+      }
+      Terminal {
+        Type          Input
+        Position      [10, 0]
+        Direction     right
+      }
+      Terminal {
+        Type          Output
+        Position      [-14, 0]
+        Direction     left
+      }
+    }
+    Component {
+      Type          CScript
+      Name          "Filtro passa-baixa"
+      Show          on
+      Position      [410, 175]
+      Direction     up
+      Flipped       off
+      Parameter {
+        Variable      "DialogGeometry"
+        Value         "[0 22 1366 697]"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumInputs"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumOutputs"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumContStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumDiscStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumZCSignals"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "DirectFeedthrough"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Ts"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Parameters"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "LangStandard"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "GnuExtensions"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "RuntimeCheck"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "Declarations"
+        Value         base64 "ZmxvYXQgc2luYWw7ICAgICAgICAgICAvLyBFbnRyYWRhIGF0"
+"dWFsIHhbbl0KZmxvYXQgc2luYWxfYW50OyAgICAgICAvLyBFbnRyYWRhIGFudGVyaW9yIHhbbiAtI"
+"DFdCmZsb2F0IHNpbmFsX2ZpbmFsOyAgICAgLy8gU2HDrWRhIGF0dWFsIHlbbl0KZmxvYXQgc2luYW"
+"xfZmluYWxfYW50OyAvLyBTYcOtZGEgYW50ZXJpb3IgeVtuIC0gMV0KCiNkZWZpbmUgRlJFUV9DT1J"
+"URSAxMDAuMGYgLy8gRnJlcXXDqm5jaWEgZGUgY29ydGUgZW0gSHoKI2RlZmluZSBGUyAxMDAwLjBm"
+"ICAgICAgIC8vIEZyZXF1w6puY2lhIGRlIGFtb3N0cmFnZW0KCnZvaWQgdXBkYXRlKCkKewogICAgL"
+"y8gQ2FsY3VsYSBvIGNvZWZpY2llbnRlIGRlIGZpbHRybyAKICAgIGZsb2F0IFJDID0gMS4wZiAvIC"
+"gyLjBmICogMy4xNDE1OWYgKiBGUkVRX0NPUlRFKTsKICAgIGZsb2F0IGR0ID0gMS4wZiAvIEZTOyA"
+"vLyBQZXLDrW9kbyBkZSBhbW9zdHJhZ2VtCiAgICBmbG9hdCBhbHBoYSA9IFJDIC8gKFJDICsgZHQp"
+"OwoKICAgIC8vIEZpbHRybyBwYXNzYS1iYWl4YTogeVtuXSA9IGFscGhhICogeFtuXSArICgxIC0gY"
+"WxwaGEpICogeVtuLTFdCiAgICBzaW5hbF9maW5hbCA9IGFscGhhICogc2luYWwgKyAoMS4wZiAtIG"
+"FscGhhKSAqIHNpbmFsX2ZpbmFsX2FudDsKCiAgICAvLyBBdHVhbGl6YSB2YWxvcmVzIGFudGVyaW9"
+"yZXMKICAgIHNpbmFsX2FudCA9IHNpbmFsOwogICAgc2luYWxfZmluYWxfYW50ID0gc2luYWxfZmlu"
+"YWw7Cn0K"
+        Show          off
+      }
+      Parameter {
+        Variable      "StartFcn"
+        Value         "sinal = InputSignal(0,0);\n"
+"\n"
+"update();"
+        Show          off
+      }
+      Parameter {
+        Variable      "OutputFcn"
+        Value         "OutputSignal(0,0) = sinal_final;"
+        Show          off
+      }
+      Parameter {
+        Variable      "UpdateFcn"
+        Value         "sinal = InputSignal(0,0);\n"
+"\n"
+"update();"
+        Show          off
+      }
+      Parameter {
+        Variable      "DerivativeFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "TerminateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "StoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "RestoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "X(t)"
+      SrcTerminal   1
+      DstComponent  "Demux"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Mux"
+      SrcTerminal   1
+      Points        [525, 145; 525, 140]
+      DstComponent  "Scope5"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Demux"
+      SrcTerminal   2
+      DstComponent  "Loop Gain Meter"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Loop Gain Meter"
+      SrcTerminal   2
+      Points        [240, 145]
+      Branch {
+        DstComponent  "Filtro passa-alta"
+        DstTerminal   1
+      }
+      Branch {
+        Points        [240, 105; 480, 105; 480, 135]
+        DstComponent  "Mux"
+        DstTerminal   2
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Filtro passa-alta"
+      SrcTerminal   2
+      Points        [360, 145]
+      Branch {
+        Points        [360, 175]
+        DstComponent  "Filtro passa-baixa"
+        DstTerminal   1
+      }
+      Branch {
+        DstComponent  "Mux"
+        DstTerminal   3
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Filtro passa-baixa"
+      SrcTerminal   2
+      Points        [470, 175]
+      Branch {
+        Points        [470, 155]
+        DstComponent  "Mux"
+        DstTerminal   4
+      }
+      Branch {
+        Points        [470, 190]
+        DstComponent  "Response"
+        DstTerminal   1
+      }
+    }
+  }
+  Analysis {
+    Type          SteadyStateAnalysis
+    Name          "Steady-State Analysis"
+    OperatingPoint "1"
+    TimeSpan      "-1"
+    StartTime     "0"
+    Tolerance     "1e-4"
+    MaxIter       "20"
+    JacobianPerturbation "1e-4"
+    JacobianCalculation "2"
+    InitCycles    "0"
+    ShowCycles    "1"
+  }
+  Analysis {
+    Type          ACSweep
+    Name          "AC Sweep"
+    ShowLegend    "1"
+    OperatingPoint "1"
+    TimeSpan      "-1"
+    StartTime     "0"
+    Tolerance     "1e-4"
+    MaxIter       "20"
+    FrequencyRange "[0.01 120]"
+    FrequencyScale "2"
+    AdditionalFreqs "[]"
+    AmplitudeRange "1e-3"
+    NumPoints     "100"
+    Perturbation  "Loop Gain Meter/Perturbation"
+    Response      "Response"
+    JacobianPerturbation "1e-4"
+    JacobianCalculation "2"
+    InitCycles    "0"
+  }
+  Analysis {
+    Type          ImpulseResponseAnalysis
+    Name          "Impulse Response Analysis"
+    ShowLegend    "1"
+    TimeSpan      "-1"
+    StartTime     "0"
+    Tolerance     "1e-4"
+    MaxIter       "20"
+    FrequencyRange "[0.01 100]"
+    FrequencyScale "2"
+    Amplitude     "1e-3"
+    NumPoints     "300"
+    Perturbation  "Loop Gain Meter/Perturbation"
+    Response      "Response"
+    JacobianPerturbation "1e-4"
+    JacobianCalculation "2"
+    InitCycles    "0"
+  }
+  Analysis {
+    Type          MultitoneAnalysis
+    Name          "Multitone Analysis"
+    ShowLegend    "1"
+    StartTime     "0"
+    InitSimulationPeriod "0"
+    FrequencyRange "[0.01 100]"
+    Amplitude     "1e-3"
+    Perturbation  "Loop Gain Meter/Perturbation"
+    Response      "Response"
+  }
+}
+DemoSignature "6Mx6VUMij7V73LDnQlL/5Qb2zd4TosX7zHfTvrwrDy0="

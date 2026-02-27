@@ -1,0 +1,169 @@
+/*
+ * File:   LCD.h
+ * Author: Igor da Rosa 
+ *
+ * 
+ */
+#ifndef LCD_H
+#define LCD_H
+
+#ifndef Delay
+#define Delay __delay_ms
+#endif
+
+#ifndef _XTAL_FREQ
+#define _XTAL_FREQ 4000000
+#endif 
+
+//definições
+#define LCD PORTD
+#define RS PORTCbits.RC5
+#define RW PORTCbits.RC6
+#define ENABLE  PORTCbits.RC7
+#define D0 PORTDbits.RD0
+#define D1 PORTDbits.RD1
+#define D2 PORTDbits.RD2
+#define D3 PORTDbits.RD3
+#define D4 PORTDbits.RD4
+#define D5 PORTDbits.RD5
+#define D6 PORTDbits.RD6
+#define D7 PORTDbits.RD7
+
+//exibição
+#define A 0b01000001
+#define B 0b01000010
+#define C 0b01000011
+#define D 0b01000100
+#define E 0b01000101
+#define F 0b01000110
+#define G 0b01000111
+#define H 0b01001000
+#define I 0b01001001
+#define J 0b01001010
+#define K 0b01001011
+#define L 0b01001100
+#define M 0b01001101
+#define N 0b01001110
+#define O 0b01001111
+#define P 0b01010000
+#define Q 0b01010001
+#define R 0b01010010
+#define S 0b01010011
+#define T 0b01010100
+#define U 0b01010101
+#define V 0b01010110
+#define W 0b01010111
+#define X 0b01011000
+#define Y 0b01011001
+#define Z 0b01011010
+#define a 0b01100001
+#define b 0b01100010
+#define c 0b01100011
+#define d 0b01100100
+#define e 0b01100101
+#define f 0b01100110
+#define g 0b01100111
+#define h 0b01101000
+#define i 0b01101001
+#define j 0b01101010
+#define k 0b01101011
+#define l 0b01101100
+#define m 0b01101101
+#define n 0b01101110
+#define o 0b01101111
+#define p 0b01110000
+#define q 0b01110001
+#define r 0b01110010
+#define s 0b01110011
+#define t 0b01110100
+#define u 0b01110101
+#define v 0b01110110
+#define w 0b01110111
+#define x 0b01111000
+#define y 0b01111001
+#define z 0b01111010
+#define ZERO 0b00110000
+#define ONE 0b00110001
+#define TWO 0b00110010
+#define THREE 0b00110011
+#define FOUR 0b00110100
+#define FIVE 0b00110101
+#define SIX 0b00110110
+#define SEVEN 0b00110111
+#define EIGHT 0b00111000
+#define NINE 0b00111001
+#define POINT 0b00101110
+#define SPACE 0b00100000
+#define INTERROGATION 0b00100001
+#define EXCLAMATION 0b00111111
+//...defina mais caracteres
+
+
+//inicializa o LCD
+void Enable()
+{
+    ENABLE = 1;
+    Delay(8);
+    ENABLE = 0;
+    Delay(8);
+};
+
+void ClearLCD()
+{
+    RS = 0;
+    LCD = 0x01;Enable();
+    RS = 1;  
+};
+
+void PrimeiraLinha()// 0x00-0x0F e 0x40-0x4F
+{
+    RS = 0;
+    
+    LCD = 0b10000000;Enable();
+    
+    RS = 1;
+};
+
+void SegundaLinha()// 0x00-0x0F e 0x40-0x4F
+{
+    RS = 0;
+    
+    LCD = 0b11000000;Enable();
+    
+    RS = 1;
+}
+
+void CriarChar01LCD()
+{
+    RS = 0;
+    LCD = 0b01000000;Enable();
+    RS = 1;
+    //desenhe o seu character igonrando os 3 primeiros bits
+    LCD = 0b00000000   ;Enable();
+    LCD = 0b00000000   ;Enable();
+    LCD = 0b00000000   ;Enable();
+    LCD = 0b00000000   ;Enable();
+    LCD = 0b00000000   ;Enable();
+    LCD = 0b00000000   ;Enable();
+    LCD = 0b00000000   ;Enable();
+}
+
+void inicializarLCD()
+{
+    LCD = 0x38;Enable();
+    
+    LCD = 0x0C;Enable();
+    
+    ClearLCD();
+    
+    CriarChar01LCD();
+    
+    RS = 1;
+};
+
+//use inicializarLCD(); após a inicialização do seu PIC
+
+//funções para escrever no LCD
+
+    
+#endif

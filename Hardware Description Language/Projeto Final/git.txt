@@ -1,0 +1,10 @@
+como adicionar no repositorio:
+1.git add *
+2.git commit -m 'qualquer merda'
+3.git push
+
+como puxar:
+1.git pull
+
+como criar uma nova BRANCH - NOVAS ATUALIZAÇÕES
+1.git checkout -b nomedabranch

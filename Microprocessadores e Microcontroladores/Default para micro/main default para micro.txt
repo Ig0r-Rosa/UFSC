@@ -1,0 +1,20 @@
+/*
+ * File:   main.c
+ * Author: Igor da Rosa 
+ *
+ * Created on 4 de Fevereiro de 2022, 15:22
+ */
+//inclusão do header que contem os includes necessarios
+#include "interrupt.h"
+
+//main
+void main(void) 
+{   
+    inicializar();
+ 
+    //loop principal
+    while(1)
+    {
+        
+    }
+}

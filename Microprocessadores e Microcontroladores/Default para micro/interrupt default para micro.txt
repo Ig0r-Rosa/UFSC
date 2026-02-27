@@ -1,0 +1,39 @@
+/*
+ * File:   interrupt.h
+ * Author: Igor da Rosa 
+ *
+ * 
+ */
+#ifndef INTERRUPT_H
+#define INTERRUPT_H
+
+//inclusão do header.h que contém nossas funções e etc...
+#include "header.h"
+
+//tratamento da interrupção
+void __interrupt() TrataInt(void)
+{
+    if(INTF) //testa, caso seja interrupção externa.
+    {
+  	INTCONbits.INTF = 0;
+
+    }
+    
+    if(TMR0IF) //testa, caso seja interrupção do timer 0.
+    {
+	INTCONbits.TMR0IF = 0;
+	TMR0 = 251;//5 tics para 256
+
+    }
+    
+    if(TMR1IF) //testa, caso seja interrupção do timer 1.
+    {
+	PIR1bits.TMR1IF = 0;
+	TMR1L = 0xDC; // iniciar (65536-62500) 
+      TMR1H = 0x0B; // 3036. quando estourar 62500, passou-se 0,5 segundos.
+
+    }
+    return;
+};
+
+#endif

@@ -1,0 +1,96 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"18 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\scheduler.c
+[e E3352 . `uc
+READY 0
+RUNNING 1
+WAITING 2
+]
+"5 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\kernel.c
+[e E3349 . `uc
+READY 0
+RUNNING 1
+WAITING 2
+]
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"7 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\kernel.c
+[v _CreateTask CreateTask `(v  1 e 1 0 ]
+"50
+[v _OsInit OsInit `(v  1 e 1 0 ]
+"56
+[v _OsStart OsStart `(v  1 e 1 0 ]
+"4 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\main.c
+[v _main main `(i  1 e 2 0 ]
+"7 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\scheduler.c
+[v _Scheduler Scheduler `(v  1 e 1 0 ]
+"3 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\userApp.c
+[v _Tarefa1 Tarefa1 `(v  1 e 1 0 ]
+"27
+[v _UserConfig UserConfig `(v  1 e 1 0 ]
+[s S55 tcb 32 `uc 1 taskId 1 0 `uc 1 taskPriority 1 1 `E3352 1 taskState 1 2 `*.37(v 1 taskF 2 3 `uc 1 WREG 1 5 `uc 1 STATUSREG 1 6 `uc 1 BSRREG 1 7 `uc 1 FSRREG 1 8 `[21]uc 1 taskStack 21 9 `uc 1 taskSp 1 30 `uc 1 timeSleeping 1 31 ]
+"5 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\kernel.c
+[s S67 readyQueue 130 `[4]S55 1 readyQueue 128 0 `uc 1 taskRunning 1 128 `uc 1 readyQueueSize 1 129 ]
+[v _rQueue rQueue `S67  1 e 130 0 ]
+"4 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\main.c
+[v _main main `(i  1 e 2 0 ]
+{
+"14
+} 0
+"56 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\kernel.c
+[v _OsStart OsStart `(v  1 e 1 0 ]
+{
+"60
+} 0
+"27 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\userApp.c
+[v _UserConfig UserConfig `(v  1 e 1 0 ]
+{
+"30
+} 0
+"50 C:\Users\igord\Desktop\Arquivos\UFSC\SO embarcado\Projeto\RTOS.X\kernel.c
+[v _OsInit OsInit `(v  1 e 1 0 ]
+{
+"54
+} 0
+"7
+[v _CreateTask CreateTask `(v  1 e 1 0 ]
+{
+[v CreateTask@id id `uc  1 p 1 wreg ]
+[s S55 tcb 32 `uc 1 taskId 1 0 `uc 1 taskPriority 1 1 `E3352 1 taskState 1 2 `*.37(v 1 taskF 2 3 `uc 1 WREG 1 5 `uc 1 STATUSREG 1 6 `uc 1 BSRREG 1 7 `uc 1 FSRREG 1 8 `[21]uc 1 taskStack 21 9 `uc 1 taskSp 1 30 `uc 1 timeSleeping 1 31 ]
+"9
+[v CreateTask@newTask newTask `S55  1 a 32 4 ]
+"7
+[v CreateTask@id id `uc  1 p 1 wreg ]
+[v CreateTask@priority priority `uc  1 p 1 0 ]
+[v CreateTask@task task `*.37(v  1 p 2 1 ]
+"11
+[v CreateTask@id id `uc  1 p 1 3 ]
+"25
+} 0
