@@ -1,0 +1,14 @@
+Análise Léxica - Atividade Avaliativa Parcial (20% primeira avaliação)
+Condições de conclusão
+Vencimento: quinta-feira, 9 abr. 2026, 15:25
+Com base no código exemplo em anexo, complementar sua implementação para que o analisador léxico reconheça as seguintes estruturas da linguagem de programação de sua escolha:
+
+declaração de variáveis (tipos);
+estruturas condicionais 'if', 'if-else';
+estruturas de repetição 'for' e 'while';
+bloco principal 'main()'
+Encaminhar o código fonte, incluindo um teste para código com todas as estruturas solicitadas adicionadas as estruturas já implementadas.
+
+Em anexo um exemplo para estruturas em C.
+
+Biblioteca utilizada:  Python Lex-Yacc https://www.dabeaz.com/ply/ply.html
