@@ -1,5 +1,4 @@
 # ATIVIDADE PRÁTICA - reconhecedor de estruturas em C
-
 from ply import *
 
 # Palavras reservadas <palavra>:<TOKEN>
