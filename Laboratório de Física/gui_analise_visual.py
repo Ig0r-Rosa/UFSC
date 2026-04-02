@@ -6,6 +6,10 @@ Cálculos e tabela de regressão com precisão numérica completa (sem arredonda
 
 from __future__ import annotations
 
+import sys
+
+sys.dont_write_bytecode = True
+
 import re
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -14,6 +18,8 @@ import matplotlib
 
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
+
+plt.ioff()
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
@@ -101,6 +107,27 @@ class App(tk.Tk):
         self._toolbar_grafico = None
         self._config_estilo()
         self._montar_ui()
+        self.protocol("WM_DELETE_WINDOW", self._ao_fechar)
+
+    def _ao_fechar(self) -> None:
+        """Encerra o Tk e libera o matplotlib (evita terminal preso após fechar a janela)."""
+        try:
+            for w in list(self.frame_graf_placeholder.winfo_children()):
+                try:
+                    w.destroy()
+                except tk.TclError:
+                    pass
+        except tk.TclError:
+            pass
+        self._fig_grafico_aberto = None
+        self._canvas_grafico = None
+        self._toolbar_grafico = None
+        try:
+            plt.close("all")
+        except Exception:
+            pass
+        self.quit()
+        self.destroy()
 
     def _config_estilo(self) -> None:
         s = ttk.Style()
@@ -388,7 +415,7 @@ class App(tk.Tk):
         self.txt_contas.delete("1.0", tk.END)
         self.txt_contas.insert("1.0", "\n".join(partes))
         self._preencher_tree(cab, xs, medidas)
-
+\
         self._grafico_state = {
             "x": x_arr,
             "y": y_arr,
@@ -437,7 +464,14 @@ class App(tk.Tk):
 
 
 def main() -> None:
-    App().mainloop()
+    app = App()
+    try:
+        app.mainloop()
+    finally:
+        try:
+            plt.close("all")
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":
