@@ -6,6 +6,7 @@ Cálculos e tabela de regressão com precisão numérica completa (sem arredonda
 
 from __future__ import annotations
 
+import os
 import sys
 
 sys.dont_write_bytecode = True
@@ -126,8 +127,16 @@ class App(tk.Tk):
             plt.close("all")
         except Exception:
             pass
-        self.quit()
-        self.destroy()
+        try:
+            self.quit()
+        except tk.TclError:
+            pass
+        try:
+            self.destroy()
+        except tk.TclError:
+            pass
+        # Garante saída imediata mesmo se algum loop do Tk/matplotlib ficar pendurado.
+        os._exit(0)
 
     def _config_estilo(self) -> None:
         s = ttk.Style()
