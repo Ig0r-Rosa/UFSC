@@ -1,0 +1,1326 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{amssymb}
+\usepackage{caption}
+\renewcommand{\figurename}{Figura}
+\captionsetup[figure]{labelfont=bf,labelsep=colon,justification=centering}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!30},
+  xleftmargin=0.8em,
+  xrightmargin=0.8em,
+  inputencoding=utf8,
+  extendedchars=true,
+  literate={á}{{\'a}}1 {à}{{\`a}}1 {â}{{\^a}}1 {ã}{{\~a}}1
+           {Á}{{\'A}}1 {À}{{\`A}}1 {Â}{{\^A}}1 {Ã}{{\~A}}1
+           {é}{{\'e}}1 {ê}{{\^e}}1 {É}{{\'E}}1 {Ê}{{\^E}}1
+           {í}{{\'i}}1 {Í}{{\'I}}1
+           {ó}{{\'o}}1 {ô}{{\^o}}1 {õ}{{\~o}}1
+           {Ó}{{\'O}}1 {Ô}{{\^O}}1 {Õ}{{\~O}}1
+           {ú}{{\'u}}1 {Ú}{{\'U}}1
+           {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1
+           {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
+           {✓}{{\checkmark}}1 {•}{{\textbullet}}1
+           {π}{{$\pi$}}1 {ω}{{$\omega$}}1 {Ω}{{$\Omega$}}1 {ζ}{{$\zeta$}}1
+           {≈}{{$\approx$}}1
+           {≤}{{$\le$}}1 {≥}{{$\ge$}}1
+           {²}{{$^{2}$}}1 {³}{{$^{3}$}}1
+           {₀}{{$_0$}}1 {₁}{{$_1$}}1 {₂}{{$_2$}}1 {₃}{{$_3$}}1 {₄}{{$_4$}}1
+           {₅}{{$_5$}}1 {₆}{{$_6$}}1 {₇}{{$_7$}}1 {₈}{{$_8$}}1 {₉}{{$_9$}}1,
+}
+
+\title{Trabalho 1: Desempenho de Sistemas de Controle e Projetos}
+\author{Igor de Matos da Rosa \\ Matrícula: 20103930 \\ Universidade Federal de Santa Catarina \\ Disciplina: Controle Aplicado à Computação}
+\date{25/04/2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\clearpage
+\section*{PC4.1}
+\noindent\textit{Fonte:} 4.1.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+Máxima Ultrapassagem (MP): 35.09%
+
+Valor final (y_ss): 1.20
+
+Erro em regime estacionário (e_ss): -0.20
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_1\_fig01.png}
+\caption{PC4.1}
+\end{figure}
+
+\clearpage
+\section*{PC4.2}
+\noindent\textit{Fonte:} 4.2.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+Ganho DC da função de transferência: 0.2
+
+Valor da saída em regime estacionário: 0.2000
+Erro em regime estacionário (1 - saída): 0.8000
+
+Como esperado, o erro é aproximadamente 0.8
+
+==================================================
+RESULTADO DO EXERCÍCIO PC4.2
+==================================================
+Função de transferência: G(s) = 4/(s² + 2s + 20)
+Entrada: Degrau unitário
+Valor desejado em regime estacionário: 1
+Valor obtido em regime estacionário: 0.2
+Erro em regime estacionário: 0.8
+==================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_2\_fig01.png}
+\caption{PC4.2}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_2\_fig02.png}
+\caption{PC4.2}
+\end{figure}
+
+\clearpage
+\section*{PC4.3}
+\noindent\textit{Fonte:} 4.3.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+Funções de Transferência:
+K = 10: T(s) = 50 / (s² + 15s + 10)
+  Polos: [-14.30073525  -0.69926475]
+
+K = 200: T(s) = 1000 / (s² + 15s + 200)
+  Polos: [-7.5+11.98957881j -7.5-11.98957881j]
+
+K = 500: T(s) = 2500 / (s² + 15s + 500)
+  Polos: [-7.5+21.06537443j -7.5-21.06537443j]
+
+=============================================================================
+ANÁLISE DAS RESPOSTAS AO DEGRAU UNITÁRIO
+=============================================================================
+
+Função de Transferência em Malha Fechada: T(s) = 5K / (s² + 15s + K)
+
+  K Ganho DC Máximo Sobressinal (%) Tempo de Acomodação (s) Erro em Regime Est.
+ 10   4.3548                   0.00                  2.8199             -3.3548
+200   5.0000                  14.01                  0.4097             -4.0000
+500   5.0000                  32.67                  0.4967             -4.0000
+=============================================================================
+
+ANÁLISE:
+-----------------------------------------------------------------------------
+
+K = 10:
+  • Ganho DC (y_ss): 4.3548
+  • Máximo Sobressinal: 0.00%
+  • Tempo de Acomodação (±2%): 2.8199 s
+  • Erro em Regime Estacionário: -3.3548
+
+K = 200:
+  • Ganho DC (y_ss): 5.0000
+  • Máximo Sobressinal: 14.01%
+  • Tempo de Acomodação (±2%): 0.4097 s
+  • Erro em Regime Estacionário: -4.0000
+
+K = 500:
+  • Ganho DC (y_ss): 5.0000
+  • Máximo Sobressinal: 32.67%
+  • Tempo de Acomodação (±2%): 0.4967 s
+  • Erro em Regime Estacionário: -4.0000
+
+=============================================================================
+ANÁLISE COMPLEMENTAR - CARACTERÍSTICAS DOS SISTEMAS
+=============================================================================
+
+K = 10:
+  • Denominador: s² + 15s + 10
+  • Frequência Natural (ωₙ): 3.1623 rad/s
+  • Fator de Amortecimento (ζ): 2.3717
+  • Sistema: Superamortecido (overdamped)
+  • Constantes de tempo: τ₁ = 0.0699 s, τ₂ = 1.4301 s
+
+K = 200:
+  • Denominador: s² + 15s + 200
+  • Frequência Natural (ωₙ): 14.1421 rad/s
+  • Fator de Amortecimento (ζ): 0.5303
+  • Sistema: Subamortecido (underdamped)
+  • Frequência amortecida (ωd): 11.9896 rad/s
+  • Frequência amortecida (f_d): 1.9082 Hz
+  • Tempo de Pico (t_p): 0.2620 s
+
+K = 500:
+  • Denominador: s² + 15s + 500
+  • Frequência Natural (ωₙ): 22.3607 rad/s
+  • Fator de Amortecimento (ζ): 0.3354
+  • Sistema: Subamortecido (underdamped)
+  • Frequência amortecida (ωd): 21.0654 rad/s
+  • Frequência amortecida (f_d): 3.3527 Hz
+  • Tempo de Pico (t_p): 0.1491 s
+
+=============================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_3\_fig01.png}
+\caption{PC4.3}
+\end{figure}
+
+\clearpage
+\section*{PC4.5}
+\noindent\textit{Fonte:} 4.5.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=============================================================================
+
+VERIFICAÇÃO FINAL COM k = 4.3081
+=============================================================================
+
+Parâmetros do Sistema:
+  Função de Transferência: T(s) = 10/(s² + 4.3081s + 10)
+
+Características da Resposta:
+  • Ganho DC (y_ss):                0.997875
+  • Máximo Sobressinal (Mp):        5.60%
+  • Tempo de Pico (t_p):            1.3567 s
+  • Tempo de Acomodação (±2%):     1.9315 s
+  • Erro em Regime Estacionário:    0.002125
+
+✓ CRITÉRIO SATISFEITO: 5.60% está dentro do intervalo [1%, 10%]
+
+✓ ERRO EM REGIME ESTACIONÁRIO: 0.00212468 ≈ 0 (praticamente nulo)
+
+=============================================================================
+
+CONCLUSÃO:
+-----------------------------------------------------------------------------
+O valor k = 4.3081 foi selecionado para satisfazer:
+  1. Máximo sobressinal entre 1% e 10%: Mp = 5.60% ✓
+  2. Erro em regime estacionário nulo para entrada degrau: ess ≈ 0 ✓
+
+O sistema possui realimentação negativa com integrador no controlador,
+garantindo erro nulo em regime estacionário para entradas do tipo degrau.
+=============================================================================
+end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_5\_fig01.png}
+\caption{PC4.5}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_5\_fig02.png}
+\caption{PC4.5}
+\end{figure}
+
+\clearpage
+\section*{PC4.8}
+\noindent\textit{Fonte:} 4.8.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=============================================================================
+
+=============================================================================
+PROBLEMA PC4.8 - PARTE (c): COMPARAÇÃO ENTRE CONTROLADORES
+=============================================================================
+
+TABELA COMPARATIVA:
+-----------------------------------------------------------------------------
+                      Aspecto Parte (a) - Proporcional     Parte (b) - PI
+          Tipo de Controlador               G_c(s) = K G_c(s) = K₀ + K₁/s
+                 Complexidade                  Simples      Mais complexo
+         Número de Parâmetros                  1 (K=2)    2 (K₀=2, K₁=20)
+              Ganho DC (y_ss)                 0.666666           0.999955
+    Erro em Regime Est. (ess)                 0.333334         0.00004540
+Erro em % do sinal de entrada                 33.3334%          0.004540%
+   Tempo de resposta (aprox.)          Rápido (~0.03s)    Rápido (~0.02s)
+
+ANÁLISE E DISCUSSÃO:
+-----------------------------------------------------------------------------
+
+1. DESEMPENHO DO ERRO EM REGIME ESTACIONÁRIO:
+   • Controlador Proporcional (a):
+     - Erro em regime estacionário: 0.333334 (33.3334%)
+     - O sistema NÃO rastreia perfeitamente a entrada degrau
+     - Há um erro residual permanente
+
+   • Controlador PI (b):
+     - Erro em regime estacionário: 0.00004540 (praticamente zero)
+     - O sistema RASTREIA perfeitamente a entrada degrau
+     - O integrador elimina qualquer erro estacionário
+
+2. ANÁLISE TEÓRICA:
+   • Controlador Proporcional:
+     - Ganho em malha aberta finito: K*Gp(0) = 2*1 = 2
+     - Ganho em malha fechada: T(0) = 2/(1+2) ≈ 0.667
+     - Erro estacionário: 1 - 0.667 = 0.333 (por análise teórica)
+
+   • Controlador PI:
+     - Ganho em malha aberta infinito (devido ao integrador)
+     - Ganho em malha fechada: T(0) = 1
+     - Erro estacionário: 0 (eliminado pelo integrador)
+
+3. TRADE-OFF COMPLEXIDADE vs DESEMPENHO:
+   • Controlador Proporcional:
+     ✓ Simplicidade: apenas 1 parâmetro (K)
+     ✓ Implementação trivial
+     ✗ Erro em regime estacionário não nulo
+     ✗ Não atende ao requisito de rastreamento perfeito
+
+   • Controlador PI:
+     ✓ Rastreamento perfeito (ess = 0)
+     ✓ Atende ao requisito do problema
+     ✗ Complexidade aumentada: 2 parâmetros (K₀, K₁)
+     ✗ Implementação requer integrador
+
+4. CONCLUSÃO:
+   O CONTROLADOR PI é a solução de COMPLEXIDADE MÍNIMA que permite
+   rastreamento de referência com erro em regime estacionário NULO.
+
+   • Aumento de complexidade: 1 parâmetro → 2 parâmetros
+   • Benefício: Erro de 0.3333 → 0.00004540
+   • Trade-off: A adição de um integrador (K₁/s) é essencial e mínima
+     para eliminar o erro estacionário.
+
+=============================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_8\_fig01.png}
+\caption{PC4.8}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_8\_fig02.png}
+\caption{PC4.8}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_8\_fig03.png}
+\caption{PC4.8}
+\end{figure}
+
+\clearpage
+\section*{PC4.11}
+\noindent\textit{Fonte:} 4.11.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=====================================================================
+PROBLEMA PC4.11 - ANÁLISE DO SISTEMA DE CONTROLE
+=====================================================================
+
+(a) FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA
+
+Para K = 10:
+T(s) = Y(s)/R(s) =
+<TransferFunction>: sys[4]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+          200 s + 200
+  ----------------------------
+  s^3 + 5.5 s^2 + 10.5 s + 206
+
+Numerador: [200. 200.]
+Denominador: [array([  1. ,   5.5,  10.5, 206. ])]
+
+Para K = 12:
+T(s) = Y(s)/R(s) =
+<TransferFunction>: sys[9]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+          240 s + 240
+  ----------------------------
+  s^3 + 5.5 s^2 + 10.5 s + 246
+
+Numerador: [240. 240.]
+Denominador: [array([  1. ,   5.5,  10.5, 246. ])]
+
+Para K = 15:
+T(s) = Y(s)/R(s) =
+<TransferFunction>: sys[14]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+          300 s + 300
+  ----------------------------
+  s^3 + 5.5 s^2 + 10.5 s + 306
+
+Numerador: [300. 300.]
+Denominador: [array([  1. ,   5.5,  10.5, 306. ])]
+
+======================================================================
+(b) RESPOSTA AO DEGRAU UNITÁRIO E ANÁLISE
+======================================================================
+
+─────────────────────────────────────────────────────────────────
+K = 10
+─────────────────────────────────────────────────────────────────
+  Valor em regime estacionário (Y_ss):     -387.123196
+  Erro em regime estacionário (e_ss):      388.123196
+  Percentual de ultrapassagem (overshoot): 0.00%
+  Tempo de acomodação (2%):                5.0000 s
+
+─────────────────────────────────────────────────────────────────
+K = 12
+─────────────────────────────────────────────────────────────────
+  Valor em regime estacionário (Y_ss):     2157.875664
+  Erro em regime estacionário (e_ss):      -2156.875664
+  Percentual de ultrapassagem (overshoot): 0.00%
+  Tempo de acomodação (2%):                4.9900 s
+  Tempo até 90% do valor final:            4.9800 s
+
+─────────────────────────────────────────────────────────────────
+K = 15
+─────────────────────────────────────────────────────────────────
+  Valor em regime estacionário (Y_ss):     -789.734395
+  Erro em regime estacionário (e_ss):      790.734395
+  Percentual de ultrapassagem (overshoot): 0.00%
+  Tempo de acomodação (2%):                5.0000 s
+
+======================================================================
+Gráfico salvo como 'step_response_analysis.png'
+======================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/4\_11\_fig01.png}
+\caption{PC4.11}
+\end{figure}
+
+\clearpage
+\section*{PC5.2}
+\noindent\textit{Fonte:} 5.2.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+===========================================================================
+PROBLEMA PC5.2 - RESPOSTA A RAMPA UNITÁRIA COM REALIMENTAÇÃO
+===========================================================================
+
+(a) FUNÇÃO DE TRANSFERÊNCIA EM MALHA ABERTA:
+---------------------------------------------------------------------------
+L(s) = G_c(s)G(s) =
+<TransferFunction>: sys[0]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+     s + 10
+  ------------
+  s^3 + 15 s^2
+
+(b) FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA:
+---------------------------------------------------------------------------
+T(s) = L(s) / (1 + L(s)) = Y(s) / R(s) =
+<TransferFunction>: sys[2]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+         s + 10
+  ---------------------
+  s^3 + 15 s^2 + s + 10
+
+Numerador: [ 1 10]
+Denominador: [array([ 1, 15,  1, 10])]
+
+(c) ANÁLISE DA RESPOSTA À RAMPA UNITÁRIA:
+---------------------------------------------------------------------------
+
+Intervalo de tempo: 0 ≤ t ≤ 50 s
+
+No tempo final (t = 50.0 s):
+  Entrada r(t) = 50.0000
+  Saída y(t) = 50.0074
+  Erro e(t) = r(t) - y(t) = -0.007395
+
+(d) ERRO DE REGIME ESTACIONÁRIO TEÓRICO:
+---------------------------------------------------------------------------
+
+Constante de erro de velocidade (Velocity Error Constant):
+K_v = lim(s→0) s*L(s) = inf
+
+Erro de regime estacionário para rampa unitária:
+e_ss = 1/K_v = 0.000000
+
+Erro simulado ao final de 50 segundos: -0.007395
+Diferença: 0.007395
+
+===========================================================================
+Gráficos salvos como 'rampa_response.png'
+===========================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/5\_2\_fig01.png}
+\caption{PC5.2}
+\end{figure}
+
+\clearpage
+\section*{PC5.4}
+\noindent\textit{Fonte:} 5.4.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+===========================================================================
+PROBLEMA PC5.4 - ANÁLISE DO MÁXIMO PERCENTUAL DE ULTRAPASSAGEM
+===========================================================================
+
+(a) ANÁLISE ANALÍTICA:
+---------------------------------------------------------------------------
+
+Sistema em Malha Aberta:
+  G_c(s) = 21/s (Controlador)
+  G_p(s) = 1/(s+2) (Processo)
+  L(s) = G_c(s)*G_p(s) =
+<TransferFunction>: sys[0]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+     21
+  ---------
+  s^2 + 2 s
+
+Sistema em Malha Fechada:
+  T(s) = L(s)/(1 + L(s)) = Y(s)/R(s) =
+<TransferFunction>: sys[2]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+        21
+  --------------
+  s^2 + 2 s + 21
+
+  Numerador: [21]
+  Denominador: [array([ 1,  2, 21])]
+
+─────────────────────────────────────────────────────────────────────────────
+PARÂMETROS DO SISTEMA DE SEGUNDA ORDEM:
+─────────────────────────────────────────────────────────────────────────────
+  Frequência Natural: ωn = √21 = 4.582576 rad/s
+  Amortecimento Relativo: ζ = 1/√21 = 0.218218
+
+  √(1 - ζ²) = √(1 - 0.047619) = 0.975900
+  e^(-ζπ/√(1-ζ²)) = e^(-0.218218*π/0.975900)
+                   = e^(-0.702481)
+                   = 0.495355
+
+  MÁXIMA ULTRAPASSAGEM PERCENTUAL (M.U.P.):
+  M.U.P. = 0.495355 × 100% = 49.54%
+
+─────────────────────────────────────────────────────────────────────────────
+OUTROS PARÂMETROS DO SISTEMA:
+─────────────────────────────────────────────────────────────────────────────
+  Frequência natural: 0.7293 Hz
+  Frequência de oscilação: 4.4721 rad/s
+  Tempo de pico (máxima ultrapassagem): t_p = 0.702481 s
+  Tempo de acomodação (2%): t_s = 4.000000 s
+
+=============================================================================
+(b) RESPOSTA AO DEGRAU E ESTIMATIVA GRÁFICA
+=============================================================================
+
+A partir da simulação:
+  Valor de pico: y_max = 1.495338
+  Tempo de pico: t_p = 0.700701 s
+  Ultrapassagem percentual: M.U.P. = 49.53%
+  Tempo de acomodação (2%): t_s ≈ 4.319319 s
+
+=============================================================================
+COMPARAÇÃO ENTRE ANÁLISE TEÓRICA E SIMULAÇÃO:
+=============================================================================
+
+  Ultrapassagem percentual teórica (a):  49.54%
+  Ultrapassagem percentual simulada (b): 49.53%
+  Erro relativo:                         0.0017%
+
+  Tempo de pico teórico:  0.702481 s
+  Tempo de pico simulado: 0.700701 s
+
+  Tempo de acomodação teórico (2%):  4.000000 s
+  Tempo de acomodação simulado (2%): 4.319319 s
+
+✓ Gráfico salvo como 'step_response_pc54.png'
+=============================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/5\_4\_fig01.png}
+\caption{PC5.4}
+\end{figure}
+
+\clearpage
+\section*{PC5.8}
+\noindent\textit{Fonte:} 5.8.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=============================================================================
+PROBLEMA PC5.8 - ANÁLISE DO PILOTO AUTOMÁTICO DE MÍSSIL
+=============================================================================
+
+(1) COMPONENTES DO SISTEMA:
+-----------------------------------------------------------------------------
+
+Controlador: G_c(s) = 0.1 + 5/s =
+<TransferFunction>: sys[16]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+  0.1 s + 5
+  ---------
+      s
+
+Dinâmica do Míssil: G_p(s) = 100(s+1)/(s² + 2s + 100) =
+<TransferFunction>: sys[17]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+    100 s + 100
+  ---------------
+  s^2 + 2 s + 100
+
+Função de Transferência em Malha Aberta:
+L(s) = G_c(s) * G_p(s) =
+<TransferFunction>: sys[18]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+  10 s^2 + 510 s + 500
+  --------------------
+  s^3 + 2 s^2 + 100 s
+
+Numerador de L(s): [ 10. 510. 500.]
+Denominador de L(s): [array([  1,   2, 100,   0])]
+
+=============================================================================
+FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA:
+=============================================================================
+T(s) = L(s)/(1 + L(s)) = Θ̂(s)/Θ̇_d(s) =
+<TransferFunction>: sys[20]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+     10 s^2 + 510 s + 500
+  --------------------------
+  s^3 + 12 s^2 + 610 s + 500
+
+Numerador de T(s): [ 10. 510. 500.]
+Denominador de T(s): [  1.  12. 610. 500.]
+
+=============================================================================
+ANÁLISE DO SISTEMA:
+=============================================================================
+
+Pólos do sistema em malha fechada:
+  Pólo 1: -5.583822 ± j23.864733
+  Pólo 2: -5.583822 ± j23.864733
+  Pólo 3: -0.832356
+
+Pólos dominantes (conjugado complexo):
+  s = --5.583822 ± j23.864733
+
+Parâmetros equivalentes de segunda ordem (pólos dominantes):
+  ωn (frequência natural estimada) = 24.509275 rad/s
+  ζ (amortecimento relativo estimado) = 0.227825
+
+=============================================================================
+PREDIÇÃO USANDO FÓRMULAS DE SEGUNDA ORDEM:
+=============================================================================
+
+Parâmetros teóricos de segunda ordem:
+  Máximo percentual de ultrapassagem:
+    M_p = e^(-ζπ/√(1-ζ²)) = e^(-0.227825*π/0.973702)
+        = e^(-0.735064)
+        = 0.479475
+    M_p = 47.95%
+
+  Tempo até o pico:
+    T_p = π/(ωn*√(1-ζ²)) = π/(24.509275*0.973702)
+        = 0.131642 s
+
+  Tempo de acomodação (2%):
+    T_s = 4/(ζ*ωn) = 4/(0.227825*24.509275)
+        = 0.716355 s
+
+=============================================================================
+(b) RESPOSTA AO DEGRAU UNITÁRIO - ANÁLISE REAL:
+=============================================================================
+
+RESULTADOS DA SIMULAÇÃO:
+  Valor final (regime estacionário): 0.986231
+  Valor de pico: 1.297871
+  Tempo de pico: 0.111056 s
+  Percentual de ultrapassagem (real): M_p = 29.79%
+  Tempo de acomodação (2%, real): T_s ≈ 1.931466 s
+
+=============================================================================
+COMPARAÇÃO - PREDIÇÃO (2ª ORDEM) vs RESPOSTA REAL:
+=============================================================================
+
+Parâmetro
+...
+(continuação omitida por brevidade)
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/5\_8\_fig01.png}
+\caption{PC5.8}
+\end{figure}
+
+\clearpage
+\section*{PC5.9}
+\noindent\textit{Fonte:} 5.9.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=============================================================================
+PROBLEMA PC5.9 - ANÁLISE DE SISTEMA COM REALIMENTAÇÃO NÃO-UNITÁRIA
+=============================================================================
+
+(1) COMPONENTES DO SISTEMA:
+-----------------------------------------------------------------------------
+
+Caminho direto: G(s) = 10/(s+10) =
+<TransferFunction>: sys[0]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+    10
+  ------
+  s + 10
+
+Caminho de realimentação: H(s) = 0.5/(10s+0.5) =
+<TransferFunction>: sys[1]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+     0.5
+  ----------
+  10 s + 0.5
+
+H(s) simplificado: H(s) = 0.05/(s+0.05) =
+<TransferFunction>: sys[2]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+    0.05
+  --------
+  s + 0.05
+
+=============================================================================
+FUNÇÃO DE TRANSFERÊNCIA EM MALHA ABERTA:
+=============================================================================
+L(s) = G(s)*H(s) =
+<TransferFunction>: sys[3]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+           5
+  --------------------
+  10 s^2 + 100.5 s + 5
+
+Numerador de L(s): [5.]
+Denominador de L(s): [ 10.  100.5   5. ]
+
+=============================================================================
+FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA:
+=============================================================================
+T(s) = G(s)/(1 + G(s)*H(s)) = Y(s)/R(s) =
+<TransferFunction>: sys[4]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+        100 s + 5
+  ---------------------
+  10 s^2 + 100.5 s + 10
+
+Numerador de T(s): [100.   5.]
+Denominador de T(s): [ 10.  100.5  10. ]
+
+=============================================================================
+ANÁLISE DO SISTEMA:
+=============================================================================
+
+Pólos do sistema em malha fechada:
+  Pólo 1: -9.949492
+  Pólo 2: -0.100508
+
+Estabilidade: ESTÁVEL
+
+=============================================================================
+RESPOSTA AO DEGRAU UNITÁRIO:
+=============================================================================
+
+RESULTADOS:
+  Valor final (regime estacionário): 0.686753
+  Valor de pico: 0.978591
+  Tempo de pico: 0.535268 s
+  Percentual de ultrapassagem (M.U.P.): 42.50%
+  Tempo de acomodação (2%): 9.289645 s
+  Tempo de acomodação (5%): 8.319160 s
+
+=============================================================================
+CARACTERÍSTICAS DO SISTEMA:
+=============================================================================
+
+Sistema é de 2ª ordem com dois pólos reais (superamortecido)
+
+=============================================================================
+RESUMO DOS RESULTADOS:
+=============================================================================
+
+✓ Máxima Ultrapassagem Percentual (M.U.P.): 42.50%
+✓ Tempo de Acomodação (Critério 2%):    9.289645 s
+✓ Tempo de Acomodação (Critério 5%):    8.319160 s
+✓ Tempo de Pico:                         0.535268 s
+✓ Sistema é ESTÁVEL
+
+✓ Gráfico salvo como 'system_pc59_response.png'
+=============================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/5\_9\_fig01.png}
+\caption{PC5.9}
+\end{figure}
+
+\clearpage
+\section*{PC5.10}
+\noindent\textit{Fonte:} 5.10.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=============================================================================
+PROBLEMA PC5.10 - RESPOSTA A RAMPA E ERRO EM REGIME ESTACIONÁRIO
+=============================================================================
+
+(1) FUNÇÃO DE TRANSFERÊNCIA EM MALHA ABERTA:
+-----------------------------------------------------------------------------
+
+L(s) = G(s) = 10/(s(s+15)(s+5)) =
+<TransferFunction>: sys[7]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+          10
+  -------------------
+  s^3 + 20 s^2 + 75 s
+
+=============================================================================
+FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA:
+=============================================================================
+T(s) = L(s)/(1 + L(s)) = Y(s)/R(s) =
+<TransferFunction>: sys[9]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+             10
+  ------------------------
+  s^3 + 20 s^2 + 75 s + 10
+
+Numerador de T(s): [10]
+Denominador de T(s): [ 1 20 75 10]
+
+=============================================================================
+ANÁLISE DE ESTABILIDADE:
+=============================================================================
+
+Pólos do sistema em malha fechada:
+  Pólo 1: -15.065940
+  Pólo 2: -4.795654
+  Pólo 3: -0.138406
+
+Estabilidade: ESTÁVEL
+
+=============================================================================
+ERRO EM REGIME ESTACIONÁRIO:
+=============================================================================
+
+Constante de erro de velocidade:
+  K_v = lim(s→0) s*L(s) = 10/(15×5) = 0.133333
+
+Erro em regime estacionário para rampa unitária:
+  e_ss = 1/K_v = 1/0.133333 = 7.500000
+
+=============================================================================
+SIMULAÇÃO DA RESPOSTA À RAMPA:
+=============================================================================
+
+RESULTADOS DA SIMULAÇÃO (t = 100.0 s):
+  Entrada r(t) = 100.000000
+  Saída y(t) = 92.500007
+  Erro e(t) = 7.499993
+
+COMPARAÇÃO:
+  Erro teórico:   7.500000
+  Erro simulado:  7.499993
+  Diferença:      0.000007
+
+Tempo para atingir regime estacionário: ~100.00 s
+
+=============================================================================
+TIPO DE SISTEMA:
+=============================================================================
+
+Tipo de Sistema: Tipo 1 (uma integração)
+  - Erro zero para entrada em degrau: SIM
+  - Erro finito para entrada em rampa: SIM (e_ss = 1/K_v)
+  - Erro infinito para entrada em parábola: SIM
+
+=============================================================================
+RESUMO FINAL:
+=============================================================================
+
+✓ Entrada: r(t) = t (rampa unitária)
+✓ Erro em regime estacionário teórico: e_ss = 7.500000
+✓ Erro em regime estacionário simulado: e_ss ≈ 7.499993
+✓ Sistema: ESTÁVEL (Tipo 1)
+
+✓ Gráficos salvos como 'ramp_response_pc510.png'
+=============================================================================
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/5\_10\_fig01.png}
+\caption{PC5.10}
+\end{figure}
+
+\clearpage
+\section*{PC5.11}
+\noindent\textit{Fonte:} 5.11.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+============================================================
+PARTE (a): FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA
+============================================================
+
+Controlador G_c(s) = 0.5 + 2/s:
+<TransferFunction>: sys[51]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+  0.5 s + 2
+  ---------
+      s
+
+Processo G_p(s) = 1/(s(s+2)):
+<TransferFunction>: sys[56]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+      1
+  ---------
+  s^2 + 2 s
+
+Função de transferência em malha aberta G_ol(s) = G_c(s)*G_p(s):
+<TransferFunction>: sys[57]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+   0.5 s + 2
+  -----------
+  s^3 + 2 s^2
+
+Função de transferência em malha fechada T(s) = Y(s)/R(s):
+<TransferFunction>: sys[59]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+         0.5 s + 2
+  -----------------------
+  s^3 + 2 s^2 + 0.5 s + 2
+
+Numerador: 0.5s + 2.0
+Denominador: s³ + 2.0s² + 0.5s + 2.0
+
+============================================================
+PARTE (b): RESPOSTA A DIFERENTES ENTRADAS
+============================================================
+
+============================================================
+ANÁLISE DE ESTABILIDADE
+============================================================
+
+Zeros do sistema:
+  Zero 1: -4.000000
+
+Polos do sistema em malha fechada:
+  Polo 1: -2.188978
+  Polo 2: 0.094489+0.951178j
+  Polo 3: 0.094489-0.951178j
+
+Sistema é estável? NÃO ✗
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/5\_11\_fig01.png}
+\caption{PC5.11}
+\end{figure}
+
+\clearpage
+\section*{PC5.12}
+\noindent\textit{Fonte:} 5.12.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+======================================================================
+PC5.12: ANÁLISE DE RESPOSTA AO DEGRAU E DESEMPENHO DO SISTEMA
+======================================================================
+
+======================================================================
+PARTE (a): SISTEMA ORIGINAL
+======================================================================
+
+Função de transferência em malha fechada:
+T(s) = 77(s + 2) / [(s + 7)(s² + 4s + 22)]
+
+Sistema original:
+<TransferFunction>: sys[15]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+         77 s + 154
+  -------------------------
+  s^3 + 11 s^2 + 50 s + 154
+
+Denominador expandido:
+(s + 7)(s² + 4s + 22) = s³ + 11s² + 50s + 154
+
+----------------------------------------------------------------------
+CARACTERÍSTICAS DA RESPOSTA AO DEGRAU:
+----------------------------------------------------------------------
+Valor final em regime permanente: 1.039955
+Máximo valor atingido: 1.806442
+Máxima Ultrapassagem Percentual (MUP): 73.70%
+Tempo de acomodação Ts (critério 2%): 1.8199 segundos
+
+Polos do sistema original:
+  Polo 1: -7.000000
+  Polo 2: -2.000000+4.242641j
+  Polo 3: -2.000000-4.242641j
+
+======================================================================
+PARTE (b): SISTEMA SIMPLIFICADO (Desprezando polo em s = -7)
+======================================================================
+
+Função de transferência simplificada:
+T_b(s) = 77(s + 2) / (s² + 4s + 22)
+
+Sistema simplificado:
+<TransferFunction>: sys[40]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+    77 s + 154
+  --------------
+  s^2 + 4 s + 22
+
+----------------------------------------------------------------------
+CARACTERÍSTICAS DA RESPOSTA AO DEGRAU:
+----------------------------------------------------------------------
+Valor final em regime permanente: 7.295222
+Máximo valor atingido: 14.081377
+Máxima Ultrapassagem Percentual (MUP): 93.02%
+Tempo de acomodação Ts (critério 2%): 1.6418 segundos
+
+Polos do sistema simplificado:
+  Polo 1: -2.000000+4.242641j
+  Polo 2: -2.000000-4.242641j
+
+Análise de 2ª ordem:
+Frequência natural ωn = 4.6904 rad/s
+Coeficiente de amortecimento ζ = 0.4264
+Tempo de acomodação teórico (2%): 2.0000 segundos
+Máxima Ultrapassagem Teórica: 22.74%
+
+======================================================================
+COMPARAÇÃO E CONCLUSÕES
+======================================================================
+
+Parâmetro                                     | Sistema Original | Sistema Simplificado
+-----------------------------------------------------------------------------
+Tempo de acomodação Ts (s)                    | 1.8199          | 1.6418         
+Máxima Ultrapassagem (MUP)                    | 73.70          % | 93.02          %
+Valor final em regime permanente              | 1.039955        | 7.295222       
+
+----------------------------------------------------------------------
+DIFERENÇAS RELATIVAS:
+----------------------------------------------------------------------
+Diferença em Ts: 0.1781 s (9.79%)
+Diferença em MUP: 19.32% (26.21%)
+
+----------------------------------------------------------------------
+CONCLUSÕES SOBRE O DESPREZAMENTO DO POLO EM s = -7:
+----------------------------------------------------------------------
+
+1. O polo em s = -7 está mais à esquerda no plano complexo que os p
+...
+(continuação omitida por brevidade)
+\end{lstlisting}
+
+\clearpage
+\section*{PC6.2}
+\noindent\textit{Fonte:} 6.2.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+=============================================================================
+PC6.2: ANÁLISE DE ESTABILIDADE - RAÍZES DO POLINÔMIO CARACTERÍSTICO
+=============================================================================
+
+Função da Planta:
+G(s) = (s² - 2s + 4)/(s² + 4s + 2)
+<TransferFunction>: sys[17]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+  s^2 - 2 s + 4
+  -------------
+  s^2 + 4 s + 2
+
+=============================================================================
+ANÁLISE DAS RAÍZES DO POLINÔMIO CARACTERÍSTICO
+=============================================================================
+
+-----------------------------------------------------------------------------
+CASO: K = 1
+-----------------------------------------------------------------------------
+
+Controlador: Gc(s) = 1
+
+Função de transferência em malha fechada:
+<TransferFunction>: sys[21]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+   s^2 - 2 s + 4
+  ---------------
+  2 s^2 + 2 s + 6
+
+Polinômio característico: (2)s² + (2)s + (6) = 0
+Simplificado: 2s² + 2s + 6 = 0
+
+Raízes (Polos em malha fechada):
+  Polo 1: -0.500000+1.658312j
+  Polo 2: -0.500000-1.658312j
+
+Análise de Estabilidade:
+  Número de polos com parte real negativa: 2 de 2
+  Sistema ESTÁVEL? SIM ✓
+
+-----------------------------------------------------------------------------
+CASO: K = 2
+-----------------------------------------------------------------------------
+
+Controlador: Gc(s) = 2
+
+Função de transferência em malha fechada:
+<TransferFunction>: sys[25]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+  2 s^2 - 4 s + 8
+  ---------------
+    3 s^2 + 10
+
+Polinômio característico: (3)s² + (0)s + (10) = 0
+Simplificado: 3s² + 0s + 10 = 0
+
+Raízes (Polos em malha fechada):
+  Polo 1: -0.000000+1.825742j
+  Polo 2: 0.000000-1.825742j
+
+Análise de Estabilidade:
+  Número de polos com parte real negativa: 0 de 2
+  Sistema ESTÁVEL? NÃO ✗
+
+-----------------------------------------------------------------------------
+CASO: K = 5
+-----------------------------------------------------------------------------
+
+Controlador: Gc(s) = 5
+
+Função de transferência em malha fechada:
+<TransferFunction>: sys[29]
+Inputs (1): ['u[0]']
+Outputs (1): ['y[0]']
+
+  5 s^2 - 10 s + 20
+  -----------------
+  6 s^2 - 6 s + 22
+
+Polinômio característico: (6)s² + (-6)s + (22) = 0
+Simplificado: 6s² + -6s + 22 = 0
+
+Raízes (Polos em malha fechada):
+  Polo 1: 0.500000+1.848423j
+  Polo 2: 0.500000-1.848423j
+
+Análise de Estabilidade:
+  Número de polos com parte real negativa: 0 de 2
+  Sistema ESTÁVEL? NÃO ✗
+
+=============================================================================
+RESUMO COMPARATIVO
+=============================================================================
+
+K          | Polinômio       | Raízes                         | Estável?    
+-----------------------------------------------------------------------------
+1          | 2s²+2s+6        | -0.500+1.658j, -0.500-1.658j   | ✓ SIM       
+2          | 3s²+0s+10       | -0.000+1.826j, 0.000-1.826j    | ✗ NÃO       
+5          | 6s²+-6s+22      | 0.500+1.848j, 0.500-1.848j     | ✗ NÃO       
+
+=============================================================================
+CONCLUSÕES SOBRE ESTABILIDADE
+==================================================================
+...
+(continuação omitida por brevidade)
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/6\_2\_fig01.png}
+\caption{PC6.2}
+\end{figure}
+
+\clearpage
+\section*{PC6.4}
+\noindent\textit{Fonte:} 6.4.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+Linha s^3 é toda zero! Usando polinômio auxiliar.
+Linha s^1 é toda zero! Usando polinômio auxiliar.
+
+Tabela de Routh-Hurwitz:
+[[1. 2. 1.]
+ [2. 4. 2.]
+ [8. 8. 0.]
+ [2. 2. 0.]
+ [4. 0. 0.]
+ [2. 0. 0.]]
+
+Mudanças de sinal na 1ª coluna: 0
+Polos do sistema:
+[-2.00000000e+00+0.j         -3.97581489e-09+1.00000002j
+ -3.97581489e-09-1.00000002j  3.97581464e-09+0.99999998j
+  3.97581464e-09-0.99999998j]
+Linha s^3 é toda zero! Usando polinômio auxiliar.
+Linha s^1 é toda zero! Usando polinômio auxiliar.
+\end{lstlisting}
+\subsection*{Observação}
+Como há uma \textbf{linha de zeros} na tabela de Routh e aparecem polos \textbf{no eixo imaginário} (numericamente, com parte real muito próxima de zero), o sistema não é assintoticamente estável: ele está em \textbf{estabilidade marginal} (oscilação sustentada).
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/6\_4\_fig01.png}
+\caption{PC6.4}
+\end{figure}
+
+\clearpage
+\section*{PC6.6}
+\noindent\textit{Fonte:} 6.6.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+--- Análise para o limite de estabilidade (K = 4) ---
+A equação característica de malha fechada é:
+[1 5 1 5]
+
+As raízes (polos) para K = 4 são:
+Raiz 1: (-5+0j)
+Raiz 2: 1j
+Raiz 3: -1j
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/6\_6\_fig01.png}
+\caption{PC6.6}
+\end{figure}
+
+\clearpage
+\section*{PC6.8}
+\noindent\textit{Fonte:} 6.8.ipynb
+\vspace{0.4cm}
+\subsection*{Resultados (saída do código)}
+\begin{lstlisting}
+ITEM (a) - Critério de Routh-Hurwitz
+------------------------------------
+Polinômio característico:
+s^3 + 10 s^2 + 10 s + 5 K1 = 0
+
+Tabela de Routh:
+s^3 | 1        10
+s^2 | 10       5K1
+s^1 | (100-5K1)/10   0
+s^0 | 5K1
+
+Para estabilidade, todos elementos da 1ª coluna > 0:
+1 > 0
+10 > 0
+(100 - 5K1)/10 > 0
+5K1 > 0
+
+Logo:
+K1 > 0
+K1 < 20
+
+Faixa estável:
+0 < K1 < 20
+
+ITEM (b) - Comentários
+----------------------
+• Para 0 < K1 < 20: todos polos no semiplano esquerdo => sistema estável.
+• Em K1 = 20: polos cruzam eixo imaginário => estabilidade marginal.
+• Para K1 > 20: aparecem polos no semiplano direito => sistema instável.
+• Ao aumentar K1, o sistema tende a ficar mais rápido inicialmente,
+  porém perde estabilidade após K1 = 20.
+\end{lstlisting}
+\subsection*{Gráficos}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/6\_8\_fig01.png}
+\caption{PC6.8}
+\end{figure}
+
+\end{document}
