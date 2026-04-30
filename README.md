@@ -203,8 +203,12 @@ Este repositório reúne projetos, listas e códigos das disciplinas já cursada
 | **Banco de Dados** | Projetos com persistência e login |
 | **Cálculo Numérico** | Métodos (Secante, Newton, Falsa Posição, Gauss-Seidel, Jacobi, LU, Eliminação Gaussiana) |
 | **Cálculo 4** | Atividades da disciplina |
+| **Controle Aplicado à Computação** | Atividades e materiais da disciplina |
+| **Compiladores** | Materiais e atividades da disciplina |
 | **Laboratório de Circuitos Elétricos** | Relatórios e experiências (1–12) |
 | **Laboratório de Circuitos Digitais** | Práticas de laboratório |
+| **Laboratório de Física** | Relatórios e atividades experimentais |
+| **Fenômenos de Transporte** | Listas, slides e materiais da disciplina |
 | **Hardware Description Language (HDL)** | Projeto final em linguagem de descrição de hardware |
 | **Microprocessadores e Microcontroladores** | Práticas com microcontroladores |
 | **Sistemas Digitais Embarcados** | Projetos com ESP32, Frequencímetro, trabalhos |
@@ -269,15 +273,20 @@ Sou **bolsista de Iniciação Científica do CNPq** (2025–2026) e participo de
 ```
 ├── Análise de sinais/
 ├── Arquitetura de sistemas operacionais/
+├── Assets/
 ├── Banco de dados/
 ├── Cálculo 4/
 ├── Cálculo numérico/
+├── Compiladores/
+├── Controle aplicado à computação/
 ├── Estrutura de dados/
 ├── Estática e dinâmica/
+├── Fenômeno de transporte/
 ├── Hardware Description Language/
 ├── Inteligência artificial/
 ├── Laboratório de circuitos digitais/
 ├── Laboratório de circuitos elétricos/
+├── Laboratório de Física/
 ├── Linguagem de programação 1/
 ├── Linguagem de programação 2/
 ├── Microprocessadores e Microcontroladores/
