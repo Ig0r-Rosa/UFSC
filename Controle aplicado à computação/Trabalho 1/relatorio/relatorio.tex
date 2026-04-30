@@ -1,7 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
+\usepackage[provide=*,main=portuguese]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{float}
@@ -34,10 +34,13 @@
            {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1
            {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
            {✓}{{\checkmark}}1 {•}{{\textbullet}}1
-           {π}{{$\pi$}}1 {ω}{{$\omega$}}1 {Ω}{{$\Omega$}}1 {ζ}{{$\zeta$}}1
+           {π}{{$\pi$}}1 {ω}{{$\omega$}}1 {Ω}{{$\Omega$}}1 {ζ}{{$\zeta$}}1 {τ}{{$\tau$}}1
            {≈}{{$\approx$}}1
            {≤}{{$\le$}}1 {≥}{{$\ge$}}1
            {²}{{$^{2}$}}1 {³}{{$^{3}$}}1
+           {±}{{$\pm$}}1
+           {→}{{$\rightarrow$}}1 {✗}{{x}}1 {─}{{-}}1 {│}{{|}}1
+           {ₙ}{{$_n$}}1
            {₀}{{$_0$}}1 {₁}{{$_1$}}1 {₂}{{$_2$}}1 {₃}{{$_3$}}1 {₄}{{$_4$}}1
            {₅}{{$_5$}}1 {₆}{{$_6$}}1 {₇}{{$_7$}}1 {₈}{{$_8$}}1 {₉}{{$_9$}}1,
 }
@@ -227,7 +230,7 @@ O valor k = 4.3081 foi selecionado para satisfazer:
 O sistema possui realimentação negativa com integrador no controlador,
 garantindo erro nulo em regime estacionário para entradas do tipo degrau.
 =============================================================================
-end{lstlisting}
+\end{lstlisting}
 \subsection*{Gráficos}
 \begin{figure}[H]
 \centering
@@ -529,16 +532,16 @@ Outputs (1): ['y[0]']
 ─────────────────────────────────────────────────────────────────────────────
 PARÂMETROS DO SISTEMA DE SEGUNDA ORDEM:
 ─────────────────────────────────────────────────────────────────────────────
-  Frequência Natural: ωn = √21 = 4.582576 rad/s
-  Amortecimento Relativo: ζ = 1/√21 = 0.218218
+  Frequência Natural: ωn = sqrt(21) = 4.582576 rad/s
+  Amortecimento Relativo: ζ = 1/sqrt(21) = 0.218218
 
-  √(1 - ζ²) = √(1 - 0.047619) = 0.975900
-  e^(-ζπ/√(1-ζ²)) = e^(-0.218218*π/0.975900)
+  sqrt(1 - ζ²) = sqrt(1 - 0.047619) = 0.975900
+  e^(-ζπ/sqrt(1-ζ²)) = e^(-0.218218*π/0.975900)
                    = e^(-0.702481)
                    = 0.495355
 
   MÁXIMA ULTRAPASSAGEM PERCENTUAL (M.U.P.):
-  M.U.P. = 0.495355 × 100% = 49.54%
+  M.U.P. = 0.495355 * 100% = 49.54%
 
 ─────────────────────────────────────────────────────────────────────────────
 OUTROS PARÂMETROS DO SISTEMA:
@@ -629,7 +632,7 @@ Denominador de L(s): [array([  1,   2, 100,   0])]
 =============================================================================
 FUNÇÃO DE TRANSFERÊNCIA EM MALHA FECHADA:
 =============================================================================
-T(s) = L(s)/(1 + L(s)) = Θ̂(s)/Θ̇_d(s) =
+T(s) = L(s)/(1 + L(s)) = Theta_hat(s)/Theta_dot_d(s) =
 <TransferFunction>: sys[20]
 Inputs (1): ['u[0]']
 Outputs (1): ['y[0]']
@@ -663,13 +666,13 @@ PREDIÇÃO USANDO FÓRMULAS DE SEGUNDA ORDEM:
 
 Parâmetros teóricos de segunda ordem:
   Máximo percentual de ultrapassagem:
-    M_p = e^(-ζπ/√(1-ζ²)) = e^(-0.227825*π/0.973702)
+    M_p = e^(-ζπ/sqrt(1-ζ²)) = e^(-0.227825*π/0.973702)
         = e^(-0.735064)
         = 0.479475
     M_p = 47.95%
 
   Tempo até o pico:
-    T_p = π/(ωn*√(1-ζ²)) = π/(24.509275*0.973702)
+    T_p = π/(ωn*sqrt(1-ζ²)) = π/(24.509275*0.973702)
         = 0.131642 s
 
   Tempo de acomodação (2%):
@@ -873,7 +876,7 @@ ERRO EM REGIME ESTACIONÁRIO:
 =============================================================================
 
 Constante de erro de velocidade:
-  K_v = lim(s→0) s*L(s) = 10/(15×5) = 0.133333
+  K_v = lim(s→0) s*L(s) = 10/(15*5) = 0.133333
 
 Erro em regime estacionário para rampa unitária:
   e_ss = 1/K_v = 1/0.133333 = 7.500000
