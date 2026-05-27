@@ -1,0 +1,32 @@
+# Propriedades do óleo SAE 30 a 20 °C (Fox & McDonald, 8ª ed.)
+rho   = 882.0      # densidade [kg/m^3]
+nu    = 272e-6     # viscosidade cinemática [m^2/s]
+mu    = rho * nu   # viscosidade dinâmica [Pa·s]
+
+# Dados do problema
+L         = 200.0   # comprimento do tubo [m]
+D         = 0.2000  # diâmetro interno [m]
+R         = D/2     # raio interno [m]
+Re_crit   = 2100    # número de Reynolds máximo para laminaridade
+
+########## LETRA A ##########
+# velocidade média crítica para Re = 2100
+V_m_max   = Re_crit * mu / (rho * D)  
+
+# Δp_max para escoamento laminar totalmente desenvolvido
+Delta_p_max = 32 * mu * V_m_max * L / (D^2)
+
+########## LETRA B ##########
+# comprimento da região de entrada (escoamento laminar)
+L_e = 0.06 * Re_crit * D
+
+########## LETRA C ##########
+# tensão de cisalhamento na parede e no centro
+tau_wall   = Delta_p_max * D / (4 * L)
+D_novo = 2*0.0 # (D = 2*R) Substituir o R pelo valor do enunciado
+tau_center = Delta_p_max * D_novo / (4 * L)
+
+########## LETRA D ##########
+# posição e valor da velocidade máxima
+r_max   = 0.0
+u_max   = 2 * V_m_max

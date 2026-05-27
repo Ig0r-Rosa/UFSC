@@ -1,0 +1,93 @@
+# === DADOS DE ENTRADA E PROPRIEDADES ===
+# Definição das variáveis do problema em unidades do SI.
+
+Wx = 0.0544 # Largura da base na direção X (m)
+Wy = 0.1005 # Largura da base na direção Y (m)
+Lb = 0.0034 # Espessura da base do dissipador (m)
+Lp = 0.014 # Comprimento (altura) de uma aleta (m)
+D = 0.005 # Diâmetro de uma aleta cilíndrica (m)
+N = 120 # Número total de aletas
+
+k = 194 # Condutividade térmica do material (W/m.K)
+h = 220 # Coeficiente de convecção (W/m^2.K)
+R_tic_pp = 2.9e-6 # Resistência de contato por unidade de área (m^2.K/W)
+
+Tc_C = 74 # Temperatura máxima do chip (Celsius)
+T_inf_C = 15 # Temperatura do ar ambiente (Celsius)
+
+# === CÁLCULOS PASSO A PASSO ===
+
+# --- Geometria e Áreas ---
+Ac = pi * D^2 / 4
+
+# (a) Resposta: Área de troca térmica de cada uma das aletas (m^2)
+Af = (pi * D * Lp) + Ac
+
+Abase_total = Wx * Wy
+Ab_unfinned = Abase_total - (N * Ac)
+
+# (a) Resposta: Área de troca térmica do conjunto aletado (m^2)
+At = (N * Af) + Ab_unfinned
+
+# --- Eficiências ---
+m = sqrt((4 * h) / (k * D))
+Lc = Lp + (D / 4)
+
+# (b) Resposta: Eficiência de apenas uma aleta (adimensional)
+eta_f = tanh(m * Lc) / (m * Lc)
+
+# (b) Resposta: Eficiência do conjunto de aletas (adimensional)
+eta_o = 1 - (N * Af / At) * (1 - eta_f)
+
+# --- Resistências Térmicas ---
+
+# (d) Resposta: Resistência de contato (K/W)
+Rt_c = R_tic_pp / Abase_total
+
+# (d) Resposta: Resistência da base do dissipador (K/W)
+Rt_b = Lb / (k * Abase_total)
+
+# (d) Resposta: Resistência de uma única aleta (K/W)
+Rt_f = 1 / (eta_f * h * Af)
+
+# (d) Resposta: Resistência do conjunto de aletas (K/W)
+Rt_o = 1 / (eta_o * h * At)
+
+# --- Potência, Efetividade e Análise de Falha ---
+R_total = Rt_c + Rt_b + Rt_o
+
+# (e) Resposta: Potência de todo o dissipador (W)
+qc = (Tc_C - T_inf_C) / R_total
+
+Tb_C = T_inf_C + qc * Rt_o
+
+# (e) Resposta: Potência térmica dissipada por uma única aleta (W)
+qf = eta_f * h * Af * (Tb_C - T_inf_C)
+
+# (c) Resposta: Efetividade do dissipador (adimensional)
+epsilon = qc / (h * Abase_total * (Tc_C - T_inf_C))
+
+# (f) Resposta: Temperatura na superfície do chip sem dissipador (°C)
+Tc_new_C = T_inf_C + qc / (h * Abase_total)
+
+# === APRESENTAÇÃO DOS RESULTADOS FINAIS ===
+# Descomente as linhas abaixo em laine.com.br para ver os valores
+
+# (a) Áreas
+# Af
+# At
+# (b) Eficiências
+# eta_f
+# eta_o
+# (c) Efetividade
+# epsilon
+# (d) Resistências
+# Rt_c
+# Rt_b
+# Rt_f
+# Rt_o
+# (e) Potências
+# qf
+# qc
+# (f) Temperatura de falha
+# Tc_new_C

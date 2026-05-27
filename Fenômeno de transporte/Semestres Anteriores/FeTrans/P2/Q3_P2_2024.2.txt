@@ -1,0 +1,36 @@
+# Propriedades da água a 20 °C
+rho     = 998.0        # densidade [kg/m^3]
+
+# Ramo 1 (vertical para baixo)
+D1      = 0.10         # diâmetro D₁ [m]
+v1      = 4.0          # velocidade v₁ [m/s]
+
+# Ramo 2 (horizontal para a esquerda)
+D2      = 0.12         # diâmetro D₂ [m]
+v2      = 6.0          # velocidade v₂ [m/s]
+
+# Cálculo das áreas de seção
+A1      = pi * D1^2/4  # área A₁ [m^2]
+A2      = pi * D2^2/4  # área A₂ [m^2]
+
+# Vazões nos ramos
+Q1      = A1 * v1      # vazão Q₁ [m^3/s]
+Q2      = A2 * v2      # vazão Q₂ [m^3/s]
+Q3      = Q1 + Q2      # vazão Q₃ [m^3/s]
+
+########## LETRA A ##########
+# Componentes de velocidade do jato resultante
+v3x     = (Q2 * v2) / Q3        # componente v₃ₓ [m/s]
+v3y     = (Q1 * v1) / Q3        # componente v₃ᵧ [m/s]
+
+# Módulo da velocidade e ângulo
+v3      = sqrt(v3x^2 + v3y^2)           # v₃ [m/s]
+theta   = atan(v3y/v3x) * 180/pi        # ângulo θ [°]
+
+# Diâmetro do jato resultante
+A3      = Q3 / v3                       # área A₃ [m^2]
+D3      = sqrt(4 * A3 / pi)             # diâmetro D₃ [m]
+
+########## LETRA B ##########
+# Perda de energia específica no choque de jatos
+e_loss  = (Q1*(v1^2/2) + Q2*(v2^2/2) - Q3*(v3^2/2)) / Q3  # [J/kg]

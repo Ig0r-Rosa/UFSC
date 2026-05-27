@@ -1,0 +1,75 @@
+# -----------------------------------------------------------------
+# RESOLUÇÃO DEFINITIVA - PROVA DE TERMOTRANSFERÊNCIA
+# Foco: Precisão e clareza para a prova.
+# -----------------------------------------------------------------
+
+# --- DADOS GERAIS DO PROBLEMA ---
+# Dados da Parede
+T_inf_e = 21.0000                # Temperatura externa (FORA) [C]
+T_inf_i = 8.0000                # Temperatura interna (DENTRO) [C]
+L_parede = 0.1400               # Espessura da parede [m]
+k_parede = 1.0000                # Condutividade da parede [W/m.K]
+h_e = 9.0000                     # Coef. convecção externo [W/m^2.K]
+h_i = 7.2000                    # Coef. convecção interno [W/m^2.K]
+
+
+# Dados da Lâmpada
+V_tensao = 127.0000              # Tensão [V]
+R_filamento = 161.2900          # Resistência [ohms]
+T_fil_C = 1100.0000              # Temperatura do filamento [C]
+epsilon_fil = 0.7500            # Emissividade
+r_lamp = 0.05                # Raio da esfera da lâmpada [m]
+sigma = 5.670374419e-8               # Constante de Stefan-Boltzmann [W/m^2.K^4]
+
+
+# --- PARTE 1: PAREDE SEM ISOLANTE ---
+
+# Cálculo das resistências térmicas [m^2.K/W]
+R_conv_i = 1 / h_i
+R_cond_parede = L_parede / k_parede
+R_conv_e = 1 / h_e
+R_total = R_conv_i + R_cond_parede + R_conv_e
+
+# A variável 'q_fluxo' é a resposta do item (c) -33.333
+q_fluxo = (T_inf_e - T_inf_i) / R_total
+
+# A variável 'T_sup_e' é a resposta do item (a) 17.296
+# T_sup_e deve ser MAIOR que T_inf_e (22 C) pois o calor flui para fora
+q_fluxo = h_e * (T_sup_e - T_inf_e)
+
+# A variável 'T_sup_i' é a resposta do item (b) 12.630
+# T_sup_i deve ser MENOR que T_inf_i (34 C) pois o calor sai de dentro
+q_fluxo = h_i * (T_inf_i - T_sup_i)
+
+
+# --- PARTE 2: PAREDE COM ISOLANTE ---
+
+# O novo fluxo de calor é 58% menor que o original
+q_fluxo_novo = q_fluxo * (1 - 0.58)
+
+# A variável 'T_sup_iso' é a resposta do item (d) 9.9444
+# O isolante está no lado interno
+q_fluxo_novo = h_i * (T_inf_i - T_sup_iso)
+
+# A variável 'delta_T_parede' é a resposta do item (e) -1.9600
+# É a queda de temperatura na parede original, devido ao novo fluxo
+delta_T_parede = q_fluxo_novo * R_cond_parede
+
+
+# --- PARTE 3: LÂMPADA ---
+
+# A variável 'P_irradiada' é a resposta da POTÊNCIA no item (f) 100.00
+P_irradiada = V_tensao^2 / R_filamento
+
+# Equação da Radiação para encontrar a área do filamento
+# A conversão para Kelvin é OBRIGATÓRIA para a lei de Stefan-Boltzmann
+T_fil_K = T_fil_C + 273.15
+P_irradiada = epsilon_fil * sigma * A_fil_m2 * T_fil_K^4
+
+# A variável 'A_fil_mm2' é a resposta da ÁREA no item (f) 661.39
+A_fil_mm2 = A_fil_m2 * 1000^2
+
+# Equação do fluxo de calor na SUPERFÍCIE DA LÂMPADA
+A_lamp_esfera = 4 * PI * r_lamp^2
+# A variável 'q_rad_lamp' é a resposta do item (g) 3183.1
+q_rad_lamp = P_irradiada / A_lamp_esfera

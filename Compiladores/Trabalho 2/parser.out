@@ -1,0 +1,2259 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> funcao_principal semicolon_opcional
+Rule 2     funcao_principal -> INT MAIN LPAREN parametro_main RPAREN bloco
+Rule 3     parametro_main -> VOID
+Rule 4     parametro_main -> empty
+Rule 5     bloco -> LBRACES lista_comandos RBRACES
+Rule 6     lista_comandos -> lista_comandos comando
+Rule 7     lista_comandos -> empty
+Rule 8     comando -> declaracao SEMICOLON
+Rule 9     comando -> atribuicao SEMICOLON
+Rule 10    comando -> incremento SEMICOLON
+Rule 11    comando -> chamada_funcao SEMICOLON
+Rule 12    comando -> retorno SEMICOLON
+Rule 13    comando -> comando_condicional
+Rule 14    comando -> comando_repeticao
+Rule 15    comando -> bloco
+Rule 16    declaracao -> tipo lista_declaradores
+Rule 17    tipo -> INT
+Rule 18    tipo -> FLOAT
+Rule 19    tipo -> CHAR
+Rule 20    tipo -> DOUBLE
+Rule 21    lista_declaradores -> lista_declaradores COMMA declarador
+Rule 22    lista_declaradores -> declarador
+Rule 23    declarador -> ID
+Rule 24    declarador -> ID EQUALS expressao
+Rule 25    atribuicao -> ID EQUALS expressao
+Rule 26    incremento -> ID INCREMENT
+Rule 27    incremento -> ID DECREMENT
+Rule 28    retorno -> RETURN expressao_opcional
+Rule 29    comando_condicional -> IF LPAREN condicao RPAREN comando
+Rule 30    comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando
+Rule 31    comando_repeticao -> WHILE LPAREN condicao RPAREN comando
+Rule 32    comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+Rule 33    inicio_for -> declaracao
+Rule 34    inicio_for -> atribuicao
+Rule 35    inicio_for -> incremento
+Rule 36    inicio_for -> empty
+Rule 37    atualizacao_for -> atribuicao
+Rule 38    atualizacao_for -> incremento
+Rule 39    atualizacao_for -> empty
+Rule 40    condicao_opcional -> condicao
+Rule 41    condicao_opcional -> empty
+Rule 42    condicao -> expressao operador_relacional expressao
+Rule 43    condicao -> expressao
+Rule 44    operador_relacional -> LT
+Rule 45    operador_relacional -> LE
+Rule 46    operador_relacional -> GT
+Rule 47    operador_relacional -> GE
+Rule 48    operador_relacional -> NE
+Rule 49    operador_relacional -> EQ
+Rule 50    expressao_opcional -> expressao
+Rule 51    expressao_opcional -> empty
+Rule 52    expressao -> expressao PLUS termo
+Rule 53    expressao -> expressao MINUS termo
+Rule 54    expressao -> termo
+Rule 55    termo -> termo TIMES potencia
+Rule 56    termo -> termo DIVIDE potencia
+Rule 57    termo -> potencia
+Rule 58    potencia -> fator POWER potencia
+Rule 59    potencia -> fator
+Rule 60    fator -> INTEGER
+Rule 61    fator -> FLOAT_N
+Rule 62    fator -> STRING
+Rule 63    fator -> CHARACTER
+Rule 64    fator -> ID
+Rule 65    fator -> chamada_funcao
+Rule 66    fator -> LPAREN expressao RPAREN
+Rule 67    fator -> MINUS fator
+Rule 68    chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN
+Rule 69    argumentos_opcionais -> lista_argumentos
+Rule 70    argumentos_opcionais -> empty
+Rule 71    lista_argumentos -> lista_argumentos COMMA expressao
+Rule 72    lista_argumentos -> expressao
+Rule 73    semicolon_opcional -> SEMICOLON
+Rule 74    semicolon_opcional -> empty
+Rule 75    empty -> <empty>
+
+Terminals, with rules where they appear
+
+CHAR                 : 19
+CHARACTER            : 63
+COMMA                : 21 71
+DECREMENT            : 27
+DIVIDE               : 56
+DOUBLE               : 20
+ELSE                 : 30
+EQ                   : 49
+EQUALS               : 24 25
+FLOAT                : 18
+FLOAT_N              : 61
+FOR                  : 32
+GE                   : 47
+GT                   : 46
+ID                   : 23 24 25 26 27 64 68
+IF                   : 29 30
+INCREMENT            : 26
+INT                  : 2 17
+INTEGER              : 60
+LBRACES              : 5
+LE                   : 45
+LPAREN               : 2 29 30 31 32 66 68
+LT                   : 44
+MAIN                 : 2
+MINUS                : 53 67
+NE                   : 48
+PLUS                 : 52
+POWER                : 58
+RBRACES              : 5
+RETURN               : 28
+RPAREN               : 2 29 30 31 32 66 68
+SEMICOLON            : 8 9 10 11 12 32 32 73
+STRING               : 62
+TIMES                : 55
+VOID                 : 3
+WHILE                : 31
+error                : 
+
+Nonterminals, with rules where they appear
+
+argumentos_opcionais : 68
+atribuicao           : 9 34 37
+atualizacao_for      : 32
+bloco                : 2 15
+chamada_funcao       : 11 65
+comando              : 6 29 30 30 31 32
+comando_condicional  : 13
+comando_repeticao    : 14
+condicao             : 29 30 31 40
+condicao_opcional    : 32
+declaracao           : 8 33
+declarador           : 21 22
+empty                : 4 7 36 39 41 51 70 74
+expressao            : 24 25 42 42 43 50 52 53 66 71 72
+expressao_opcional   : 28
+fator                : 58 59 67
+funcao_principal     : 1
+incremento           : 10 35 38
+inicio_for           : 32
+lista_argumentos     : 69 71
+lista_comandos       : 5 6
+lista_declaradores   : 16 21
+operador_relacional  : 42
+parametro_main       : 2
+potencia             : 55 56 57 58
+programa             : 0
+retorno              : 12
+semicolon_opcional   : 1
+termo                : 52 53 54 55 56
+tipo                 : 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . funcao_principal semicolon_opcional
+    (2) funcao_principal -> . INT MAIN LPAREN parametro_main RPAREN bloco
+
+    INT             shift and go to state 3
+
+    programa                       shift and go to state 1
+    funcao_principal               shift and go to state 2
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> funcao_principal . semicolon_opcional
+    (73) semicolon_opcional -> . SEMICOLON
+    (74) semicolon_opcional -> . empty
+    (75) empty -> .
+
+    SEMICOLON       shift and go to state 5
+    $end            reduce using rule 75 (empty -> .)
+
+    semicolon_opcional             shift and go to state 4
+    empty                          shift and go to state 6
+
+state 3
+
+    (2) funcao_principal -> INT . MAIN LPAREN parametro_main RPAREN bloco
+
+    MAIN            shift and go to state 7
+
+
+state 4
+
+    (1) programa -> funcao_principal semicolon_opcional .
+
+    $end            reduce using rule 1 (programa -> funcao_principal semicolon_opcional .)
+
+
+state 5
+
+    (73) semicolon_opcional -> SEMICOLON .
+
+    $end            reduce using rule 73 (semicolon_opcional -> SEMICOLON .)
+
+
+state 6
+
+    (74) semicolon_opcional -> empty .
+
+    $end            reduce using rule 74 (semicolon_opcional -> empty .)
+
+
+state 7
+
+    (2) funcao_principal -> INT MAIN . LPAREN parametro_main RPAREN bloco
+
+    LPAREN          shift and go to state 8
+
+
+state 8
+
+    (2) funcao_principal -> INT MAIN LPAREN . parametro_main RPAREN bloco
+    (3) parametro_main -> . VOID
+    (4) parametro_main -> . empty
+    (75) empty -> .
+
+    VOID            shift and go to state 10
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    parametro_main                 shift and go to state 9
+    empty                          shift and go to state 11
+
+state 9
+
+    (2) funcao_principal -> INT MAIN LPAREN parametro_main . RPAREN bloco
+
+    RPAREN          shift and go to state 12
+
+
+state 10
+
+    (3) parametro_main -> VOID .
+
+    RPAREN          reduce using rule 3 (parametro_main -> VOID .)
+
+
+state 11
+
+    (4) parametro_main -> empty .
+
+    RPAREN          reduce using rule 4 (parametro_main -> empty .)
+
+
+state 12
+
+    (2) funcao_principal -> INT MAIN LPAREN parametro_main RPAREN . bloco
+    (5) bloco -> . LBRACES lista_comandos RBRACES
+
+    LBRACES         shift and go to state 14
+
+    bloco                          shift and go to state 13
+
+state 13
+
+    (2) funcao_principal -> INT MAIN LPAREN parametro_main RPAREN bloco .
+
+    SEMICOLON       reduce using rule 2 (funcao_principal -> INT MAIN LPAREN parametro_main RPAREN bloco .)
+    $end            reduce using rule 2 (funcao_principal -> INT MAIN LPAREN parametro_main RPAREN bloco .)
+
+
+state 14
+
+    (5) bloco -> LBRACES . lista_comandos RBRACES
+    (6) lista_comandos -> . lista_comandos comando
+    (7) lista_comandos -> . empty
+    (75) empty -> .
+
+    RBRACES         reduce using rule 75 (empty -> .)
+    ID              reduce using rule 75 (empty -> .)
+    RETURN          reduce using rule 75 (empty -> .)
+    IF              reduce using rule 75 (empty -> .)
+    WHILE           reduce using rule 75 (empty -> .)
+    FOR             reduce using rule 75 (empty -> .)
+    LBRACES         reduce using rule 75 (empty -> .)
+    INT             reduce using rule 75 (empty -> .)
+    FLOAT           reduce using rule 75 (empty -> .)
+    CHAR            reduce using rule 75 (empty -> .)
+    DOUBLE          reduce using rule 75 (empty -> .)
+
+    lista_comandos                 shift and go to state 15
+    empty                          shift and go to state 16
+
+state 15
+
+    (5) bloco -> LBRACES lista_comandos . RBRACES
+    (6) lista_comandos -> lista_comandos . comando
+    (8) comando -> . declaracao SEMICOLON
+    (9) comando -> . atribuicao SEMICOLON
+    (10) comando -> . incremento SEMICOLON
+    (11) comando -> . chamada_funcao SEMICOLON
+    (12) comando -> . retorno SEMICOLON
+    (13) comando -> . comando_condicional
+    (14) comando -> . comando_repeticao
+    (15) comando -> . bloco
+    (16) declaracao -> . tipo lista_declaradores
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+    (28) retorno -> . RETURN expressao_opcional
+    (29) comando_condicional -> . IF LPAREN condicao RPAREN comando
+    (30) comando_condicional -> . IF LPAREN condicao RPAREN comando ELSE comando
+    (31) comando_repeticao -> . WHILE LPAREN condicao RPAREN comando
+    (32) comando_repeticao -> . FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (5) bloco -> . LBRACES lista_comandos RBRACES
+    (17) tipo -> . INT
+    (18) tipo -> . FLOAT
+    (19) tipo -> . CHAR
+    (20) tipo -> . DOUBLE
+
+    RBRACES         shift and go to state 17
+    ID              shift and go to state 28
+    RETURN          shift and go to state 29
+    IF              shift and go to state 30
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    LBRACES         shift and go to state 14
+    INT             shift and go to state 33
+    FLOAT           shift and go to state 34
+    CHAR            shift and go to state 35
+    DOUBLE          shift and go to state 36
+
+    comando                        shift and go to state 18
+    declaracao                     shift and go to state 19
+    atribuicao                     shift and go to state 20
+    incremento                     shift and go to state 21
+    chamada_funcao                 shift and go to state 22
+    retorno                        shift and go to state 23
+    comando_condicional            shift and go to state 24
+    comando_repeticao              shift and go to state 25
+    bloco                          shift and go to state 26
+    tipo                           shift and go to state 27
+
+state 16
+
+    (7) lista_comandos -> empty .
+
+    RBRACES         reduce using rule 7 (lista_comandos -> empty .)
+    ID              reduce using rule 7 (lista_comandos -> empty .)
+    RETURN          reduce using rule 7 (lista_comandos -> empty .)
+    IF              reduce using rule 7 (lista_comandos -> empty .)
+    WHILE           reduce using rule 7 (lista_comandos -> empty .)
+    FOR             reduce using rule 7 (lista_comandos -> empty .)
+    LBRACES         reduce using rule 7 (lista_comandos -> empty .)
+    INT             reduce using rule 7 (lista_comandos -> empty .)
+    FLOAT           reduce using rule 7 (lista_comandos -> empty .)
+    CHAR            reduce using rule 7 (lista_comandos -> empty .)
+    DOUBLE          reduce using rule 7 (lista_comandos -> empty .)
+
+
+state 17
+
+    (5) bloco -> LBRACES lista_comandos RBRACES .
+
+    SEMICOLON       reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    $end            reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    RBRACES         reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    ID              reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    RETURN          reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    IF              reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    WHILE           reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    FOR             reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    LBRACES         reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    INT             reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    FLOAT           reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    CHAR            reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    DOUBLE          reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+    ELSE            reduce using rule 5 (bloco -> LBRACES lista_comandos RBRACES .)
+
+
+state 18
+
+    (6) lista_comandos -> lista_comandos comando .
+
+    RBRACES         reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    ID              reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    RETURN          reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    IF              reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    WHILE           reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    FOR             reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    LBRACES         reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    INT             reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    FLOAT           reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    CHAR            reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+    DOUBLE          reduce using rule 6 (lista_comandos -> lista_comandos comando .)
+
+
+state 19
+
+    (8) comando -> declaracao . SEMICOLON
+
+    SEMICOLON       shift and go to state 37
+
+
+state 20
+
+    (9) comando -> atribuicao . SEMICOLON
+
+    SEMICOLON       shift and go to state 38
+
+
+state 21
+
+    (10) comando -> incremento . SEMICOLON
+
+    SEMICOLON       shift and go to state 39
+
+
+state 22
+
+    (11) comando -> chamada_funcao . SEMICOLON
+
+    SEMICOLON       shift and go to state 40
+
+
+state 23
+
+    (12) comando -> retorno . SEMICOLON
+
+    SEMICOLON       shift and go to state 41
+
+
+state 24
+
+    (13) comando -> comando_condicional .
+
+    RBRACES         reduce using rule 13 (comando -> comando_condicional .)
+    ID              reduce using rule 13 (comando -> comando_condicional .)
+    RETURN          reduce using rule 13 (comando -> comando_condicional .)
+    IF              reduce using rule 13 (comando -> comando_condicional .)
+    WHILE           reduce using rule 13 (comando -> comando_condicional .)
+    FOR             reduce using rule 13 (comando -> comando_condicional .)
+    LBRACES         reduce using rule 13 (comando -> comando_condicional .)
+    INT             reduce using rule 13 (comando -> comando_condicional .)
+    FLOAT           reduce using rule 13 (comando -> comando_condicional .)
+    CHAR            reduce using rule 13 (comando -> comando_condicional .)
+    DOUBLE          reduce using rule 13 (comando -> comando_condicional .)
+    ELSE            reduce using rule 13 (comando -> comando_condicional .)
+
+
+state 25
+
+    (14) comando -> comando_repeticao .
+
+    RBRACES         reduce using rule 14 (comando -> comando_repeticao .)
+    ID              reduce using rule 14 (comando -> comando_repeticao .)
+    RETURN          reduce using rule 14 (comando -> comando_repeticao .)
+    IF              reduce using rule 14 (comando -> comando_repeticao .)
+    WHILE           reduce using rule 14 (comando -> comando_repeticao .)
+    FOR             reduce using rule 14 (comando -> comando_repeticao .)
+    LBRACES         reduce using rule 14 (comando -> comando_repeticao .)
+    INT             reduce using rule 14 (comando -> comando_repeticao .)
+    FLOAT           reduce using rule 14 (comando -> comando_repeticao .)
+    CHAR            reduce using rule 14 (comando -> comando_repeticao .)
+    DOUBLE          reduce using rule 14 (comando -> comando_repeticao .)
+    ELSE            reduce using rule 14 (comando -> comando_repeticao .)
+
+
+state 26
+
+    (15) comando -> bloco .
+
+    RBRACES         reduce using rule 15 (comando -> bloco .)
+    ID              reduce using rule 15 (comando -> bloco .)
+    RETURN          reduce using rule 15 (comando -> bloco .)
+    IF              reduce using rule 15 (comando -> bloco .)
+    WHILE           reduce using rule 15 (comando -> bloco .)
+    FOR             reduce using rule 15 (comando -> bloco .)
+    LBRACES         reduce using rule 15 (comando -> bloco .)
+    INT             reduce using rule 15 (comando -> bloco .)
+    FLOAT           reduce using rule 15 (comando -> bloco .)
+    CHAR            reduce using rule 15 (comando -> bloco .)
+    DOUBLE          reduce using rule 15 (comando -> bloco .)
+    ELSE            reduce using rule 15 (comando -> bloco .)
+
+
+state 27
+
+    (16) declaracao -> tipo . lista_declaradores
+    (21) lista_declaradores -> . lista_declaradores COMMA declarador
+    (22) lista_declaradores -> . declarador
+    (23) declarador -> . ID
+    (24) declarador -> . ID EQUALS expressao
+
+    ID              shift and go to state 44
+
+    lista_declaradores             shift and go to state 42
+    declarador                     shift and go to state 43
+
+state 28
+
+    (25) atribuicao -> ID . EQUALS expressao
+    (26) incremento -> ID . INCREMENT
+    (27) incremento -> ID . DECREMENT
+    (68) chamada_funcao -> ID . LPAREN argumentos_opcionais RPAREN
+
+    EQUALS          shift and go to state 45
+    INCREMENT       shift and go to state 46
+    DECREMENT       shift and go to state 47
+    LPAREN          shift and go to state 48
+
+
+state 29
+
+    (28) retorno -> RETURN . expressao_opcional
+    (50) expressao_opcional -> . expressao
+    (51) expressao_opcional -> . empty
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (75) empty -> .
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    SEMICOLON       reduce using rule 75 (empty -> .)
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    expressao_opcional             shift and go to state 49
+    expressao                      shift and go to state 50
+    empty                          shift and go to state 51
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 30
+
+    (29) comando_condicional -> IF . LPAREN condicao RPAREN comando
+    (30) comando_condicional -> IF . LPAREN condicao RPAREN comando ELSE comando
+
+    LPAREN          shift and go to state 63
+
+
+state 31
+
+    (31) comando_repeticao -> WHILE . LPAREN condicao RPAREN comando
+
+    LPAREN          shift and go to state 64
+
+
+state 32
+
+    (32) comando_repeticao -> FOR . LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+
+    LPAREN          shift and go to state 65
+
+
+state 33
+
+    (17) tipo -> INT .
+
+    ID              reduce using rule 17 (tipo -> INT .)
+
+
+state 34
+
+    (18) tipo -> FLOAT .
+
+    ID              reduce using rule 18 (tipo -> FLOAT .)
+
+
+state 35
+
+    (19) tipo -> CHAR .
+
+    ID              reduce using rule 19 (tipo -> CHAR .)
+
+
+state 36
+
+    (20) tipo -> DOUBLE .
+
+    ID              reduce using rule 20 (tipo -> DOUBLE .)
+
+
+state 37
+
+    (8) comando -> declaracao SEMICOLON .
+
+    RBRACES         reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    ID              reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    RETURN          reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    IF              reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    WHILE           reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    FOR             reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    LBRACES         reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    INT             reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    FLOAT           reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    CHAR            reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    DOUBLE          reduce using rule 8 (comando -> declaracao SEMICOLON .)
+    ELSE            reduce using rule 8 (comando -> declaracao SEMICOLON .)
+
+
+state 38
+
+    (9) comando -> atribuicao SEMICOLON .
+
+    RBRACES         reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    ID              reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    RETURN          reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    IF              reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    WHILE           reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    FOR             reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    LBRACES         reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    INT             reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    FLOAT           reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    CHAR            reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    DOUBLE          reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+    ELSE            reduce using rule 9 (comando -> atribuicao SEMICOLON .)
+
+
+state 39
+
+    (10) comando -> incremento SEMICOLON .
+
+    RBRACES         reduce using rule 10 (comando -> incremento SEMICOLON .)
+    ID              reduce using rule 10 (comando -> incremento SEMICOLON .)
+    RETURN          reduce using rule 10 (comando -> incremento SEMICOLON .)
+    IF              reduce using rule 10 (comando -> incremento SEMICOLON .)
+    WHILE           reduce using rule 10 (comando -> incremento SEMICOLON .)
+    FOR             reduce using rule 10 (comando -> incremento SEMICOLON .)
+    LBRACES         reduce using rule 10 (comando -> incremento SEMICOLON .)
+    INT             reduce using rule 10 (comando -> incremento SEMICOLON .)
+    FLOAT           reduce using rule 10 (comando -> incremento SEMICOLON .)
+    CHAR            reduce using rule 10 (comando -> incremento SEMICOLON .)
+    DOUBLE          reduce using rule 10 (comando -> incremento SEMICOLON .)
+    ELSE            reduce using rule 10 (comando -> incremento SEMICOLON .)
+
+
+state 40
+
+    (11) comando -> chamada_funcao SEMICOLON .
+
+    RBRACES         reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    ID              reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    RETURN          reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    IF              reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    WHILE           reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    FOR             reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    LBRACES         reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    INT             reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    FLOAT           reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    CHAR            reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    DOUBLE          reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+    ELSE            reduce using rule 11 (comando -> chamada_funcao SEMICOLON .)
+
+
+state 41
+
+    (12) comando -> retorno SEMICOLON .
+
+    RBRACES         reduce using rule 12 (comando -> retorno SEMICOLON .)
+    ID              reduce using rule 12 (comando -> retorno SEMICOLON .)
+    RETURN          reduce using rule 12 (comando -> retorno SEMICOLON .)
+    IF              reduce using rule 12 (comando -> retorno SEMICOLON .)
+    WHILE           reduce using rule 12 (comando -> retorno SEMICOLON .)
+    FOR             reduce using rule 12 (comando -> retorno SEMICOLON .)
+    LBRACES         reduce using rule 12 (comando -> retorno SEMICOLON .)
+    INT             reduce using rule 12 (comando -> retorno SEMICOLON .)
+    FLOAT           reduce using rule 12 (comando -> retorno SEMICOLON .)
+    CHAR            reduce using rule 12 (comando -> retorno SEMICOLON .)
+    DOUBLE          reduce using rule 12 (comando -> retorno SEMICOLON .)
+    ELSE            reduce using rule 12 (comando -> retorno SEMICOLON .)
+
+
+state 42
+
+    (16) declaracao -> tipo lista_declaradores .
+    (21) lista_declaradores -> lista_declaradores . COMMA declarador
+
+    SEMICOLON       reduce using rule 16 (declaracao -> tipo lista_declaradores .)
+    COMMA           shift and go to state 66
+
+
+state 43
+
+    (22) lista_declaradores -> declarador .
+
+    COMMA           reduce using rule 22 (lista_declaradores -> declarador .)
+    SEMICOLON       reduce using rule 22 (lista_declaradores -> declarador .)
+
+
+state 44
+
+    (23) declarador -> ID .
+    (24) declarador -> ID . EQUALS expressao
+
+    COMMA           reduce using rule 23 (declarador -> ID .)
+    SEMICOLON       reduce using rule 23 (declarador -> ID .)
+    EQUALS          shift and go to state 67
+
+
+state 45
+
+    (25) atribuicao -> ID EQUALS . expressao
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    expressao                      shift and go to state 68
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 46
+
+    (26) incremento -> ID INCREMENT .
+
+    SEMICOLON       reduce using rule 26 (incremento -> ID INCREMENT .)
+    RPAREN          reduce using rule 26 (incremento -> ID INCREMENT .)
+
+
+state 47
+
+    (27) incremento -> ID DECREMENT .
+
+    SEMICOLON       reduce using rule 27 (incremento -> ID DECREMENT .)
+    RPAREN          reduce using rule 27 (incremento -> ID DECREMENT .)
+
+
+state 48
+
+    (68) chamada_funcao -> ID LPAREN . argumentos_opcionais RPAREN
+    (69) argumentos_opcionais -> . lista_argumentos
+    (70) argumentos_opcionais -> . empty
+    (71) lista_argumentos -> . lista_argumentos COMMA expressao
+    (72) lista_argumentos -> . expressao
+    (75) empty -> .
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    RPAREN          reduce using rule 75 (empty -> .)
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    argumentos_opcionais           shift and go to state 69
+    lista_argumentos               shift and go to state 70
+    empty                          shift and go to state 71
+    expressao                      shift and go to state 72
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 49
+
+    (28) retorno -> RETURN expressao_opcional .
+
+    SEMICOLON       reduce using rule 28 (retorno -> RETURN expressao_opcional .)
+
+
+state 50
+
+    (50) expressao_opcional -> expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    SEMICOLON       reduce using rule 50 (expressao_opcional -> expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 51
+
+    (51) expressao_opcional -> empty .
+
+    SEMICOLON       reduce using rule 51 (expressao_opcional -> empty .)
+
+
+state 52
+
+    (54) expressao -> termo .
+    (55) termo -> termo . TIMES potencia
+    (56) termo -> termo . DIVIDE potencia
+
+    PLUS            reduce using rule 54 (expressao -> termo .)
+    MINUS           reduce using rule 54 (expressao -> termo .)
+    SEMICOLON       reduce using rule 54 (expressao -> termo .)
+    RPAREN          reduce using rule 54 (expressao -> termo .)
+    COMMA           reduce using rule 54 (expressao -> termo .)
+    LT              reduce using rule 54 (expressao -> termo .)
+    LE              reduce using rule 54 (expressao -> termo .)
+    GT              reduce using rule 54 (expressao -> termo .)
+    GE              reduce using rule 54 (expressao -> termo .)
+    NE              reduce using rule 54 (expressao -> termo .)
+    EQ              reduce using rule 54 (expressao -> termo .)
+    TIMES           shift and go to state 75
+    DIVIDE          shift and go to state 76
+
+
+state 53
+
+    (67) fator -> MINUS . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    fator                          shift and go to state 77
+    chamada_funcao                 shift and go to state 61
+
+state 54
+
+    (57) termo -> potencia .
+
+    TIMES           reduce using rule 57 (termo -> potencia .)
+    DIVIDE          reduce using rule 57 (termo -> potencia .)
+    PLUS            reduce using rule 57 (termo -> potencia .)
+    MINUS           reduce using rule 57 (termo -> potencia .)
+    SEMICOLON       reduce using rule 57 (termo -> potencia .)
+    RPAREN          reduce using rule 57 (termo -> potencia .)
+    COMMA           reduce using rule 57 (termo -> potencia .)
+    LT              reduce using rule 57 (termo -> potencia .)
+    LE              reduce using rule 57 (termo -> potencia .)
+    GT              reduce using rule 57 (termo -> potencia .)
+    GE              reduce using rule 57 (termo -> potencia .)
+    NE              reduce using rule 57 (termo -> potencia .)
+    EQ              reduce using rule 57 (termo -> potencia .)
+
+
+state 55
+
+    (58) potencia -> fator . POWER potencia
+    (59) potencia -> fator .
+
+    POWER           shift and go to state 78
+    TIMES           reduce using rule 59 (potencia -> fator .)
+    DIVIDE          reduce using rule 59 (potencia -> fator .)
+    PLUS            reduce using rule 59 (potencia -> fator .)
+    MINUS           reduce using rule 59 (potencia -> fator .)
+    SEMICOLON       reduce using rule 59 (potencia -> fator .)
+    RPAREN          reduce using rule 59 (potencia -> fator .)
+    COMMA           reduce using rule 59 (potencia -> fator .)
+    LT              reduce using rule 59 (potencia -> fator .)
+    LE              reduce using rule 59 (potencia -> fator .)
+    GT              reduce using rule 59 (potencia -> fator .)
+    GE              reduce using rule 59 (potencia -> fator .)
+    NE              reduce using rule 59 (potencia -> fator .)
+    EQ              reduce using rule 59 (potencia -> fator .)
+
+
+state 56
+
+    (60) fator -> INTEGER .
+
+    POWER           reduce using rule 60 (fator -> INTEGER .)
+    TIMES           reduce using rule 60 (fator -> INTEGER .)
+    DIVIDE          reduce using rule 60 (fator -> INTEGER .)
+    PLUS            reduce using rule 60 (fator -> INTEGER .)
+    MINUS           reduce using rule 60 (fator -> INTEGER .)
+    SEMICOLON       reduce using rule 60 (fator -> INTEGER .)
+    RPAREN          reduce using rule 60 (fator -> INTEGER .)
+    COMMA           reduce using rule 60 (fator -> INTEGER .)
+    LT              reduce using rule 60 (fator -> INTEGER .)
+    LE              reduce using rule 60 (fator -> INTEGER .)
+    GT              reduce using rule 60 (fator -> INTEGER .)
+    GE              reduce using rule 60 (fator -> INTEGER .)
+    NE              reduce using rule 60 (fator -> INTEGER .)
+    EQ              reduce using rule 60 (fator -> INTEGER .)
+
+
+state 57
+
+    (61) fator -> FLOAT_N .
+
+    POWER           reduce using rule 61 (fator -> FLOAT_N .)
+    TIMES           reduce using rule 61 (fator -> FLOAT_N .)
+    DIVIDE          reduce using rule 61 (fator -> FLOAT_N .)
+    PLUS            reduce using rule 61 (fator -> FLOAT_N .)
+    MINUS           reduce using rule 61 (fator -> FLOAT_N .)
+    SEMICOLON       reduce using rule 61 (fator -> FLOAT_N .)
+    RPAREN          reduce using rule 61 (fator -> FLOAT_N .)
+    COMMA           reduce using rule 61 (fator -> FLOAT_N .)
+    LT              reduce using rule 61 (fator -> FLOAT_N .)
+    LE              reduce using rule 61 (fator -> FLOAT_N .)
+    GT              reduce using rule 61 (fator -> FLOAT_N .)
+    GE              reduce using rule 61 (fator -> FLOAT_N .)
+    NE              reduce using rule 61 (fator -> FLOAT_N .)
+    EQ              reduce using rule 61 (fator -> FLOAT_N .)
+
+
+state 58
+
+    (62) fator -> STRING .
+
+    POWER           reduce using rule 62 (fator -> STRING .)
+    TIMES           reduce using rule 62 (fator -> STRING .)
+    DIVIDE          reduce using rule 62 (fator -> STRING .)
+    PLUS            reduce using rule 62 (fator -> STRING .)
+    MINUS           reduce using rule 62 (fator -> STRING .)
+    SEMICOLON       reduce using rule 62 (fator -> STRING .)
+    RPAREN          reduce using rule 62 (fator -> STRING .)
+    COMMA           reduce using rule 62 (fator -> STRING .)
+    LT              reduce using rule 62 (fator -> STRING .)
+    LE              reduce using rule 62 (fator -> STRING .)
+    GT              reduce using rule 62 (fator -> STRING .)
+    GE              reduce using rule 62 (fator -> STRING .)
+    NE              reduce using rule 62 (fator -> STRING .)
+    EQ              reduce using rule 62 (fator -> STRING .)
+
+
+state 59
+
+    (63) fator -> CHARACTER .
+
+    POWER           reduce using rule 63 (fator -> CHARACTER .)
+    TIMES           reduce using rule 63 (fator -> CHARACTER .)
+    DIVIDE          reduce using rule 63 (fator -> CHARACTER .)
+    PLUS            reduce using rule 63 (fator -> CHARACTER .)
+    MINUS           reduce using rule 63 (fator -> CHARACTER .)
+    SEMICOLON       reduce using rule 63 (fator -> CHARACTER .)
+    RPAREN          reduce using rule 63 (fator -> CHARACTER .)
+    COMMA           reduce using rule 63 (fator -> CHARACTER .)
+    LT              reduce using rule 63 (fator -> CHARACTER .)
+    LE              reduce using rule 63 (fator -> CHARACTER .)
+    GT              reduce using rule 63 (fator -> CHARACTER .)
+    GE              reduce using rule 63 (fator -> CHARACTER .)
+    NE              reduce using rule 63 (fator -> CHARACTER .)
+    EQ              reduce using rule 63 (fator -> CHARACTER .)
+
+
+state 60
+
+    (64) fator -> ID .
+    (68) chamada_funcao -> ID . LPAREN argumentos_opcionais RPAREN
+
+    POWER           reduce using rule 64 (fator -> ID .)
+    TIMES           reduce using rule 64 (fator -> ID .)
+    DIVIDE          reduce using rule 64 (fator -> ID .)
+    PLUS            reduce using rule 64 (fator -> ID .)
+    MINUS           reduce using rule 64 (fator -> ID .)
+    SEMICOLON       reduce using rule 64 (fator -> ID .)
+    RPAREN          reduce using rule 64 (fator -> ID .)
+    COMMA           reduce using rule 64 (fator -> ID .)
+    LT              reduce using rule 64 (fator -> ID .)
+    LE              reduce using rule 64 (fator -> ID .)
+    GT              reduce using rule 64 (fator -> ID .)
+    GE              reduce using rule 64 (fator -> ID .)
+    NE              reduce using rule 64 (fator -> ID .)
+    EQ              reduce using rule 64 (fator -> ID .)
+    LPAREN          shift and go to state 48
+
+
+state 61
+
+    (65) fator -> chamada_funcao .
+
+    POWER           reduce using rule 65 (fator -> chamada_funcao .)
+    TIMES           reduce using rule 65 (fator -> chamada_funcao .)
+    DIVIDE          reduce using rule 65 (fator -> chamada_funcao .)
+    PLUS            reduce using rule 65 (fator -> chamada_funcao .)
+    MINUS           reduce using rule 65 (fator -> chamada_funcao .)
+    SEMICOLON       reduce using rule 65 (fator -> chamada_funcao .)
+    RPAREN          reduce using rule 65 (fator -> chamada_funcao .)
+    COMMA           reduce using rule 65 (fator -> chamada_funcao .)
+    LT              reduce using rule 65 (fator -> chamada_funcao .)
+    LE              reduce using rule 65 (fator -> chamada_funcao .)
+    GT              reduce using rule 65 (fator -> chamada_funcao .)
+    GE              reduce using rule 65 (fator -> chamada_funcao .)
+    NE              reduce using rule 65 (fator -> chamada_funcao .)
+    EQ              reduce using rule 65 (fator -> chamada_funcao .)
+
+
+state 62
+
+    (66) fator -> LPAREN . expressao RPAREN
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    expressao                      shift and go to state 79
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 63
+
+    (29) comando_condicional -> IF LPAREN . condicao RPAREN comando
+    (30) comando_condicional -> IF LPAREN . condicao RPAREN comando ELSE comando
+    (42) condicao -> . expressao operador_relacional expressao
+    (43) condicao -> . expressao
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    condicao                       shift and go to state 80
+    expressao                      shift and go to state 81
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 64
+
+    (31) comando_repeticao -> WHILE LPAREN . condicao RPAREN comando
+    (42) condicao -> . expressao operador_relacional expressao
+    (43) condicao -> . expressao
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    condicao                       shift and go to state 82
+    expressao                      shift and go to state 81
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 65
+
+    (32) comando_repeticao -> FOR LPAREN . inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (33) inicio_for -> . declaracao
+    (34) inicio_for -> . atribuicao
+    (35) inicio_for -> . incremento
+    (36) inicio_for -> . empty
+    (16) declaracao -> . tipo lista_declaradores
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (75) empty -> .
+    (17) tipo -> . INT
+    (18) tipo -> . FLOAT
+    (19) tipo -> . CHAR
+    (20) tipo -> . DOUBLE
+
+    ID              shift and go to state 88
+    SEMICOLON       reduce using rule 75 (empty -> .)
+    INT             shift and go to state 33
+    FLOAT           shift and go to state 34
+    CHAR            shift and go to state 35
+    DOUBLE          shift and go to state 36
+
+    inicio_for                     shift and go to state 83
+    declaracao                     shift and go to state 84
+    atribuicao                     shift and go to state 85
+    incremento                     shift and go to state 86
+    empty                          shift and go to state 87
+    tipo                           shift and go to state 27
+
+state 66
+
+    (21) lista_declaradores -> lista_declaradores COMMA . declarador
+    (23) declarador -> . ID
+    (24) declarador -> . ID EQUALS expressao
+
+    ID              shift and go to state 44
+
+    declarador                     shift and go to state 89
+
+state 67
+
+    (24) declarador -> ID EQUALS . expressao
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    expressao                      shift and go to state 90
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 68
+
+    (25) atribuicao -> ID EQUALS expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    SEMICOLON       reduce using rule 25 (atribuicao -> ID EQUALS expressao .)
+    RPAREN          reduce using rule 25 (atribuicao -> ID EQUALS expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 69
+
+    (68) chamada_funcao -> ID LPAREN argumentos_opcionais . RPAREN
+
+    RPAREN          shift and go to state 91
+
+
+state 70
+
+    (69) argumentos_opcionais -> lista_argumentos .
+    (71) lista_argumentos -> lista_argumentos . COMMA expressao
+
+    RPAREN          reduce using rule 69 (argumentos_opcionais -> lista_argumentos .)
+    COMMA           shift and go to state 92
+
+
+state 71
+
+    (70) argumentos_opcionais -> empty .
+
+    RPAREN          reduce using rule 70 (argumentos_opcionais -> empty .)
+
+
+state 72
+
+    (72) lista_argumentos -> expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    COMMA           reduce using rule 72 (lista_argumentos -> expressao .)
+    RPAREN          reduce using rule 72 (lista_argumentos -> expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 73
+
+    (52) expressao -> expressao PLUS . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    termo                          shift and go to state 93
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 74
+
+    (53) expressao -> expressao MINUS . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    termo                          shift and go to state 94
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 75
+
+    (55) termo -> termo TIMES . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    potencia                       shift and go to state 95
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 76
+
+    (56) termo -> termo DIVIDE . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    potencia                       shift and go to state 96
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 77
+
+    (67) fator -> MINUS fator .
+
+    POWER           reduce using rule 67 (fator -> MINUS fator .)
+    TIMES           reduce using rule 67 (fator -> MINUS fator .)
+    DIVIDE          reduce using rule 67 (fator -> MINUS fator .)
+    PLUS            reduce using rule 67 (fator -> MINUS fator .)
+    MINUS           reduce using rule 67 (fator -> MINUS fator .)
+    SEMICOLON       reduce using rule 67 (fator -> MINUS fator .)
+    RPAREN          reduce using rule 67 (fator -> MINUS fator .)
+    COMMA           reduce using rule 67 (fator -> MINUS fator .)
+    LT              reduce using rule 67 (fator -> MINUS fator .)
+    LE              reduce using rule 67 (fator -> MINUS fator .)
+    GT              reduce using rule 67 (fator -> MINUS fator .)
+    GE              reduce using rule 67 (fator -> MINUS fator .)
+    NE              reduce using rule 67 (fator -> MINUS fator .)
+    EQ              reduce using rule 67 (fator -> MINUS fator .)
+
+
+state 78
+
+    (58) potencia -> fator POWER . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    fator                          shift and go to state 55
+    potencia                       shift and go to state 97
+    chamada_funcao                 shift and go to state 61
+
+state 79
+
+    (66) fator -> LPAREN expressao . RPAREN
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    RPAREN          shift and go to state 98
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 80
+
+    (29) comando_condicional -> IF LPAREN condicao . RPAREN comando
+    (30) comando_condicional -> IF LPAREN condicao . RPAREN comando ELSE comando
+
+    RPAREN          shift and go to state 99
+
+
+state 81
+
+    (42) condicao -> expressao . operador_relacional expressao
+    (43) condicao -> expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+    (44) operador_relacional -> . LT
+    (45) operador_relacional -> . LE
+    (46) operador_relacional -> . GT
+    (47) operador_relacional -> . GE
+    (48) operador_relacional -> . NE
+    (49) operador_relacional -> . EQ
+
+    RPAREN          reduce using rule 43 (condicao -> expressao .)
+    SEMICOLON       reduce using rule 43 (condicao -> expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+    LT              shift and go to state 101
+    LE              shift and go to state 102
+    GT              shift and go to state 103
+    GE              shift and go to state 104
+    NE              shift and go to state 105
+    EQ              shift and go to state 106
+
+    operador_relacional            shift and go to state 100
+
+state 82
+
+    (31) comando_repeticao -> WHILE LPAREN condicao . RPAREN comando
+
+    RPAREN          shift and go to state 107
+
+
+state 83
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for . SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+
+    SEMICOLON       shift and go to state 108
+
+
+state 84
+
+    (33) inicio_for -> declaracao .
+
+    SEMICOLON       reduce using rule 33 (inicio_for -> declaracao .)
+
+
+state 85
+
+    (34) inicio_for -> atribuicao .
+
+    SEMICOLON       reduce using rule 34 (inicio_for -> atribuicao .)
+
+
+state 86
+
+    (35) inicio_for -> incremento .
+
+    SEMICOLON       reduce using rule 35 (inicio_for -> incremento .)
+
+
+state 87
+
+    (36) inicio_for -> empty .
+
+    SEMICOLON       reduce using rule 36 (inicio_for -> empty .)
+
+
+state 88
+
+    (25) atribuicao -> ID . EQUALS expressao
+    (26) incremento -> ID . INCREMENT
+    (27) incremento -> ID . DECREMENT
+
+    EQUALS          shift and go to state 45
+    INCREMENT       shift and go to state 46
+    DECREMENT       shift and go to state 47
+
+
+state 89
+
+    (21) lista_declaradores -> lista_declaradores COMMA declarador .
+
+    COMMA           reduce using rule 21 (lista_declaradores -> lista_declaradores COMMA declarador .)
+    SEMICOLON       reduce using rule 21 (lista_declaradores -> lista_declaradores COMMA declarador .)
+
+
+state 90
+
+    (24) declarador -> ID EQUALS expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    COMMA           reduce using rule 24 (declarador -> ID EQUALS expressao .)
+    SEMICOLON       reduce using rule 24 (declarador -> ID EQUALS expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 91
+
+    (68) chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .
+
+    SEMICOLON       reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    POWER           reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    TIMES           reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    DIVIDE          reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    PLUS            reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    MINUS           reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    RPAREN          reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    COMMA           reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    LT              reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    LE              reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    GT              reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    GE              reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    NE              reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+    EQ              reduce using rule 68 (chamada_funcao -> ID LPAREN argumentos_opcionais RPAREN .)
+
+
+state 92
+
+    (71) lista_argumentos -> lista_argumentos COMMA . expressao
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    expressao                      shift and go to state 109
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 93
+
+    (52) expressao -> expressao PLUS termo .
+    (55) termo -> termo . TIMES potencia
+    (56) termo -> termo . DIVIDE potencia
+
+    PLUS            reduce using rule 52 (expressao -> expressao PLUS termo .)
+    MINUS           reduce using rule 52 (expressao -> expressao PLUS termo .)
+    SEMICOLON       reduce using rule 52 (expressao -> expressao PLUS termo .)
+    RPAREN          reduce using rule 52 (expressao -> expressao PLUS termo .)
+    COMMA           reduce using rule 52 (expressao -> expressao PLUS termo .)
+    LT              reduce using rule 52 (expressao -> expressao PLUS termo .)
+    LE              reduce using rule 52 (expressao -> expressao PLUS termo .)
+    GT              reduce using rule 52 (expressao -> expressao PLUS termo .)
+    GE              reduce using rule 52 (expressao -> expressao PLUS termo .)
+    NE              reduce using rule 52 (expressao -> expressao PLUS termo .)
+    EQ              reduce using rule 52 (expressao -> expressao PLUS termo .)
+    TIMES           shift and go to state 75
+    DIVIDE          shift and go to state 76
+
+
+state 94
+
+    (53) expressao -> expressao MINUS termo .
+    (55) termo -> termo . TIMES potencia
+    (56) termo -> termo . DIVIDE potencia
+
+    PLUS            reduce using rule 53 (expressao -> expressao MINUS termo .)
+    MINUS           reduce using rule 53 (expressao -> expressao MINUS termo .)
+    SEMICOLON       reduce using rule 53 (expressao -> expressao MINUS termo .)
+    RPAREN          reduce using rule 53 (expressao -> expressao MINUS termo .)
+    COMMA           reduce using rule 53 (expressao -> expressao MINUS termo .)
+    LT              reduce using rule 53 (expressao -> expressao MINUS termo .)
+    LE              reduce using rule 53 (expressao -> expressao MINUS termo .)
+    GT              reduce using rule 53 (expressao -> expressao MINUS termo .)
+    GE              reduce using rule 53 (expressao -> expressao MINUS termo .)
+    NE              reduce using rule 53 (expressao -> expressao MINUS termo .)
+    EQ              reduce using rule 53 (expressao -> expressao MINUS termo .)
+    TIMES           shift and go to state 75
+    DIVIDE          shift and go to state 76
+
+
+state 95
+
+    (55) termo -> termo TIMES potencia .
+
+    TIMES           reduce using rule 55 (termo -> termo TIMES potencia .)
+    DIVIDE          reduce using rule 55 (termo -> termo TIMES potencia .)
+    PLUS            reduce using rule 55 (termo -> termo TIMES potencia .)
+    MINUS           reduce using rule 55 (termo -> termo TIMES potencia .)
+    SEMICOLON       reduce using rule 55 (termo -> termo TIMES potencia .)
+    RPAREN          reduce using rule 55 (termo -> termo TIMES potencia .)
+    COMMA           reduce using rule 55 (termo -> termo TIMES potencia .)
+    LT              reduce using rule 55 (termo -> termo TIMES potencia .)
+    LE              reduce using rule 55 (termo -> termo TIMES potencia .)
+    GT              reduce using rule 55 (termo -> termo TIMES potencia .)
+    GE              reduce using rule 55 (termo -> termo TIMES potencia .)
+    NE              reduce using rule 55 (termo -> termo TIMES potencia .)
+    EQ              reduce using rule 55 (termo -> termo TIMES potencia .)
+
+
+state 96
+
+    (56) termo -> termo DIVIDE potencia .
+
+    TIMES           reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    DIVIDE          reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    PLUS            reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    MINUS           reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    SEMICOLON       reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    RPAREN          reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    COMMA           reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    LT              reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    LE              reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    GT              reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    GE              reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    NE              reduce using rule 56 (termo -> termo DIVIDE potencia .)
+    EQ              reduce using rule 56 (termo -> termo DIVIDE potencia .)
+
+
+state 97
+
+    (58) potencia -> fator POWER potencia .
+
+    TIMES           reduce using rule 58 (potencia -> fator POWER potencia .)
+    DIVIDE          reduce using rule 58 (potencia -> fator POWER potencia .)
+    PLUS            reduce using rule 58 (potencia -> fator POWER potencia .)
+    MINUS           reduce using rule 58 (potencia -> fator POWER potencia .)
+    SEMICOLON       reduce using rule 58 (potencia -> fator POWER potencia .)
+    RPAREN          reduce using rule 58 (potencia -> fator POWER potencia .)
+    COMMA           reduce using rule 58 (potencia -> fator POWER potencia .)
+    LT              reduce using rule 58 (potencia -> fator POWER potencia .)
+    LE              reduce using rule 58 (potencia -> fator POWER potencia .)
+    GT              reduce using rule 58 (potencia -> fator POWER potencia .)
+    GE              reduce using rule 58 (potencia -> fator POWER potencia .)
+    NE              reduce using rule 58 (potencia -> fator POWER potencia .)
+    EQ              reduce using rule 58 (potencia -> fator POWER potencia .)
+
+
+state 98
+
+    (66) fator -> LPAREN expressao RPAREN .
+
+    POWER           reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    TIMES           reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    DIVIDE          reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    PLUS            reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    MINUS           reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    SEMICOLON       reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    RPAREN          reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    COMMA           reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    LT              reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    LE              reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    GT              reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    GE              reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    NE              reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+    EQ              reduce using rule 66 (fator -> LPAREN expressao RPAREN .)
+
+
+state 99
+
+    (29) comando_condicional -> IF LPAREN condicao RPAREN . comando
+    (30) comando_condicional -> IF LPAREN condicao RPAREN . comando ELSE comando
+    (8) comando -> . declaracao SEMICOLON
+    (9) comando -> . atribuicao SEMICOLON
+    (10) comando -> . incremento SEMICOLON
+    (11) comando -> . chamada_funcao SEMICOLON
+    (12) comando -> . retorno SEMICOLON
+    (13) comando -> . comando_condicional
+    (14) comando -> . comando_repeticao
+    (15) comando -> . bloco
+    (16) declaracao -> . tipo lista_declaradores
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+    (28) retorno -> . RETURN expressao_opcional
+    (29) comando_condicional -> . IF LPAREN condicao RPAREN comando
+    (30) comando_condicional -> . IF LPAREN condicao RPAREN comando ELSE comando
+    (31) comando_repeticao -> . WHILE LPAREN condicao RPAREN comando
+    (32) comando_repeticao -> . FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (5) bloco -> . LBRACES lista_comandos RBRACES
+    (17) tipo -> . INT
+    (18) tipo -> . FLOAT
+    (19) tipo -> . CHAR
+    (20) tipo -> . DOUBLE
+
+    ID              shift and go to state 28
+    RETURN          shift and go to state 29
+    IF              shift and go to state 30
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    LBRACES         shift and go to state 14
+    INT             shift and go to state 33
+    FLOAT           shift and go to state 34
+    CHAR            shift and go to state 35
+    DOUBLE          shift and go to state 36
+
+    comando                        shift and go to state 110
+    declaracao                     shift and go to state 19
+    atribuicao                     shift and go to state 20
+    incremento                     shift and go to state 21
+    chamada_funcao                 shift and go to state 22
+    retorno                        shift and go to state 23
+    comando_condicional            shift and go to state 24
+    comando_repeticao              shift and go to state 25
+    bloco                          shift and go to state 26
+    tipo                           shift and go to state 27
+
+state 100
+
+    (42) condicao -> expressao operador_relacional . expressao
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    expressao                      shift and go to state 111
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 101
+
+    (44) operador_relacional -> LT .
+
+    INTEGER         reduce using rule 44 (operador_relacional -> LT .)
+    FLOAT_N         reduce using rule 44 (operador_relacional -> LT .)
+    STRING          reduce using rule 44 (operador_relacional -> LT .)
+    CHARACTER       reduce using rule 44 (operador_relacional -> LT .)
+    ID              reduce using rule 44 (operador_relacional -> LT .)
+    LPAREN          reduce using rule 44 (operador_relacional -> LT .)
+    MINUS           reduce using rule 44 (operador_relacional -> LT .)
+
+
+state 102
+
+    (45) operador_relacional -> LE .
+
+    INTEGER         reduce using rule 45 (operador_relacional -> LE .)
+    FLOAT_N         reduce using rule 45 (operador_relacional -> LE .)
+    STRING          reduce using rule 45 (operador_relacional -> LE .)
+    CHARACTER       reduce using rule 45 (operador_relacional -> LE .)
+    ID              reduce using rule 45 (operador_relacional -> LE .)
+    LPAREN          reduce using rule 45 (operador_relacional -> LE .)
+    MINUS           reduce using rule 45 (operador_relacional -> LE .)
+
+
+state 103
+
+    (46) operador_relacional -> GT .
+
+    INTEGER         reduce using rule 46 (operador_relacional -> GT .)
+    FLOAT_N         reduce using rule 46 (operador_relacional -> GT .)
+    STRING          reduce using rule 46 (operador_relacional -> GT .)
+    CHARACTER       reduce using rule 46 (operador_relacional -> GT .)
+    ID              reduce using rule 46 (operador_relacional -> GT .)
+    LPAREN          reduce using rule 46 (operador_relacional -> GT .)
+    MINUS           reduce using rule 46 (operador_relacional -> GT .)
+
+
+state 104
+
+    (47) operador_relacional -> GE .
+
+    INTEGER         reduce using rule 47 (operador_relacional -> GE .)
+    FLOAT_N         reduce using rule 47 (operador_relacional -> GE .)
+    STRING          reduce using rule 47 (operador_relacional -> GE .)
+    CHARACTER       reduce using rule 47 (operador_relacional -> GE .)
+    ID              reduce using rule 47 (operador_relacional -> GE .)
+    LPAREN          reduce using rule 47 (operador_relacional -> GE .)
+    MINUS           reduce using rule 47 (operador_relacional -> GE .)
+
+
+state 105
+
+    (48) operador_relacional -> NE .
+
+    INTEGER         reduce using rule 48 (operador_relacional -> NE .)
+    FLOAT_N         reduce using rule 48 (operador_relacional -> NE .)
+    STRING          reduce using rule 48 (operador_relacional -> NE .)
+    CHARACTER       reduce using rule 48 (operador_relacional -> NE .)
+    ID              reduce using rule 48 (operador_relacional -> NE .)
+    LPAREN          reduce using rule 48 (operador_relacional -> NE .)
+    MINUS           reduce using rule 48 (operador_relacional -> NE .)
+
+
+state 106
+
+    (49) operador_relacional -> EQ .
+
+    INTEGER         reduce using rule 49 (operador_relacional -> EQ .)
+    FLOAT_N         reduce using rule 49 (operador_relacional -> EQ .)
+    STRING          reduce using rule 49 (operador_relacional -> EQ .)
+    CHARACTER       reduce using rule 49 (operador_relacional -> EQ .)
+    ID              reduce using rule 49 (operador_relacional -> EQ .)
+    LPAREN          reduce using rule 49 (operador_relacional -> EQ .)
+    MINUS           reduce using rule 49 (operador_relacional -> EQ .)
+
+
+state 107
+
+    (31) comando_repeticao -> WHILE LPAREN condicao RPAREN . comando
+    (8) comando -> . declaracao SEMICOLON
+    (9) comando -> . atribuicao SEMICOLON
+    (10) comando -> . incremento SEMICOLON
+    (11) comando -> . chamada_funcao SEMICOLON
+    (12) comando -> . retorno SEMICOLON
+    (13) comando -> . comando_condicional
+    (14) comando -> . comando_repeticao
+    (15) comando -> . bloco
+    (16) declaracao -> . tipo lista_declaradores
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+    (28) retorno -> . RETURN expressao_opcional
+    (29) comando_condicional -> . IF LPAREN condicao RPAREN comando
+    (30) comando_condicional -> . IF LPAREN condicao RPAREN comando ELSE comando
+    (31) comando_repeticao -> . WHILE LPAREN condicao RPAREN comando
+    (32) comando_repeticao -> . FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (5) bloco -> . LBRACES lista_comandos RBRACES
+    (17) tipo -> . INT
+    (18) tipo -> . FLOAT
+    (19) tipo -> . CHAR
+    (20) tipo -> . DOUBLE
+
+    ID              shift and go to state 28
+    RETURN          shift and go to state 29
+    IF              shift and go to state 30
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    LBRACES         shift and go to state 14
+    INT             shift and go to state 33
+    FLOAT           shift and go to state 34
+    CHAR            shift and go to state 35
+    DOUBLE          shift and go to state 36
+
+    comando                        shift and go to state 112
+    declaracao                     shift and go to state 19
+    atribuicao                     shift and go to state 20
+    incremento                     shift and go to state 21
+    chamada_funcao                 shift and go to state 22
+    retorno                        shift and go to state 23
+    comando_condicional            shift and go to state 24
+    comando_repeticao              shift and go to state 25
+    bloco                          shift and go to state 26
+    tipo                           shift and go to state 27
+
+state 108
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for SEMICOLON . condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (40) condicao_opcional -> . condicao
+    (41) condicao_opcional -> . empty
+    (42) condicao -> . expressao operador_relacional expressao
+    (43) condicao -> . expressao
+    (75) empty -> .
+    (52) expressao -> . expressao PLUS termo
+    (53) expressao -> . expressao MINUS termo
+    (54) expressao -> . termo
+    (55) termo -> . termo TIMES potencia
+    (56) termo -> . termo DIVIDE potencia
+    (57) termo -> . potencia
+    (58) potencia -> . fator POWER potencia
+    (59) potencia -> . fator
+    (60) fator -> . INTEGER
+    (61) fator -> . FLOAT_N
+    (62) fator -> . STRING
+    (63) fator -> . CHARACTER
+    (64) fator -> . ID
+    (65) fator -> . chamada_funcao
+    (66) fator -> . LPAREN expressao RPAREN
+    (67) fator -> . MINUS fator
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+
+    SEMICOLON       reduce using rule 75 (empty -> .)
+    INTEGER         shift and go to state 56
+    FLOAT_N         shift and go to state 57
+    STRING          shift and go to state 58
+    CHARACTER       shift and go to state 59
+    ID              shift and go to state 60
+    LPAREN          shift and go to state 62
+    MINUS           shift and go to state 53
+
+    condicao_opcional              shift and go to state 113
+    condicao                       shift and go to state 114
+    empty                          shift and go to state 115
+    expressao                      shift and go to state 81
+    termo                          shift and go to state 52
+    potencia                       shift and go to state 54
+    fator                          shift and go to state 55
+    chamada_funcao                 shift and go to state 61
+
+state 109
+
+    (71) lista_argumentos -> lista_argumentos COMMA expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    COMMA           reduce using rule 71 (lista_argumentos -> lista_argumentos COMMA expressao .)
+    RPAREN          reduce using rule 71 (lista_argumentos -> lista_argumentos COMMA expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 110
+
+    (29) comando_condicional -> IF LPAREN condicao RPAREN comando .
+    (30) comando_condicional -> IF LPAREN condicao RPAREN comando . ELSE comando
+
+    RBRACES         reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    ID              reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    RETURN          reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    IF              reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    WHILE           reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    FOR             reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    LBRACES         reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    INT             reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    FLOAT           reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    CHAR            reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    DOUBLE          reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .)
+    ELSE            shift and go to state 116
+
+  ! ELSE            [ reduce using rule 29 (comando_condicional -> IF LPAREN condicao RPAREN comando .) ]
+
+
+state 111
+
+    (42) condicao -> expressao operador_relacional expressao .
+    (52) expressao -> expressao . PLUS termo
+    (53) expressao -> expressao . MINUS termo
+
+    RPAREN          reduce using rule 42 (condicao -> expressao operador_relacional expressao .)
+    SEMICOLON       reduce using rule 42 (condicao -> expressao operador_relacional expressao .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 112
+
+    (31) comando_repeticao -> WHILE LPAREN condicao RPAREN comando .
+
+    RBRACES         reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    ID              reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    RETURN          reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    IF              reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    WHILE           reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    FOR             reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    LBRACES         reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    INT             reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    FLOAT           reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    CHAR            reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    DOUBLE          reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+    ELSE            reduce using rule 31 (comando_repeticao -> WHILE LPAREN condicao RPAREN comando .)
+
+
+state 113
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional . SEMICOLON atualizacao_for RPAREN comando
+
+    SEMICOLON       shift and go to state 117
+
+
+state 114
+
+    (40) condicao_opcional -> condicao .
+
+    SEMICOLON       reduce using rule 40 (condicao_opcional -> condicao .)
+
+
+state 115
+
+    (41) condicao_opcional -> empty .
+
+    SEMICOLON       reduce using rule 41 (condicao_opcional -> empty .)
+
+
+state 116
+
+    (30) comando_condicional -> IF LPAREN condicao RPAREN comando ELSE . comando
+    (8) comando -> . declaracao SEMICOLON
+    (9) comando -> . atribuicao SEMICOLON
+    (10) comando -> . incremento SEMICOLON
+    (11) comando -> . chamada_funcao SEMICOLON
+    (12) comando -> . retorno SEMICOLON
+    (13) comando -> . comando_condicional
+    (14) comando -> . comando_repeticao
+    (15) comando -> . bloco
+    (16) declaracao -> . tipo lista_declaradores
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+    (28) retorno -> . RETURN expressao_opcional
+    (29) comando_condicional -> . IF LPAREN condicao RPAREN comando
+    (30) comando_condicional -> . IF LPAREN condicao RPAREN comando ELSE comando
+    (31) comando_repeticao -> . WHILE LPAREN condicao RPAREN comando
+    (32) comando_repeticao -> . FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (5) bloco -> . LBRACES lista_comandos RBRACES
+    (17) tipo -> . INT
+    (18) tipo -> . FLOAT
+    (19) tipo -> . CHAR
+    (20) tipo -> . DOUBLE
+
+    ID              shift and go to state 28
+    RETURN          shift and go to state 29
+    IF              shift and go to state 30
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    LBRACES         shift and go to state 14
+    INT             shift and go to state 33
+    FLOAT           shift and go to state 34
+    CHAR            shift and go to state 35
+    DOUBLE          shift and go to state 36
+
+    comando                        shift and go to state 118
+    declaracao                     shift and go to state 19
+    atribuicao                     shift and go to state 20
+    incremento                     shift and go to state 21
+    chamada_funcao                 shift and go to state 22
+    retorno                        shift and go to state 23
+    comando_condicional            shift and go to state 24
+    comando_repeticao              shift and go to state 25
+    bloco                          shift and go to state 26
+    tipo                           shift and go to state 27
+
+state 117
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON . atualizacao_for RPAREN comando
+    (37) atualizacao_for -> . atribuicao
+    (38) atualizacao_for -> . incremento
+    (39) atualizacao_for -> . empty
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (75) empty -> .
+
+    ID              shift and go to state 88
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    atualizacao_for                shift and go to state 119
+    atribuicao                     shift and go to state 120
+    incremento                     shift and go to state 121
+    empty                          shift and go to state 122
+
+state 118
+
+    (30) comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .
+
+    RBRACES         reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    ID              reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    RETURN          reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    IF              reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    WHILE           reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    FOR             reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    LBRACES         reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    INT             reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    FLOAT           reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    CHAR            reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    DOUBLE          reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+    ELSE            reduce using rule 30 (comando_condicional -> IF LPAREN condicao RPAREN comando ELSE comando .)
+
+
+state 119
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for . RPAREN comando
+
+    RPAREN          shift and go to state 123
+
+
+state 120
+
+    (37) atualizacao_for -> atribuicao .
+
+    RPAREN          reduce using rule 37 (atualizacao_for -> atribuicao .)
+
+
+state 121
+
+    (38) atualizacao_for -> incremento .
+
+    RPAREN          reduce using rule 38 (atualizacao_for -> incremento .)
+
+
+state 122
+
+    (39) atualizacao_for -> empty .
+
+    RPAREN          reduce using rule 39 (atualizacao_for -> empty .)
+
+
+state 123
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN . comando
+    (8) comando -> . declaracao SEMICOLON
+    (9) comando -> . atribuicao SEMICOLON
+    (10) comando -> . incremento SEMICOLON
+    (11) comando -> . chamada_funcao SEMICOLON
+    (12) comando -> . retorno SEMICOLON
+    (13) comando -> . comando_condicional
+    (14) comando -> . comando_repeticao
+    (15) comando -> . bloco
+    (16) declaracao -> . tipo lista_declaradores
+    (25) atribuicao -> . ID EQUALS expressao
+    (26) incremento -> . ID INCREMENT
+    (27) incremento -> . ID DECREMENT
+    (68) chamada_funcao -> . ID LPAREN argumentos_opcionais RPAREN
+    (28) retorno -> . RETURN expressao_opcional
+    (29) comando_condicional -> . IF LPAREN condicao RPAREN comando
+    (30) comando_condicional -> . IF LPAREN condicao RPAREN comando ELSE comando
+    (31) comando_repeticao -> . WHILE LPAREN condicao RPAREN comando
+    (32) comando_repeticao -> . FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando
+    (5) bloco -> . LBRACES lista_comandos RBRACES
+    (17) tipo -> . INT
+    (18) tipo -> . FLOAT
+    (19) tipo -> . CHAR
+    (20) tipo -> . DOUBLE
+
+    ID              shift and go to state 28
+    RETURN          shift and go to state 29
+    IF              shift and go to state 30
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    LBRACES         shift and go to state 14
+    INT             shift and go to state 33
+    FLOAT           shift and go to state 34
+    CHAR            shift and go to state 35
+    DOUBLE          shift and go to state 36
+
+    comando                        shift and go to state 124
+    declaracao                     shift and go to state 19
+    atribuicao                     shift and go to state 20
+    incremento                     shift and go to state 21
+    chamada_funcao                 shift and go to state 22
+    retorno                        shift and go to state 23
+    comando_condicional            shift and go to state 24
+    comando_repeticao              shift and go to state 25
+    bloco                          shift and go to state 26
+    tipo                           shift and go to state 27
+
+state 124
+
+    (32) comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .
+
+    RBRACES         reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    ID              reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    RETURN          reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    IF              reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    WHILE           reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    FOR             reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    LBRACES         reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    INT             reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    FLOAT           reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    CHAR            reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    DOUBLE          reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+    ELSE            reduce using rule 32 (comando_repeticao -> FOR LPAREN inicio_for SEMICOLON condicao_opcional SEMICOLON atualizacao_for RPAREN comando .)
+

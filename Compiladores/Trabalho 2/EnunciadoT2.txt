@@ -1,0 +1,10 @@
+Analise Sintática - Atividade prática
+A partir do código produzido na entrega prática anterior, complementar a implementação com a analise sintática para reconhecer as estruturas já definidas na entrega anterior da linguagem de programação C, ou seja:
+
+declaração de variáveis (tipos);
+estruturas condicionais, simples e aninhadas;
+estruturas de repetição 'for' e 'while';
+bloco principal 'main()'
+Encaminhar o código fonte, incluindo um teste para código fonte com as estruturas solicitadas.
+
+Biblioteca utilizada:  Python Lex-Yacc https://www.dabeaz.com/ply/ply.html

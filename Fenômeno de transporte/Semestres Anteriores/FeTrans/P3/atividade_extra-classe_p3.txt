@@ -1,0 +1,60 @@
+# -----------------------------
+# Dados do enunciado
+# -----------------------------
+T_inf_ext = 21.0000        # Temperatura do ar externo [°C]
+T_inf_int = 8.0000         # Temperatura do ar interno [°C]
+L         = 0.1400         # Espessura da parede [m] (enunciado 14 cm)
+k         = 1.0000    	   # Condutividade térmica da parede [W/(m·K)]
+h_ext     = 9.0000         # Coef. convecção lado externo [W/(m²·K)]
+h_int     = 7.2000         # Coef. convecção lado interno [W/(m²·K)]
+
+# -----------------------------
+# Cálculo das resistências e do fluxo
+# -----------------------------
+R_conv_ext = 1/h_ext                    # Resist. conv. externa [m²·K/W]
+R_cond     = L/k                        # Resist. cond. da parede [m²·K/W]
+R_conv_int = 1/h_int                    # Resist. conv. interna [m²·K/W]
+R_tot      = R_conv_ext + R_cond + R_conv_int  # Resist. total [m²·K/W]
+
+# (c) Fluxo de calor pelas paredes
+qpp = (T_inf_ext - T_inf_int) / R_tot   # [W/m²] resultado (c)
+
+# -----------------------------
+# (a) Temperatura da face externa
+# -----------------------------
+T_s_ext = T_inf_ext - qpp / h_ext       # [°C] resultado (a)
+
+# -----------------------------
+# (b) Temperatura da face interna
+# -----------------------------
+T_s_int = T_inf_int + qpp / h_int       # [°C] resultado (b)
+
+# -----------------------------
+# (d) Isolante: novo fluxo e temperatura
+# -----------------------------
+qpp_new  = qpp * (1 - 0.58)             # [W/m²]
+T_iso_ar = T_inf_int + qpp_new / h_int  # [°C] resultado (d)
+
+# -----------------------------
+# (e) ΔT através da parede (condução)
+# -----------------------------
+dT_parede = qpp_new * R_cond            # [K] resultado (e)
+
+# -----------------------------
+# (f) Filamento da lâmpada — potência e área
+# -----------------------------
+V       = 127                            # Tensão [V]
+R_fil   = 161.29                         # Resistência [Ω]
+P_el    = V^2 / R_fil                    # [W] potência elétrica (f1)
+
+T_fil_K = 1100 + 273.15                  # Filamento em Kelvin [K]
+eps     = 0.75                           # Emissividade [-]
+sigma   = 5.670374419e-8                 # Const. Stefan–Boltzmann [W/(m²·K⁴)]
+
+A_fil    = P_el / (eps * sigma * T_fil_K^4)  # [m²] área do filamento (f2)
+A_fil_mm2 = A_fil * 1e6                       # [mm²]
+
+# -----------------------------
+# (g) Fluxo de calor por radiação
+# -----------------------------
+qpp_rad = P_el / A_fil                   # [W/m²] resultado (g)

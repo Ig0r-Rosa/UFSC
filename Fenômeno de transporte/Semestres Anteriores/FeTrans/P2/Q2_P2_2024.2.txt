@@ -1,0 +1,35 @@
+# Propriedades da água a 20 °C (Fox & McDonald, 8ª ed.)
+rho           = 998.2           # densidade [kg/m^3]
+nu            = 1.002e-6        # viscosidade cinemática [m^2/s]
+mu            = rho * nu        # viscosidade dinâmica [Pa·s]
+
+# Dados da tubulação e bomba
+D             = 0.10            # diâmetro interno [m]
+L             = 50.0            # comprimento da tubulação [m]
+epsilon       = 0.002           # rugosidade absoluta do concreto [m]
+g             = 9.81            # aceleração da gravidade [m/s^2]
+P             = 200.0           # potência da bomba [W]
+
+########## LETRA A ##########
+# Área da seção transversal
+A = pi * D^2 / 4   # área da seção [m^2]
+
+# Número de Reynolds em função de Q
+Re = (Q / A) * D / nu        # Reynolds [adimensional]
+
+# Fator de atrito (Swamee–Jain explícito)
+f = 0.25 / (log10(epsilon/(3.7 * D) + 5.74 / Re^0.9)^2)  # fator de atrito [adimensional]
+
+# Perda de carga por atrito (Darcy–Weisbach)
+H = f * (L / D) * ((Q / A)^2 / (2 * g))  # carga hidráulica [m]
+
+# Equação principal a resolver (potência hidráulica = potência da bomba)
+P - rho * g * Q * H = 0               # balanço de potência [W]
+
+########## LETRA B ##########
+# Desnível sem bomba
+delta_h = H                     # desnível [m]
+
+########## LETRA C ##########
+# Desnível com turbina de 200 W
+delta_h_turb  = P / (rho * g * Q)     # desnível com turbina [m]
