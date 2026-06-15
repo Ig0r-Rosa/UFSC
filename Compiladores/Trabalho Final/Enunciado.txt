@@ -1,0 +1,22 @@
+Trabalho Final - Implementação Parcial de um Compilador
+
+Para o trabalho final da disciplina, você deve entregar uma implementação parcial de um compilador, contendo as fases de análise léxica (previamente implementada), análise sintática e análise semântica seguindo as especificações abaixo:
+
+Análise sintática deve ser capaz de validar comandos de atribuição, operações aritméticas simples, estruturas condicionais (simples e aninhadas) e laços de repetição.
+Análise semântica deve incluir a implementação de 3 (ou mais) ações semânticas, por exemplo, verificação de declaração de variáveis antes do uso e tipagem.
+Abaixo temos um exemplo simples de programa em C que deve ser reconhecido pelo analisador sintático. 
+
+int main()
+{
+    int a, b, resultado;
+    a = 4;
+    b = 6;
+    if(a>= 10){
+         resultado = a -  b;
+    }else{
+         resultado = a +  b;
+    }
+}
+Entregáveis: 
+Código fonte e arquivo README.txt descrevendo como executá-lo
+Relatório descrevendo a implementação, relacionando-a ao conteúdo teórico.

@@ -1,0 +1,393 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{caption}
+
+\geometry{left=3cm, right=2cm, top=3cm, bottom=2cm}
+\onehalfspacing
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue}
+
+\lstdefinestyle{codigo}{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{red!70!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=8pt,
+  frame=single,
+  breaklines=true,
+  tabsize=2,
+  showstringspaces=false,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+           {ã}{{\~a}}1 {õ}{{\~o}}1 {ç}{{\c{c}}}1 {ê}{{\^e}}1 {ô}{{\^o}}1
+           {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+           {Ã}{{\~A}}1 {Õ}{{\~O}}1 {Ç}{{\c{C}}}1
+}
+
+\lstdefinestyle{gramatica}{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  breaklines=true,
+  tabsize=2
+}
+
+\title{%
+  \textbf{Relatório Técnico}\\[0.4cm]
+  \large Implementação Parcial de um Compilador para Subconjunto da Linguagem C
+}
+\author{%
+  Igor de Matos da Rosa\\[0.2cm]
+  \small Matrícula: 20103930\\[0.6cm]
+  \small Disciplina: DEC0004-09655 (20261) -- Compiladores\\
+  \small Universidade Federal de Santa Catarina (UFSC)\\[0.3cm]
+  \small Professor: Alison Roberto Panisson
+}
+\date{Araranguá, 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+% ---------------------------------------------------------------------------
+\section{Introdução}
+
+Este relatório descreve a implementação parcial de um compilador desenvolvida como
+Trabalho Final da disciplina DEC0004-09655 (20261) -- Compiladores, ministrada na Universidade
+Federal de Santa Catarina. O objetivo da atividade consiste em integrar, em um único
+artefato de software, as fases de \textbf{análise léxica}, \textbf{análise sintática}
+e \textbf{análise semântica}, conforme especificado no enunciado da tarefa avaliativa.
+
+A solução foi construída de forma incremental: a análise léxica constitui evolução
+do Trabalho 1 (T1); a análise sintática, do Trabalho 2 (T2); e a análise semântica
+e o relatório consolidado de execução foram incorporados nesta entrega final. A
+linguagem-alvo é um \textbf{subconjunto restrito de C}, suficiente para demonstrar
+as estruturas exigidas: declarações de variáveis, atribuições, expressões aritméticas,
+estruturas condicionais (simples e aninhadas) e laços de repetição (\texttt{while} e
+\texttt{for}).
+
+A implementação utiliza a biblioteca \textbf{PLY} (\textit{Python Lex-Yacc}), ferramenta
+didática amplamente empregada na disciplina para a construção de analisadores léxicos
+e sintáticos a partir de expressões regulares e gramáticas livres de contexto.
+
+% ---------------------------------------------------------------------------
+\section{Fundamentação Teórica e Relação com o Conteúdo da Disciplina}
+
+A organização deste trabalho segue a estrutura curricular disponibilizada no ambiente
+virtual da disciplina, articulando teoria e prática nas unidades estudadas.
+
+\subsection{Unidade 1 -- Introdução à Construção de Compiladores}
+
+Conforme os materiais introdutórios da disciplina, um compilador transforma um
+programa-fonte em um programa-alvo equivalente, percorrendo fases sequenciais de
+análise e síntese. Neste trabalho, implementam-se as três primeiras fases da
+\textbf{análise}:
+
+\begin{enumerate}
+  \item \textbf{Análise léxica} -- particionamento do fluxo de caracteres em tokens;
+  \item \textbf{Análise sintática} -- verificação da estrutura conforme uma gramática;
+  \item \textbf{Análise semântica} -- verificação de regras de contexto não expressas
+        pela gramática.
+\end{enumerate}
+
+As fases de geração e otimização de código (Unidade 5) não foram implementadas,
+pois extrapolam o escopo do trabalho final, que exige uma \textit{implementação
+parcial}.
+
+\subsection{Unidade 2 -- Análise Léxica}
+
+A análise léxica realiza o reconhecimento de \textbf{lexemas} por meio de um
+\textbf{autômato finito}, usualmente especificado por expressões regulares. No modelo
+teórico, o analisador léxico remove comentários e espaços em branco, identifica
+palavras reservadas, literais, identificadores e operadores, encaminhando tokens ao
+analisador sintático.
+
+Na implementação, cada categoria léxica é definida por uma função \texttt{t\_*} ou
+por uma expressão regular associada a um terminal PLY. Palavras reservadas como
+\texttt{int}, \texttt{if}, \texttt{while} e \texttt{for} são mapeadas para tokens
+distintos de identificadores genéricos (\texttt{ID}). Operadores compostos
+(\texttt{==}, \texttt{<=}, \texttt{>=}, \texttt{!=}, \texttt{++}, \texttt{--})
+possuem regras declaradas \textbf{antes} dos operadores simples, evitando conflitos
+de \textit{prefixo mais longo} (\textit{maximal munch}).
+
+\subsection{Unidade 3 -- Análise Sintática}
+
+A análise sintática verifica se a sequência de tokens pode ser derivada a partir da
+gramática da linguagem. A disciplina aborda analisadores \textbf{top-down} (LL) e
+\textbf{bottom-up} (LR). O PLY Yacc implementa um analisador do tipo \textbf{LALR(1)},
+subclasse dos analisadores LR, adequada a gramáticas de linguagens de programação.
+
+Os conceitos de \textbf{conjuntos First e Follow}, bem como a resolução de ambiguidades,
+manifestam-se na gramática implementada. Destaca-se a ambiguidade clássica do
+\texttt{if-then-else}, resolvida mediante declaração de precedência:
+
+\begin{lstlisting}[style=gramatica]
+precedence = (
+    ('nonassoc', 'IFX'),
+    ('nonassoc', 'ELSE'),
+)
+\end{lstlisting}
+
+A regra condicional com \texttt{ELSE} recebe menor precedência que o \texttt{IF}
+sem \texttt{ELSE}, associando o \texttt{else} ao \texttt{if} mais próximo --- regra
+usual em linguagens como C.
+
+A gramática reconhece, entre outras estruturas, o programa principal
+\texttt{int main()}, blocos compostos, declarações, atribuições, expressões com
+precedência aritmética, condicionais aninhados e laços \texttt{while}/\texttt{for}.
+
+\subsection{Unidade 4 -- Análise Semântica}
+
+A análise semântica verifica propriedades que a gramática não captura: existência
+de identificadores, compatibilidade de tipos e consistência de escopos. A disciplina
+distingue \textbf{atributos sintetizados} (calculados nos filhos e propagados ao pai)
+e \textbf{atributos herdados} (propagados do pai aos filhos).
+
+Nesta implementação, adota-se um esquema predominantemente \textbf{S-atribuído}:
+cada nó de expressão sintetiza seu tipo em \texttt{p[0]}, permitindo verificações nas
+produções de atribuição, declaração e estruturas de controle. A \textbf{tabela de
+símbolos} materializa o conceito de \textbf{escopo léxico}, implementado como pilha de
+tabelas hash: cada bloco \texttt{\{\}} abre um novo escopo e o encerramento do bloco
+restaura o escopo anterior.
+
+% ---------------------------------------------------------------------------
+\section{Especificação do Trabalho}
+
+O enunciado do Trabalho Final estabelece os seguintes requisitos:
+
+\begin{itemize}
+  \item análise sintática capaz de validar atribuições, operações aritméticas,
+        condicionais (simples e aninhadas) e laços de repetição;
+  \item análise semântica com pelo menos três ações semânticas;
+  \item reconhecimento do programa-exemplo fornecido no enunciado;
+  \item entrega de código-fonte, \texttt{README.txt} e relatório teórico-prático.
+\end{itemize}
+
+O programa de referência do enunciado é reproduzido abaixo:
+
+\begin{lstlisting}[style=codigo, language=C]
+int main()
+{
+    int a, b, resultado;
+    a = 4;
+    b = 6;
+    if(a>= 10){
+         resultado = a -  b;
+    }else{
+         resultado = a +  b;
+    }
+}
+\end{lstlisting}
+
+% ---------------------------------------------------------------------------
+\section{Arquitetura da Implementação}
+
+O projeto está organizado em módulos com responsabilidade única:
+
+\begin{table}[h]
+  \centering
+  \caption{Estrutura de arquivos do projeto}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Arquivo} & \textbf{Responsabilidade} \\
+    \midrule
+    \texttt{compilador\_c.py}   & Analisador léxico, gramática e orquestração \\
+    \texttt{tabela\_simbolos.py} & Gerenciamento de escopos e declarações \\
+    \texttt{semantica.py}     & Ações semânticas e verificação de tipos \\
+    \texttt{relatorio.py}     & Consolidação do relatório de execução \\
+    \texttt{Testes/}           & Programas de validação \\
+    \texttt{README.txt}         & Instruções de execução \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Fluxo de Processamento}
+
+O compilador parcial executa o seguinte pipeline ao receber um arquivo \texttt{.c}:
+
+\begin{enumerate}
+  \item \textbf{Fase léxica}: leitura do arquivo e geração da sequência de tokens;
+  \item \textbf{Fase sintática}: aplicação da gramática LALR(1) sobre os tokens;
+  \item \textbf{Fase semântica}: execução das ações associadas às produções durante
+        o \textit{parsing} (esquema ad hoc com atributos sintetizados);
+  \item \textbf{Relatório final}: apresentação consolidada dos resultados das três
+        fases e veredito de validade do programa.
+\end{enumerate}
+
+A execução é parametrizável:
+
+\begin{lstlisting}[style=codigo, language=bash]
+python3 compilador_c.py [--lex | --sint] <arquivo.c>
+\end{lstlisting}
+
+% ---------------------------------------------------------------------------
+\section{Detalhamento da Análise Léxica}
+
+\subsection{Tokens Reconhecidos}
+
+O analisador léxico reconhece palavras reservadas, identificadores, literais
+(inteiros, ponto flutuante, caracteres e \textit{strings}), operadores aritméticos
+e relacionais, delimitadores e comentários (linha e bloco). Espaços, tabulações e
+retornos de carro são ignorados; quebras de linha atualizam o contador de linhas
+para diagnósticos de erro.
+
+\subsection{Relação com a Teoria}
+
+Cada regra léxica corresponde a um padrão regular que pode ser representado por um
+AFD. A ferramenta PLY constrói internamente o autômato a partir das expressões
+fornecidas, materializando na prática o conteúdo da Unidade 2 sobre geradores de
+analisadores léxicos e a transição de especificação declarativa para reconhecedor
+executável.
+
+% ---------------------------------------------------------------------------
+\section{Detalhamento da Análise Sintática}
+
+\subsection{Principais Produções Gramaticais}
+
+A gramática é centrada no não terminal \texttt{programa}, derivando para a função
+\texttt{main} e seu bloco. Destacam-se as produções:
+
+\begin{lstlisting}[style=gramatica]
+programa           : funcao_principal semicolon_opcional
+funcao_principal   : INT MAIN LPAREN parametro_main RPAREN bloco
+comando            : declaracao SEMICOLON
+                   | atribuicao SEMICOLON
+                   | comando_condicional
+                   | comando_repeticao
+                   | bloco
+comando_condicional: IF LPAREN condicao RPAREN comando %prec IFX
+                   | IF LPAREN condicao RPAREN comando ELSE comando
+comando_repeticao  : WHILE LPAREN condicao RPAREN comando
+                   | FOR LPAREN inicio_for SEMICOLON condicao_opcional
+                     SEMICOLON atualizacao_for RPAREN comando
+expressao          : expressao PLUS termo
+                   | expressao MINUS termo
+                   | termo
+\end{lstlisting}
+
+A hierarquia \texttt{expressao $\rightarrow$ termo $\rightarrow$ potencia $\rightarrow$ fator}
+implementa precedência de operadores: adição/subtração, multiplicação/divisão e
+potenciação, respectivamente.
+
+\subsection{Relação com a Teoria}
+
+O analisador LALR(1) construído pelo Yacc realiza \textit{shift} e \textit{reduce}
+conforme a tabela de ações estudada na Unidade 3. Cada função \texttt{p\_*} representa
+uma produção da gramática; a redução bem-sucedida confirma que o trecho analisado
+pertence à linguagem definida.
+
+% ---------------------------------------------------------------------------
+\section{Detalhamento da Análise Semântica}
+
+\subsection{Ações Semânticas Implementadas}
+
+Foram implementadas \textbf{seis} ações semânticas, superando o mínimo de três
+exigido pelo enunciado:
+
+\begin{table}[h]
+  \centering
+  \caption{Ações semânticas implementadas}
+  \begin{tabular}{@{}p{0.5\textwidth}p{0.38\textwidth}@{}}
+    \toprule
+    \textbf{Ação} & \textbf{Fundamento teórico} \\
+    \midrule
+    Inserção na tabela de símbolos & Escopo léxico e declaração \\
+    Verificação de uso antes da declaração & Regra de contexto \\
+    Detecção de redeclaração no mesmo escopo & Política de escopos aninhados \\
+    Compatibilidade de tipos em atribuições & Checagem de tipos \\
+    Tipagem de expressões aritméticas/relacionais & Atributos sintetizados \\
+    Validação de condições em estruturas de controle & Restrição semântica de \texttt{if}/\texttt{while}/\texttt{for} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Tabela de Símbolos}
+
+A classe \texttt{TabelaSimbolos} mantém uma pilha de dicionários. Ao encontrar
+\texttt{\{}, um novo escopo é empilhado; ao encontrar \texttt{\}}, o escopo é
+desempilhado. A operação de busca percorre os escopos do mais interno ao mais
+externo, reproduzindo a regra de resolução de nomes de C.
+
+\subsection{Verificação de Tipos}
+
+Os tipos primitivos considerados são: \texttt{int}, \texttt{float}, \texttt{double},
+\texttt{char} e \texttt{string}. Expressões aritméticas aplicam promoção numérica
+(\textit{char} $\leq$ \textit{int} $\leq$ \textit{float} $\leq$ \textit{double}).
+Operadores relacionais exigem operandos numéricos e produzem tipo \texttt{int},
+analogamente à convenção de C.
+
+% ---------------------------------------------------------------------------
+\section{Testes e Validação}
+
+Foram elaborados programas de teste em \texttt{Testes/}, classificados em válidos
+(espera-se compilação sem erros semânticos) e inválidos (espera-se diagnóstico
+semântico específico).
+
+\begin{table}[h]
+  \centering
+  \caption{Casos de teste}
+  \small
+  \begin{tabular}{@{}llp{6.5cm}@{}}
+    \toprule
+    \textbf{Arquivo} & \textbf{Resultado} & \textbf{Objetivo} \\
+    \midrule
+    \texttt{ExemploEnunciado.c} & Válido & Programa do enunciado \\
+    \texttt{Teste1.c}           & Válido & Condicionais aninhados \\
+    \texttt{Teste2.c}           & Válido & Laço \texttt{while} \\
+    \texttt{Teste3.c}           & Válido & \texttt{for}, \texttt{while} e \texttt{if} \\
+    \texttt{Erro\_VariavelNaoDeclarada.c} & Inválido & Uso sem declaração \\
+    \texttt{Erro\_Redeclaracao.c}         & Inválido & Redeclaração no escopo \\
+    \texttt{Erro\_TipoIncompativel.c}     & Inválido & Atribuição \texttt{int} $\leftarrow$ \texttt{string} \\
+    \texttt{Erro\_CondicaoInvalida.c}     & Inválido & Condição não numérica \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Relatório de Execução}
+
+Ao término da análise, o módulo \texttt{relatorio.py} imprime um relatório estruturado
+contendo: (i)~lista de tokens com linha, tipo e valor; (ii)~estruturas sintáticas
+reconhecidas; (iii)~tabela de símbolos e ações semânticas executadas; e (iv)~veredito
+final (\textsc{Válido} ou \textsc{Inválido}). Esse relatório materializa, de forma
+operacional, a integração das três fases analíticas estudadas na disciplina.
+
+% ---------------------------------------------------------------------------
+\section{Considerações Finais}
+
+O trabalho consolidou os conhecimentos das Unidades 2, 3 e 4 da disciplina de
+Compiladores, transformando conceitos teóricos --- autômatos finitos, gramáticas
+livres de contexto, analisadores LR, tabelas de símbolos e esquemas de atributos ---
+em um compilador parcial funcional.
+
+As limitações do subconjunto implementado (ausência de geração de código, tipos
+compostos, funções definidas pelo usuário e pré-processador) delimitam o escopo de
+uma \textit{implementação parcial}, coerente com o enunciado. Como continuidade
+natural do estudo, a Unidade 5 poderia estender o projeto com geração de código
+intermediário ou código objeto.
+
+% ---------------------------------------------------------------------------
+\section*{Referências}
+
+\begin{enumerate}
+  \item PANISSON, A. R. \textit{Material didático da disciplina DEC0004-09655 (20261) -- Compiladores}. UFSC, 2026. Unidades 1 a 4 (Introdução, Análise Léxica, Análise Sintática e Análise Semântica).
+  \item AHO, A. V.; LAM, M. S.; SETHI, R.; ULLMAN, J. D. \textit{Compiladores: Princípios, Técnicas e Ferramentas}. 2. ed. São Paulo: Pearson, 2008.
+  \item BEAZLEY, D. M. \textit{PLY (Python Lex-Yacc)}. Disponível em: \url{https://www.dabeaz.com/ply/}. Acesso em: jun. 2026.
+\end{enumerate}
+
+\end{document}
