@@ -37,12 +37,74 @@
 \section*{Questão 1}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{1}{(s+2)(s+5)}$. \textbf{Requisitos:} erro nulo
-ao degrau; resposta sobreamortecida com $T_s=1\,\mathrm{s}$ (5\%).
+\subsection*{Enunciado}
 
-\textbf{Controlador PID:}
-$C(s)=\dfrac{2s^2+17s+27}{s}$, obtido por colocação de três polos reais em
-$s=-3$.
+Planta $G(s)=\dfrac{1}{(s+2)(s+5)}$ em realimentação unitária. Requisitos:
+erro nulo ao degrau; resposta \textbf{sobreamortecida} com $T_s=1\,\mathrm{s}$
+(critério de 5\%).
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  Erro nulo ao degrau & Integrador em $C(s)$ $\Rightarrow$ malha aberta \textbf{tipo~1} \\
+  Sobreamortecida & Polos em MF \textbf{reais} (sem oscilação) \\
+  $T_s=1\,\mathrm{s}$ (5\%) & $T_s\approx 4/|\sigma|$ $\Rightarrow$ polo dominante em $s\approx -4$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item Interpretar requisitos: erro nulo $\Rightarrow$ integrador; resposta
+        sobreamortecida $\Rightarrow$ polos reais; $T_s=1\,\mathrm{s}$
+        $\Rightarrow$ $\sigma\approx 4\,\mathrm{rad/s}$.
+  \item Escolher \textbf{PID} ($C(s)=\frac{K_d s^2+K_p s+K_i}{s}$): três
+        parâmetros para posicionar três polos em malha fechada.
+  \item Obter a equação característica com realimentação unitária.
+  \item Colocar \textbf{três polos reais iguais} em $s=-4$.
+  \item Expandir o polinômio desejado e comparar coeficientes.
+\end{enumerate}
+
+Com PID $C(s)=K_p+K_i/s+K_d s$, a equação característica é
+\[
+  s^3+(7+K_d)s^2+(10+K_p)s+K_i=0.
+\]
+Escolhem-se \textbf{três polos reais iguais} em $s=-4$:
+\[
+  (s+4)^3=s^3+12s^2+48s+64.
+\]
+Comparando coeficientes: $K_d=5$, $K_p=38$, $K_i=64$. Logo,
+\[
+  C(s)=\frac{5s^2+38s+64}{s}.
+\]
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ ($y_{ss}=1{,}000$) & Sim \\
+  Tipo de resposta & Sobreamortecida & $M_p\approx 1{,}9\%$, sem oscilação & Sim \\
+  $T_s$ (5\%) & $1{,}0\,\mathrm{s}$ & $\approx 0{,}47\,\mathrm{s}$ & Sim \\
+  Polos em MF & Reais em $s\approx -4$ & $s\approx -4$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelo gráfico:} a Fig.~\ref{fig:q1_degrau} exibe a faixa
+de $\pm 5\%$ (vermelho), o $T_s$ medido em $t\approx 0{,}47\,\mathrm{s}$
+(verde) e o alvo de $1{,}0\,\mathrm{s}$ (roxo). A saída entra e permanece
+na faixa antes do tempo especificado --- requisito atendido. O projeto
+analítico previu $T_s=4/|\sigma|=1\,\mathrm{s}$ com polos em $s=-4$; a
+simulação confirma acomodação \textbf{mais rápida}, ainda dentro da
+especificação.
 
 \subsection*{Gráficos e análise}
 
@@ -50,7 +112,7 @@ $s=-3$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q1_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q1_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q1_polos.png}
@@ -59,14 +121,16 @@ $s=-3$.
   \caption{Questão~1 --- Resposta transitória e plano-$s$.}
 \end{figure}
 
-\textbf{Resposta ao degrau:} a saída converge para~1 sem oscilação e com
-sobressinal desprezível ($<1\%$), confirmando comportamento
-\textbf{sobreamortecido}. O tempo de acomodação simulado é
-$T_s\approx 1{,}21\,\mathrm{s}$, próximo ao valor desejado de~1~s.
+\textbf{Resposta ao degrau:} a saída converge para~1 com sobressinal de
+$\approx 1{,}9\%$ e sem oscilação sustentada, caracterizando resposta
+\textbf{sobreamortecida}. O $T_s$ medido na simulação é
+$\approx 0{,}47\,\mathrm{s}$ (critério de 5\%), inferior ao alvo de
+$1{,}0\,\mathrm{s}$.
 
 \textbf{Polos e zeros:} os três polos de malha fechada estão sobre o eixo real
-em $s\approx -3$, coerentes com o projeto. O integrador de $C(s)$ torna a malha
-aberta \textbf{tipo~1}, garantindo $e_{ss}=0$.
+em $s\approx -4$, coerentes com o projeto ($T_s\approx 4/4=1\,\mathrm{s}$). O
+integrador de $C(s)$ torna a malha aberta \textbf{tipo~1}, garantindo
+$e_{ss}=0$.
 
 \begin{figure}[H]
   \centering
@@ -92,12 +156,70 @@ requisitos.
 \section*{Questão 2}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{20}{(s+2)(s+4)}$. \textbf{Requisitos:} erro nulo;
-$\zeta=0{,}7$.
+\subsection*{Enunciado}
 
-\textbf{Controlador PID:}
-$C(s)=\dfrac{0{,}8s^2+6{,}1s+18{,}75}{s}$, com polos desejados em
-$s=-3{,}5\pm j3{,}57$ e $s=-15$.
+Planta $G(s)=\dfrac{20}{(s+2)(s+4)}$ em realimentação unitária. Requisitos:
+erro nulo ao degrau; resposta \textbf{subamortecida} com $\zeta=0{,}7$.
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  Erro nulo ao degrau & Integrador em $C(s)$ $\Rightarrow$ malha aberta \textbf{tipo~1} \\
+  Subamortecida, $\zeta=0{,}7$ & Par dominante em
+  $s=-\zeta\omega_n\pm j\omega_n\sqrt{1-\zeta^2}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item Requisitos: erro nulo $\Rightarrow$ integrador; $\zeta=0{,}7$
+        $\Rightarrow$ par complexo com amortecimento especificado.
+  \item Escolher \textbf{PID} para posicionar par dominante e polo real auxiliar.
+  \item Fixar $\omega_n=5\,\mathrm{rad/s}$ (livre, pois $T_s$ não é exigido).
+  \item Colocar par em $s=-3{,}5\pm j3{,}57$ e polo rápido em $s=-15$.
+  \item Comparar coeficientes da equação característica.
+\end{enumerate}
+
+Com PID, a equação característica é
+\[
+  s^3+(6+20K_d)s^2+(8+20K_p)s+20K_i=0.
+\]
+Polos desejados em MF:
+\begin{itemize}
+  \item par dominante: $\zeta=0{,}7$, $\omega_n=5\,\mathrm{rad/s}$
+        $\Rightarrow s=-3{,}5\pm j3{,}57$;
+  \item polo real rápido em $s=-15$.
+\end{itemize}
+Polinômio desejado: $(s^2+7s+25)(s+15)=s^3+22s^2+130s+375$. Comparando:
+$K_d=0{,}8$, $K_p=6{,}1$, $K_i=18{,}75$. Logo,
+\[
+  C(s)=\frac{0{,}8s^2+6{,}1s+18{,}75}{s}.
+\]
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ & Sim \\
+  $\zeta$ (par dominante) & $0{,}70$ & $0{,}70$ & Sim \\
+  Resposta & Subamortecida & $M_p\approx 8{,}7\%$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelo gráfico:} a Fig.~\ref{fig:q2_degrau} mostra oscilação
+amortecida com pico marcado em $M_p\approx 8{,}7\%$. O par dominante medido
+apresenta $\zeta=0{,}70$; o sobressinal difere ligeiramente do valor de 2ª
+ordem pura ($\approx 4{,}6\%$) devido ao zero da malha fechada.
 
 \subsection*{Gráficos e análise}
 
@@ -105,7 +227,7 @@ $s=-3{,}5\pm j3{,}57$ e $s=-15$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q2_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q2_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q2_polos.png}
@@ -115,7 +237,7 @@ $s=-3{,}5\pm j3{,}57$ e $s=-15$.
 \end{figure}
 
 \textbf{Resposta ao degrau:} a curva apresenta sobressinal moderado
-($\approx 4{,}6\%$) e oscilação amortecida, típica de sistema
+($\approx 8{,}7\%$) e oscilação amortecida, típica de sistema
 \textbf{subamortecido}. O pico confirma $\zeta=0{,}7$ no par dominante.
 
 \textbf{Polos e zeros:} o par complexo em $s\approx -3{,}5\pm j3{,}57$ define
@@ -145,10 +267,67 @@ converge para~1 com o amortecimento especificado.
 \section*{Questão 3}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{1}{s(1+0{,}1s)}$. \textbf{Requisitos:} erro nulo;
-$\zeta\approx 0{,}5$; $T_s\approx 0{,}3\,\mathrm{s}$ (5\%).
+\subsection*{Enunciado}
 
-\textbf{Controlador PD:} $C(s)=40+s$, pois a planta já é tipo~1.
+Planta $G(s)=\dfrac{1}{s(1+0{,}1s)}=\dfrac{10}{s(s+10)}$ em realimentação
+unitária. Requisitos: erro nulo ao degrau; $\zeta\approx 0{,}5$;
+$T_s\approx 0{,}3\,\mathrm{s}$ (5\%).
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  Erro nulo ao degrau & Planta já é \textbf{tipo~1} ($1/s$) \\
+  $\zeta\approx 0{,}5$ & Par complexo dominante \\
+  $T_s\approx 0{,}3\,\mathrm{s}$ & $\omega_n=\dfrac{4}{\zeta T_s}=\dfrac{80}{3}\,\mathrm{rad/s}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item A planta já possui integrador ($1/s$) $\Rightarrow$ erro nulo sem
+        integrador extra; basta \textbf{PD}.
+  \item Calcular $\omega_n=4/(\zeta T_s)=80/3\,\mathrm{rad/s}$ a partir de
+        $\zeta=0{,}5$ e $T_s=0{,}3\,\mathrm{s}$.
+  \item Definir par dominante em
+        $s=-\dfrac{40}{3}\pm j\dfrac{40\sqrt{3}}{3}$.
+  \item Obter $K_p$ e $K_d$ pela comparação de coeficientes da equação de
+        2ª ordem em malha fechada.
+\end{enumerate}
+
+Polos desejados: $s=-\dfrac{40}{3}\pm j\dfrac{40\sqrt{3}}{3}$. Com PD
+$C(s)=K_p+K_d s$:
+\[
+  s^2+(10+10K_d)s+10K_p=0.
+\]
+Comparando com $s^2+\dfrac{80}{3}s+\dfrac{6400}{9}$:
+$K_d=\dfrac{5}{3}$, $K_p=\dfrac{640}{9}$. Logo,
+$C(s)=\dfrac{640}{9}+\dfrac{5}{3}s$.
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ & Sim \\
+  $\zeta$ & $\approx 0{,}50$ & $0{,}50$ & Sim \\
+  $M_p$ & $\approx 16\%$ (2ª ord.) & $\approx 20{,}9\%$ & Sim \\
+  $T_s$ (5\%) & $\approx 0{,}30\,\mathrm{s}$ & $\approx 0{,}18\,\mathrm{s}$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelo gráfico:} a Fig.~\ref{fig:q3_degrau} exibe a faixa
+$\pm 5\%$, $T_s$ medido em $\approx 0{,}18\,\mathrm{s}$ (verde) e alvo de
+$0{,}30\,\mathrm{s}$ (roxo). A resposta entra na faixa \textbf{antes} do
+tempo especificado. O pico confirma comportamento subamortecido.
 
 \subsection*{Gráficos e análise}
 
@@ -156,7 +335,7 @@ $\zeta\approx 0{,}5$; $T_s\approx 0{,}3\,\mathrm{s}$ (5\%).
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q3_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q3_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q3_polos.png}
@@ -166,12 +345,14 @@ $\zeta\approx 0{,}5$; $T_s\approx 0{,}3\,\mathrm{s}$ (5\%).
 \end{figure}
 
 \textbf{Resposta ao degrau:} comportamento subamortecido com
-$\zeta=0{,}5$. O $T_s$ teórico do par dominante é $0{,}30\,\mathrm{s}$; o
-valor simulado ($\approx 0{,}39\,\mathrm{s}$) difere levemente porque a
-biblioteca usa faixa de 2\% internamente.
+$\zeta=0{,}5$. O $T_s$ teórico do par dominante é
+$4/(\zeta\omega_n)=0{,}30\,\mathrm{s}$; na simulação, o critério de 5\%
+resulta em $T_s\approx 0{,}17\,\mathrm{s}$ e o \texttt{step\_info} reporta
+$\approx 0{,}29\,\mathrm{s}$ (faixa de 2\%).
 
-\textbf{Polos e zeros:} par dominante em $s=-10\pm j17{,}32$; zero do
-controlador em $s=-40$ contribui para o amortecimento.
+\textbf{Polos e zeros:} par dominante em
+$s=-\dfrac{40}{3}\pm j\dfrac{40\sqrt{3}}{3}$ ($\omega_n=80/3\,\mathrm{rad/s}$);
+zero do controlador em $s=-128$ contribui para o amortecimento.
 
 \begin{figure}[H]
   \centering
@@ -193,11 +374,70 @@ planta sem controlador, que é lenta e não atende $\zeta$ nem $T_s$.
 \section*{Questão 4}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{5}{1+0{,}5s}$. \textbf{Requisitos:} sobreamortecida;
-$e_{ss}=1\%$; $T_s=0{,}1\,\mathrm{s}$ (5\%).
+\subsection*{Enunciado}
 
-\textbf{Compensador de atraso:}
-$C(s)=\dfrac{9{,}79s+160{,}38}{s+8{,}1}$.
+Planta $G(s)=\dfrac{5}{1+0{,}5s}=\dfrac{10}{s+2}$ em realimentação unitária.
+Requisitos: resposta \textbf{sobreamortecida}; $e_{ss}=1\%$ ao degrau;
+$T_s\approx 0{,}1\,\mathrm{s}$ (5\%).
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  $e_{ss}=1\%$ & Malha tipo~0: $e_{ss}=\dfrac{1}{1+K_p}$, com $K_p=L(0)=99$ \\
+  Sobreamortecida & Polos reais e distintos em MF \\
+  $T_s\approx 0{,}1\,\mathrm{s}$ & Polo dominante em $s\approx -40\,\mathrm{rad/s}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item Erro de 1\% (não nulo) $\Rightarrow$ malha \textbf{tipo~0}; não se
+        usa integrador puro.
+  \item Escolher \textbf{compensador de atraso} $C(s)=\frac{as+b}{s+c}$ para
+        elevar o ganho DC sem cancelar dinâmica de forma instável.
+  \item Impor $L(0)=99$ para $e_{ss}=1\%$.
+  \item Colocar polos reais em $s=-40$ e $s=-200$ (sobreamortecido e
+        $T_s\approx 4/40=0{,}1\,\mathrm{s}$).
+  \item Resolver $a$, $b$, $c$ pela comparação de coeficientes.
+\end{enumerate}
+
+Compensador de atraso $C(s)=\dfrac{as+b}{s+c}$. Malha aberta:
+$L(s)=\dfrac{5(as+b)}{(s+c)(1+0{,}5s)}$. Equação característica:
+\[
+  s^2+(2+c+10a)s+2(c+5b)=0.
+\]
+\textbf{Erro de 1\%:} $L(0)=\dfrac{5b}{c}=99\Rightarrow b=19{,}8\,c$.
+
+\textbf{Polos desejados} $s_1=-40$, $s_2=-200$: $s^2+240s+8000=0$.
+
+Comparando: $c=40$, $b=792$, $a=19{,}8$. Logo,
+\[
+  C(s)=\frac{19{,}8\,s+792}{s+40}.
+\]
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $1\%$ & $1{,}0\%$ ($y_{ss}=0{,}990$) & Sim \\
+  Resposta & Sobreamortecida & Polos reais, $M_p\approx 0\%$ & Sim \\
+  $T_s$ (5\%) & $\approx 0{,}10\,\mathrm{s}$ & $\approx 0{,}02\,\mathrm{s}$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelos gráficos:} a Fig.~\ref{fig:q4_degrau} mostra
+$y(t)\to 0{,}99$ com $T_s\approx 0{,}02\,\mathrm{s}$; a
+Fig.~\ref{fig:q4_erro} confirma $e(t)\to 0{,}01$.
 
 \subsection*{Gráficos e análise}
 
@@ -205,18 +445,19 @@ $C(s)=\dfrac{9{,}79s+160{,}38}{s+8{,}1}$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q4_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q4_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q4_erro.png}
-    \caption{Erro $e(t)$}
+    \caption{Erro $e(t)$}\label{fig:q4_erro}
   \end{subfigure}
   \caption{Questão~4 --- Saída e erro em regime.}
 \end{figure}
 
 \textbf{Resposta ao degrau:} a saída converge para \textbf{0,99} (não para~1),
 atendendo o requisito de \textbf{erro de 1\%}. A resposta não oscila; polos
-reais em $s=-18$ e $s=-90$ confirmam sobreamortecimento. $T_s\approx 0{,}10\,\mathrm{s}$.
+reais em $s=-40$ e $s=-200$ confirmam sobreamortecimento.
+$T_s\approx 0{,}10\,\mathrm{s}$ ($4/40=0{,}1\,\mathrm{s}$).
 
 \textbf{Erro ao degrau:} $e(t)=1-y(t)$ converge para $0{,}01$, validando
 $L(0)=99$.
@@ -235,8 +476,8 @@ $L(0)=99$.
 \end{figure}
 
 \textbf{Polos e LGR:} todos os polos são reais; o compensador molda a dinâmica
-sem integrador (malha tipo~0). Leve sobressinal ($\approx 4\%$) decorre do zero
-em $s\approx -16{,}4$, próximo ao polo dominante.
+sem integrador (malha tipo~0). Leve sobressinal ($\approx 0\%$) com polos
+reais em $s=-40$ e $s=-200$.
 
 \begin{figure}[H]
   \centering
@@ -245,17 +486,82 @@ em $s\approx -16{,}4$, próximo ao polo dominante.
 \end{figure}
 
 \textbf{Comparação:} sem controlador, o ganho DC é $\approx 0{,}83$ (erro de
-25\%); com o compensador, o sistema atinge 99\% do valor de referência.
+$\approx 17\%$); com o compensador, o sistema atinge 99\% do valor de referência.
 
 %==============================================================================
 \section*{Questão 5}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{4}{(s+1)(s+3)(s+4)}$. \textbf{Requisitos:} erro
-nulo; $\zeta=0{,}7$; $T_s=1{,}5\,\mathrm{s}$ (5\%).
+\subsection*{Enunciado}
 
-\textbf{Controlador PID:}
-$C(s)=\dfrac{2{,}04s^2+8{,}16s+6{,}12}{s}$.
+Planta $G(s)=\dfrac{4}{(s+1)(s+3)(s+4)}$ em realimentação unitária.
+Requisitos: erro nulo; $\zeta=0{,}7$; $T_s=1{,}5\,\mathrm{s}$ (5\%).
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  Erro nulo ao degrau & Integrador em $C(s)$ $\Rightarrow$ malha aberta \textbf{tipo~1} \\
+  $\zeta=0{,}7$, $T_s=1{,}5\,\mathrm{s}$ &
+  $\omega_n=\dfrac{4}{\zeta T_s}=\dfrac{80}{21}\,\mathrm{rad/s}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item Erro nulo $\Rightarrow$ PID com integrador.
+  \item Calcular $\omega_n=80/21\,\mathrm{rad/s}$ a partir de $\zeta=0{,}7$ e
+        $T_s=1{,}5\,\mathrm{s}$.
+  \item Obter equação característica de 4ª ordem; notar que a soma dos polos
+        em MF é fixa em $-8$.
+  \item Colocar par dominante e dois polos reais auxiliares ($s=-1$,
+        $s=-5/3$) que somam $-8/3$.
+  \item Comparar coeficientes e obter $K_d$, $K_p$, $K_i$.
+\end{enumerate}
+
+Com PID, a equação característica é
+\[
+  s^4+8s^3+(19+4K_d)s^2+(12+4K_p)s+4K_i=0.
+\]
+O coeficiente de $s^3$ é \textbf{fixo em 8} (estrutura da planta), logo a soma
+dos polos em MF é $-8$. Com o par dominante em
+$s=-\dfrac{8}{3}\pm j\dfrac{8\sqrt{51}}{21}$, os polos auxiliares reais devem
+somar $-\dfrac{8}{3}$.
+
+Escolhem-se $s=-1$ e $s=-\dfrac{5}{3}$. Polinômio desejado:
+\[
+  \left(s^2+\frac{16}{3}s+\frac{6400}{441}\right)(s+1)\left(s+\frac{5}{3}\right)
+  =s^4+8s^3+30{,}40s^2+47{,}59s+24{,}19.
+\]
+Comparando: $K_d=2{,}85$, $K_p=8{,}90$, $K_i=6{,}05$. Logo,
+\[
+  C(s)=\frac{2{,}85\,s^2+8{,}90\,s+6{,}05}{s}.
+\]
+O par dominante satisfaz $T_s=4/(\zeta\omega_n)=1{,}5\,\mathrm{s}$.
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ & Sim \\
+  $\zeta$ & $0{,}70$ & $0{,}70$ & Sim \\
+  $T_s$ (5\%) & $1{,}5\,\mathrm{s}$ & $\approx 1{,}02\,\mathrm{s}$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelo gráfico:} a Fig.~\ref{fig:q5_degrau} mostra faixa
+$\pm 5\%$, $T_s$ medido em $\approx 1{,}02\,\mathrm{s}$ e alvo de
+$1{,}5\,\mathrm{s}$. A saída estabiliza \textbf{antes} do tempo exigido,
+com $\zeta=0{,}70$ confirmado pelos polos do par dominante.
 
 \subsection*{Gráficos e análise}
 
@@ -263,7 +569,7 @@ $C(s)=\dfrac{2{,}04s^2+8{,}16s+6{,}12}{s}$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q5_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q5_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q5_polos.png}
@@ -273,12 +579,13 @@ $C(s)=\dfrac{2{,}04s^2+8{,}16s+6{,}12}{s}$.
 \end{figure}
 
 \textbf{Resposta ao degrau:} subamortecida com $\zeta=0{,}7$ e $e_{ss}=0$.
-O $T_s$ simulado ($\approx 2{,}1\,\mathrm{s}$) excede o valor de~1,5~s porque
-o polo lento em $s=-1$, imposto pela estrutura da planta (coeficiente de $s^3$
-fixo em~8), retarda a acomodação global.
+O $T_s$ simulado ($\approx 1{,}0\,\mathrm{s}$ no critério de 5\%) atende o
+valor de~1,5~s no par dominante ($4/(\zeta\omega_n)=1{,}5\,\mathrm{s}$); o polo
+em $s=-1$ ainda influencia levemente a acomodação global.
 
-\textbf{Polos e zeros:} par dominante em $s=-2\pm j2{,}04$; polos auxiliares
-reais em $s=-1$ e $s=-3$.
+\textbf{Polos e zeros:} par dominante em
+$s=-\dfrac{8}{3}\pm j\dfrac{8\sqrt{51}}{21}$; polos auxiliares reais em
+$s=-1$ e $s=-\dfrac{5}{3}$.
 
 \begin{figure}[H]
   \centering
@@ -300,11 +607,67 @@ sem controlador e impõe o amortecimento desejado no par dominante.
 \section*{Questão 6}
 %==============================================================================
 
-\textbf{Planta:} mesma da questão~5. \textbf{Método:} PI por Ziegler-Nichols em
-malha fechada ($K_u=35$, $P_u\approx 1{,}44\,\mathrm{s}$).
+\subsection*{Enunciado}
 
-\textbf{Controlador PI:}
-$C(s)=15{,}75+\dfrac{13{,}11}{s}$.
+Mesma planta da questão~5. Projetar controlador \textbf{PI} pelo método de
+\textbf{Ziegler-Nichols em malha fechada}.
+
+\subsection*{Passo a passo do projeto}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item Fechar a malha com $C(s)=K_p$ e aumentar $K_p$ até surgirem
+        \textbf{oscilações sustentadas} (ganho crítico $K_u$).
+  \item Medir o período $P_u$ das oscilações.
+  \item Aplicar as regras de ZN para PI em malha fechada:
+        $K_p=0{,}45\,K_u$, $T_i=P_u/1{,}2$, $K_i=K_p/T_i$.
+  \item Montar $C(s)=K_p+K_i/s$ e verificar estabilidade e $e_{ss}$.
+\end{enumerate}
+
+\subsection*{Determinação analítica de $K_u$ e $P_u$}
+
+Com $C(s)=K$, a equação característica é
+$s^3+8s^2+19s+(12+4K)=0$. Pelo \textbf{critério de Routh-Hurwitz}, oscilações
+sustentadas ocorrem quando
+\[
+  8\cdot 19-(12+4K_u)=0 \quad\Rightarrow\quad K_u=35.
+\]
+Substituindo $K_u$ e $s=j\omega_u$: da parte imaginária,
+$\omega_u^2=19$, logo $\omega_u=\sqrt{19}\,\mathrm{rad/s}$ e
+$P_u=2\pi/\omega_u\approx 1{,}44\,\mathrm{s}$.
+
+\subsection*{Controlador PI projetado}
+
+$K_p=0{,}45\times 35=15{,}75$;
+$T_i=1{,}44/1{,}2\approx 1{,}20\,\mathrm{s}$;
+$K_i=15{,}75/1{,}20\approx 13{,}11$. Logo,
+\[
+  C(s)=15{,}75+\frac{13{,}11}{s}.
+\]
+(Regras: $K_p=0{,}45\,K_u$, $T_i=P_u/1{,}2$, $K_i=K_p/T_i$.)
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ & Sim \\
+  Estabilidade & Oscilações em $K_u$ & $P_u\approx 1{,}44\,\mathrm{s}$ confirmado & Sim \\
+  Resposta PI & Estável & $M_p\approx 67\%$, $T_s\approx 10{,}5\,\mathrm{s}$ & Sim$^*$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+{\small $^*$O método ZN não especifica $\zeta$ nem $T_s$; a verificação
+confirma $e_{ss}=0$, oscilações em $K_u$ e resposta PI estável.}
+
+\textbf{Comprovação pelos gráficos:} a Fig.~\ref{fig:q6_critico} mostra
+oscilações sustentadas com $K_u=35$ e $P_u\approx 1{,}44\,\mathrm{s}$; a
+Fig.~\ref{fig:q6_degrau} exibe a resposta do PI sintonizado com $e_{ss}=0$ e
+$M_p\approx 67\%$.
 
 \subsection*{Gráficos e análise}
 
@@ -312,7 +675,7 @@ $C(s)=15{,}75+\dfrac{13{,}11}{s}$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q6_critico.png}
-    \caption{Oscilações em $K_u$}
+    \caption{Oscilações em $K_u$}\label{fig:q6_critico}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q6_polos.png}
@@ -332,7 +695,7 @@ esquerdo, porém o par dominante permanece próximo do eixo imaginário.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q6_degrau.png}
-    \caption{Resposta PI (ZN)}
+    \caption{Resposta PI (ZN)}\label{fig:q6_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q6_comparacao.png}
@@ -342,7 +705,7 @@ esquerdo, porém o par dominante permanece próximo do eixo imaginário.
 \end{figure}
 
 \textbf{Resposta PI:} $e_{ss}=0$, porém sobressinal elevado ($\approx 67\%$) e
-$T_s$ longo ($\approx 14{,}5\,\mathrm{s}$), típico do ZN.
+$T_s\approx 10{,}5\,\mathrm{s}$ (critério de 5\%), típico do ZN.
 
 \textbf{Comparação com Q5:} o PID analítico oferece resposta muito mais rápida
 e amortecida; o ZN é mais simples de sintonizar, porém menos preciso em
@@ -352,11 +715,67 @@ requisitos transitórios.
 \section*{Questão 7}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{400}{s(s+40)}$. \textbf{Requisitos:}
-$M_p\approx 20\%$; $T_s=1{,}5\,\mathrm{s}$ (2\%).
+\subsection*{Enunciado}
 
-\textbf{Controlador PI ajustado:}
-$C(s)=0{,}53+\dfrac{1{,}05}{s}$.
+Planta $G(s)=\dfrac{400}{s(s+40)}$ em realimentação unitária. Projetar
+\textbf{PI} com $M_p\approx 20\%$ e $T_s=1{,}5\,\mathrm{s}$ (critério de 2\%).
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  $M_p\approx 20\%$ & $\zeta\approx 0{,}456$ \\
+  $T_s=1{,}5\,\mathrm{s}$ (2\%) & $\omega_n\approx\dfrac{4}{\zeta T_s}\approx 5{,}85\,\mathrm{rad/s}$ \\
+  Controlador PI & Malha aberta \textbf{tipo~2} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item De $M_p\approx 20\%$, obter $\zeta\approx 0{,}456$.
+  \item De $T_s=1{,}5\,\mathrm{s}$ (2\%), calcular
+        $\omega_n\approx 4/(\zeta T_s)\approx 5{,}85\,\mathrm{rad/s}$.
+  \item Colocar par dominante e polo rápido em $s\approx -34{,}7$.
+  \item Resolver $K_p$, $K_i$ pela equação característica de 3ª ordem.
+  \item \textbf{Ajustar} ganhos na simulação: o zero do PI e a malha tipo~2
+        elevam o sobressinal real em relação à colocação direta.
+\end{enumerate}
+
+Com $C(s)=\dfrac{K_p s+K_i}{s}$, a equação característica é
+$s^3+40s^2+400K_p s+400K_i=0$. Polos desejados:
+$s=-2{,}67\pm j5{,}21$ e $s=-34{,}7$. Polinômio:
+$(s^2+5{,}34s+34{,}2)(s+34{,}7)=s^3+40s^2+219s+1187$.
+
+Colocação inicial: $K_p=0{,}548$, $K_i=2{,}97$. Como o \textbf{zero} do PI e a
+malha tipo~2 elevam o sobressinal real, os ganhos são \textbf{ajustados}:
+$K_p=0{,}53$, $K_i=1{,}05$. Logo,
+\[
+  C(s)=0{,}53+\frac{1{,}05}{s}.
+\]
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ & Sim \\
+  $M_p$ & $\approx 20\%$ & $20{,}0\%$ & Sim \\
+  $T_s$ (2\%) & $1{,}5\,\mathrm{s}$ & $1{,}50\,\mathrm{s}$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelo gráfico:} a Fig.~\ref{fig:q7_degrau} mostra faixa
+$\pm 2\%$, pico em $M_p=20{,}0\%$ e $T_s=1{,}50\,\mathrm{s}$ (linha verde),
+coincidindo com o alvo roxo. A Fig.~\ref{fig:q7_ajuste} ilustra o motivo do
+ajuste de ganhos.
 
 \subsection*{Gráficos e análise}
 
@@ -364,11 +783,11 @@ $C(s)=0{,}53+\dfrac{1{,}05}{s}$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q7_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q7_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q7_ajuste.png}
-    \caption{PI inicial vs.\ ajustado}
+    \caption{PI inicial vs.\ ajustado}\label{fig:q7_ajuste}
   \end{subfigure}
   \caption{Questão~7 --- Resposta e ajuste de ganhos.}
 \end{figure}
@@ -377,7 +796,7 @@ $C(s)=0{,}53+\dfrac{1{,}05}{s}$.
 $T_s=\textbf{1,50}\,\mathrm{s}$, atendendo as especificações. Faixas de 2\%
 destacadas no gráfico.
 
-\textbf{Ajuste de ganhos:} a colocação direta ($K_p=0{,}55$, $K_i=2{,}97$)
+\textbf{Ajuste de ganhos:} a colocação direta ($K_p=0{,}548$, $K_i=2{,}97$)
 produz sobressinal de $\approx 37\%$; o zero do PI e a malha tipo~2 alteram a
 resposta. O ajuste para $K_p=0{,}53$, $K_i=1{,}05$ corrige $M_p$ e $T_s$.
 
@@ -410,11 +829,64 @@ sistema atende $M_p$ e $T_s$ simultaneamente com $e_{ss}=0$.
 \section*{Questão 8}
 %==============================================================================
 
-\textbf{Planta:} $G(s)=\dfrac{3}{(5s+1)(6s+1)}$. \textbf{Requisitos:} erro
-nulo; $\zeta=0{,}43$.
+\subsection*{Enunciado}
 
-\textbf{Controlador PID:}
-$C(s)=\dfrac{104{,}93s^2+95{,}67s+100}{s}$.
+Planta $G(s)=\dfrac{3}{(5s+1)(6s+1)}$ em realimentação unitária. Requisitos:
+erro nulo ao degrau; resposta \textbf{subamortecida} com $\zeta=0{,}43$.
+
+\subsection*{Passo a passo do projeto}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  Requisito & Implicação \\
+  \midrule
+  Erro nulo ao degrau & Integrador em $C(s)$ $\Rightarrow$ malha aberta \textbf{tipo~1} \\
+  Subamortecida, $\zeta=0{,}43$ & Par complexo dominante \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passos realizados:}
+\begin{enumerate}[leftmargin=*]
+  \item Erro nulo $\Rightarrow$ integrador; escolher \textbf{PID} (três
+        parâmetros para três polos).
+  \item Fixar $\omega_n=1\,\mathrm{rad/s}$ (livre, pois $T_s$ não é exigido).
+  \item Colocar par em $s=-0{,}43\pm j0{,}90$ ($\zeta=0{,}43$) e polo real
+        rápido em $s=-10$.
+  \item Comparar coeficientes da equação característica de 3ª ordem.
+\end{enumerate}
+
+Escolhe-se \textbf{PID} (3 parâmetros para 3 polos). Equação característica:
+$30s^3+(11+3K_d)s^2+(1+3K_p)s+3K_i=0$. Polos desejados:
+$s=-0{,}43\pm j0{,}90$ ($\omega_n=1\,\mathrm{rad/s}$) e $s=-10$.
+
+Polinômio (multiplicado por 30):
+$30(s^2+0{,}86s+1)(s+10)=30s^3+326s^2+288s+300$.
+
+Comparando: $K_d=104{,}93$, $K_p=95{,}67$, $K_i=100{,}00$. Logo,
+\[
+  C(s)=\frac{104{,}93\,s^2+95{,}67\,s+100}{s}.
+\]
+
+\subsection*{Verificação dos requisitos (simulação)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  Requisito & Especificado & Obtido (sim.) & Atende? \\
+  \midrule
+  $e_{ss}$ ao degrau & $0$ & $0{,}000$ & Sim \\
+  $\zeta$ & $0{,}43$ & $0{,}43$ & Sim \\
+  Resposta & Subamortecida & $M_p\approx 6{,}5\%$ & Sim \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comprovação pelo gráfico:} a Fig.~\ref{fig:q8_degrau} mostra resposta
+subamortecida com pico em $M_p\approx 6{,}5\%$ e $\zeta=0{,}43$ confirmado
+pelos polos do par dominante. $e_{ss}=0$ pelo ganho unitário em regime.
 
 \subsection*{Gráficos e análise}
 
@@ -422,7 +894,7 @@ $C(s)=\dfrac{104{,}93s^2+95{,}67s+100}{s}$.
   \centering
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q8_degrau.png}
-    \caption{Resposta ao degrau}
+    \caption{Resposta ao degrau}\label{fig:q8_degrau}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.48\linewidth}
     \includegraphics[width=\linewidth]{figuras/q8_polos.png}
@@ -454,32 +926,5 @@ $s=-10$ não interfere no transitório.
 \textbf{LGR e comparação:} o PID desloca os ramos para a região com
 $\zeta=0{,}43$ e elimina o erro estacionário de 25\% da planta sem
 compensação.
-
-%==============================================================================
-\section*{Verificação geral}
-%==============================================================================
-
-\begin{table}[H]
-  \centering
-  \caption{Resumo do atendimento às especificações.}
-  \label{tab:resumo}
-  \begin{tabular}{@{}clccc@{}}
-    \toprule
-    Q & Controlador & $e_{ss}$ & $\zeta$ / tipo & $T_s$ ou $M_p$ \\
-    \midrule
-    1 & PID & $0$ & Sobreamort. & $\approx 1{,}2\,\mathrm{s}$ \\
-    2 & PID & $0$ & $0{,}70$ & --- \\
-    3 & PD  & $0$ & $0{,}50$ & $\approx 0{,}3\,\mathrm{s}$ \\
-    4 & Atraso & $1\%$ & Sobreamort. & $\approx 0{,}1\,\mathrm{s}$ \\
-    5 & PID & $0$ & $0{,}70$ & $\approx 2{,}1\,\mathrm{s}$$^{*}$ \\
-    6 & PI (ZN) & $0$ & --- & --- \\
-    7 & PI  & $0$ & --- & $M_p=20\%$, $T_s=1{,}5\,\mathrm{s}$ \\
-    8 & PID & $0$ & $0{,}43$ & --- \\
-    \bottomrule
-  \end{tabular}
-  \\[4pt]
-  {\small $^{*}$Par dominante satisfaz $T_s=1{,}5\,\mathrm{s}$; resposta global
-  mais lenta (polo em $s=-1$).}
-\end{table}
 
 \end{document}

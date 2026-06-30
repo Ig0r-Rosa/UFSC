@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.5.27)  13 JUN 2026 17:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.5.27)  30 JUN 2026 16:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -490,216 +490,226 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<figuras/q1_degrau.png, id=4, 498.663pt x 281.29707pt>
-File: figuras/q1_degrau.png Graphic file (type png)
-<use figuras/q1_degrau.png>
-Package pdftex.def Info: figuras/q1_degrau.png  used on input line 52.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q1_polos.png, id=6, 787.743pt x 321.87946pt>
-File: figuras/q1_polos.png Graphic file (type png)
-<use figuras/q1_polos.png>
-Package pdftex.def Info: figuras/q1_polos.png  used on input line 56.
-(pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
-<figuras/q1_lgr.png, id=7, 498.663pt x 317.988pt>
-File: figuras/q1_lgr.png Graphic file (type png)
-<use figuras/q1_lgr.png>
-Package pdftex.def Info: figuras/q1_lgr.png  used on input line 74.
-(pdftex.def)             Requested size: 226.70963pt x 144.56831pt.
-<figuras/q1_comparacao.png, id=8, 498.663pt x 281.29707pt>
-File: figuras/q1_comparacao.png Graphic file (type png)
-<use figuras/q1_comparacao.png>
-Package pdftex.def Info: figuras/q1_comparacao.png  used on input line 78.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figuras/q1_degrau.png> <
-./figuras/q1_polos.png>]
-<figuras/q2_degrau.png, id=35, 498.663pt x 281.29707pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<figuras/q1_degrau.png, id=32, 534.798pt x 317.988pt>
+File: figuras/q1_degrau.png Graphic file (type png)
+<use figuras/q1_degrau.png>
+Package pdftex.def Info: figuras/q1_degrau.png  used on input line 114.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q1_polos.png, id=34, 787.743pt x 321.87946pt>
+File: figuras/q1_polos.png Graphic file (type png)
+<use figuras/q1_polos.png>
+Package pdftex.def Info: figuras/q1_polos.png  used on input line 118.
+(pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
+<figuras/q1_lgr.png, id=35, 498.663pt x 317.988pt>
+File: figuras/q1_lgr.png Graphic file (type png)
+<use figuras/q1_lgr.png>
+Package pdftex.def Info: figuras/q1_lgr.png  used on input line 138.
+(pdftex.def)             Requested size: 226.70963pt x 144.56831pt.
+<figuras/q1_comparacao.png, id=36, 498.663pt x 281.29707pt>
+File: figuras/q1_comparacao.png Graphic file (type png)
+<use figuras/q1_comparacao.png>
+Package pdftex.def Info: figuras/q1_comparacao.png  used on input line 142.
+(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
+
+
+[2 <./figuras/q1_degrau.png> <./figuras/q1_polos.png> <./figuras/q1_lgr.png> <.
+/figuras/q1_comparacao.png>]
+<figuras/q2_degrau.png, id=55, 534.798pt x 317.988pt>
 File: figuras/q2_degrau.png Graphic file (type png)
 <use figuras/q2_degrau.png>
-Package pdftex.def Info: figuras/q2_degrau.png  used on input line 107.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q2_polos.png, id=36, 787.743pt x 321.87946pt>
+Package pdftex.def Info: figuras/q2_degrau.png  used on input line 229.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q2_polos.png, id=56, 787.18707pt x 321.87946pt>
 File: figuras/q2_polos.png Graphic file (type png)
 <use figuras/q2_polos.png>
-Package pdftex.def Info: figuras/q2_polos.png  used on input line 111.
-(pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
-<figuras/q2_lgr.png, id=37, 498.663pt x 317.988pt>
+Package pdftex.def Info: figuras/q2_polos.png  used on input line 233.
+(pdftex.def)             Requested size: 226.70963pt x 92.69923pt.
+
+
+[3]
+<figuras/q2_lgr.png, id=73, 498.663pt x 317.988pt>
 File: figuras/q2_lgr.png Graphic file (type png)
 <use figuras/q2_lgr.png>
-Package pdftex.def Info: figuras/q2_lgr.png  used on input line 128.
+Package pdftex.def Info: figuras/q2_lgr.png  used on input line 250.
 (pdftex.def)             Requested size: 226.70963pt x 144.56831pt.
-<figuras/q2_comparacao.png, id=38, 498.663pt x 281.29707pt>
+<figuras/q2_comparacao.png, id=74, 498.663pt x 281.29707pt>
 File: figuras/q2_comparacao.png Graphic file (type png)
 <use figuras/q2_comparacao.png>
-Package pdftex.def Info: figuras/q2_comparacao.png  used on input line 132.
+Package pdftex.def Info: figuras/q2_comparacao.png  used on input line 254.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
 
 
-[2 <./figuras/q1_lgr.png> <./figuras/q1_comparacao.png> <./figuras/q2_degrau.pn
-g> <./figuras/q2_polos.png>]
-<figuras/q3_degrau.png, id=51, 498.663pt x 281.29707pt>
+[4 <./figuras/q2_degrau.png> <./figuras/q2_polos.png> <./figuras/q2_lgr.png> <.
+/figuras/q2_comparacao.png>]
+<figuras/q3_degrau.png, id=88, 534.798pt x 317.988pt>
 File: figuras/q3_degrau.png Graphic file (type png)
 <use figuras/q3_degrau.png>
-Package pdftex.def Info: figuras/q3_degrau.png  used on input line 158.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q3_polos.png, id=52, 787.18707pt x 321.87946pt>
+Package pdftex.def Info: figuras/q3_degrau.png  used on input line 337.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q3_polos.png, id=89, 787.743pt x 321.87946pt>
 File: figuras/q3_polos.png Graphic file (type png)
 <use figuras/q3_polos.png>
-Package pdftex.def Info: figuras/q3_polos.png  used on input line 162.
-(pdftex.def)             Requested size: 226.70963pt x 92.69923pt.
-<figuras/q3_lgr.png, id=53, 498.10707pt x 317.988pt>
+Package pdftex.def Info: figuras/q3_polos.png  used on input line 341.
+(pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
+
+
+[5 <./figuras/q3_degrau.png> <./figuras/q3_polos.png>]
+<figuras/q3_lgr.png, id=105, 498.10707pt x 317.988pt>
 File: figuras/q3_lgr.png Graphic file (type png)
 <use figuras/q3_lgr.png>
-Package pdftex.def Info: figuras/q3_lgr.png  used on input line 179.
+Package pdftex.def Info: figuras/q3_lgr.png  used on input line 360.
 (pdftex.def)             Requested size: 226.70963pt x 144.73328pt.
-<figuras/q3_comparacao.png, id=54, 498.663pt x 281.29707pt>
+<figuras/q3_comparacao.png, id=106, 498.663pt x 281.29707pt>
 File: figuras/q3_comparacao.png Graphic file (type png)
 <use figuras/q3_comparacao.png>
-Package pdftex.def Info: figuras/q3_comparacao.png  used on input line 183.
+Package pdftex.def Info: figuras/q3_comparacao.png  used on input line 364.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
 
 
-[3 <./figuras/q2_lgr.png> <./figuras/q2_comparacao.png> <./figuras/q3_degrau.pn
-g> <./figuras/q3_polos.png>]
-<figuras/q4_degrau.png, id=67, 498.663pt x 281.29707pt>
+[6 <./figuras/q3_lgr.png> <./figuras/q3_comparacao.png>]
+<figuras/q4_degrau.png, id=125, 534.798pt x 317.988pt>
 File: figuras/q4_degrau.png Graphic file (type png)
 <use figuras/q4_degrau.png>
-Package pdftex.def Info: figuras/q4_degrau.png  used on input line 207.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q4_erro.png, id=68, 498.663pt x 281.29707pt>
+Package pdftex.def Info: figuras/q4_degrau.png  used on input line 447.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q4_erro.png, id=126, 498.663pt x 281.29707pt>
 File: figuras/q4_erro.png Graphic file (type png)
 <use figuras/q4_erro.png>
-Package pdftex.def Info: figuras/q4_erro.png  used on input line 211.
+Package pdftex.def Info: figuras/q4_erro.png  used on input line 451.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q4_polos.png, id=69, 787.743pt x 321.87946pt>
+<figuras/q4_polos.png, id=127, 787.743pt x 321.87946pt>
 File: figuras/q4_polos.png Graphic file (type png)
 <use figuras/q4_polos.png>
-Package pdftex.def Info: figuras/q4_polos.png  used on input line 227.
+Package pdftex.def Info: figuras/q4_polos.png  used on input line 468.
 (pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
-<figuras/q4_lgr.png, id=70, 498.10707pt x 317.988pt>
+<figuras/q4_lgr.png, id=128, 498.10707pt x 317.988pt>
 File: figuras/q4_lgr.png Graphic file (type png)
 <use figuras/q4_lgr.png>
-Package pdftex.def Info: figuras/q4_lgr.png  used on input line 231.
+Package pdftex.def Info: figuras/q4_lgr.png  used on input line 472.
 (pdftex.def)             Requested size: 226.70963pt x 144.73328pt.
 
 
-[4 <./figuras/q3_lgr.png> <./figuras/q3_comparacao.png> <./figuras/q4_degrau.pn
-g> <./figuras/q4_erro.png>]
-<figuras/q4_comparacao.png, id=85, 498.663pt x 281.29707pt>
+[7 <./figuras/q4_degrau.png> <./figuras/q4_erro.png>]
+<figuras/q4_comparacao.png, id=141, 498.663pt x 281.29707pt>
 File: figuras/q4_comparacao.png Graphic file (type png)
 <use figuras/q4_comparacao.png>
-Package pdftex.def Info: figuras/q4_comparacao.png  used on input line 243.
+Package pdftex.def Info: figuras/q4_comparacao.png  used on input line 484.
 (pdftex.def)             Requested size: 354.23695pt x 199.82533pt.
-<figuras/q5_degrau.png, id=86, 498.663pt x 281.29707pt>
+
+
+[8 <./figuras/q4_polos.png> <./figuras/q4_lgr.png> <./figuras/q4_comparacao.png
+>]
+<figuras/q5_degrau.png, id=155, 534.798pt x 317.988pt>
 File: figuras/q5_degrau.png Graphic file (type png)
 <use figuras/q5_degrau.png>
-Package pdftex.def Info: figuras/q5_degrau.png  used on input line 265.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q5_polos.png, id=87, 787.743pt x 321.87946pt>
+Package pdftex.def Info: figuras/q5_degrau.png  used on input line 571.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q5_polos.png, id=156, 787.743pt x 321.87946pt>
 File: figuras/q5_polos.png Graphic file (type png)
 <use figuras/q5_polos.png>
-Package pdftex.def Info: figuras/q5_polos.png  used on input line 269.
+Package pdftex.def Info: figuras/q5_polos.png  used on input line 575.
 (pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
-
-
-[5 <./figuras/q4_polos.png> <./figuras/q4_lgr.png> <./figuras/q4_comparacao.png
->]
-<figuras/q5_lgr.png, id=98, 498.663pt x 317.988pt>
+<figuras/q5_lgr.png, id=157, 498.10707pt x 317.988pt>
 File: figuras/q5_lgr.png Graphic file (type png)
 <use figuras/q5_lgr.png>
-Package pdftex.def Info: figuras/q5_lgr.png  used on input line 286.
-(pdftex.def)             Requested size: 226.70963pt x 144.56831pt.
-<figuras/q5_comparacao.png, id=99, 498.663pt x 281.29707pt>
+Package pdftex.def Info: figuras/q5_lgr.png  used on input line 593.
+(pdftex.def)             Requested size: 226.70963pt x 144.73328pt.
+<figuras/q5_comparacao.png, id=158, 498.663pt x 281.29707pt>
 File: figuras/q5_comparacao.png Graphic file (type png)
 <use figuras/q5_comparacao.png>
-Package pdftex.def Info: figuras/q5_comparacao.png  used on input line 290.
+Package pdftex.def Info: figuras/q5_comparacao.png  used on input line 597.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q6_critico.png, id=100, 498.663pt x 281.29707pt>
+
+
+[9 <./figuras/q5_degrau.png> <./figuras/q5_polos.png>]
+
+[10 <./figuras/q5_lgr.png> <./figuras/q5_comparacao.png>]
+<figuras/q6_critico.png, id=192, 498.663pt x 281.29707pt>
 File: figuras/q6_critico.png Graphic file (type png)
 <use figuras/q6_critico.png>
-Package pdftex.def Info: figuras/q6_critico.png  used on input line 314.
+Package pdftex.def Info: figuras/q6_critico.png  used on input line 677.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q6_polos.png, id=101, 787.18707pt x 321.87946pt>
+<figuras/q6_polos.png, id=193, 787.18707pt x 321.87946pt>
 File: figuras/q6_polos.png Graphic file (type png)
 <use figuras/q6_polos.png>
-Package pdftex.def Info: figuras/q6_polos.png  used on input line 318.
+Package pdftex.def Info: figuras/q6_polos.png  used on input line 681.
 (pdftex.def)             Requested size: 226.70963pt x 92.69923pt.
-
-
-[6 <./figuras/q5_degrau.png> <./figuras/q5_polos.png> <./figuras/q5_lgr.png> <.
-/figuras/q5_comparacao.png>]
-<figuras/q6_degrau.png, id=114, 498.663pt x 281.29707pt>
+<figuras/q6_degrau.png, id=194, 534.798pt x 317.988pt>
 File: figuras/q6_degrau.png Graphic file (type png)
 <use figuras/q6_degrau.png>
-Package pdftex.def Info: figuras/q6_degrau.png  used on input line 334.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q6_comparacao.png, id=115, 498.663pt x 281.29707pt>
+Package pdftex.def Info: figuras/q6_degrau.png  used on input line 697.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q6_comparacao.png, id=195, 498.663pt x 281.29707pt>
 File: figuras/q6_comparacao.png Graphic file (type png)
 <use figuras/q6_comparacao.png>
-Package pdftex.def Info: figuras/q6_comparacao.png  used on input line 338.
+Package pdftex.def Info: figuras/q6_comparacao.png  used on input line 701.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q7_degrau.png, id=116, 498.663pt x 281.29707pt>
+
+
+[11 <./figuras/q6_critico.png> <./figuras/q6_polos.png> <./figuras/q6_degrau.pn
+g> <./figuras/q6_comparacao.png>]
+<figuras/q7_degrau.png, id=212, 534.798pt x 317.988pt>
 File: figuras/q7_degrau.png Graphic file (type png)
 <use figuras/q7_degrau.png>
-Package pdftex.def Info: figuras/q7_degrau.png  used on input line 366.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q7_ajuste.png, id=117, 498.663pt x 281.29707pt>
+Package pdftex.def Info: figuras/q7_degrau.png  used on input line 785.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q7_ajuste.png, id=213, 498.663pt x 281.29707pt>
 File: figuras/q7_ajuste.png Graphic file (type png)
 <use figuras/q7_ajuste.png>
-Package pdftex.def Info: figuras/q7_ajuste.png  used on input line 370.
+Package pdftex.def Info: figuras/q7_ajuste.png  used on input line 789.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
 
 
-[7 <./figuras/q6_critico.png> <./figuras/q6_polos.png> <./figuras/q6_degrau.png
-> <./figuras/q6_comparacao.png>]
-<figuras/q7_polos.png, id=133, 787.743pt x 321.87946pt>
+[12]
+<figuras/q7_polos.png, id=228, 787.743pt x 321.87946pt>
 File: figuras/q7_polos.png Graphic file (type png)
 <use figuras/q7_polos.png>
-Package pdftex.def Info: figuras/q7_polos.png  used on input line 387.
+Package pdftex.def Info: figuras/q7_polos.png  used on input line 806.
 (pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
-<figuras/q7_lgr.png, id=134, 498.663pt x 317.988pt>
+<figuras/q7_lgr.png, id=229, 498.663pt x 317.988pt>
 File: figuras/q7_lgr.png Graphic file (type png)
 <use figuras/q7_lgr.png>
-Package pdftex.def Info: figuras/q7_lgr.png  used on input line 391.
+Package pdftex.def Info: figuras/q7_lgr.png  used on input line 810.
 (pdftex.def)             Requested size: 226.70963pt x 144.56831pt.
-<figuras/q7_comparacao.png, id=135, 498.663pt x 281.29707pt>
+<figuras/q7_comparacao.png, id=230, 498.663pt x 281.29707pt>
 File: figuras/q7_comparacao.png Graphic file (type png)
 <use figuras/q7_comparacao.png>
-Package pdftex.def Info: figuras/q7_comparacao.png  used on input line 402.
+Package pdftex.def Info: figuras/q7_comparacao.png  used on input line 821.
 (pdftex.def)             Requested size: 354.23695pt x 199.82533pt.
 
 
-[8 <./figuras/q7_degrau.png> <./figuras/q7_ajuste.png> <./figuras/q7_polos.png>
- <./figuras/q7_lgr.png>]
-<figuras/q8_degrau.png, id=147, 498.663pt x 281.29707pt>
+[13 <./figuras/q7_degrau.png> <./figuras/q7_ajuste.png> <./figuras/q7_polos.png
+> <./figuras/q7_lgr.png>]
+
+[14 <./figuras/q7_comparacao.png>]
+<figuras/q8_degrau.png, id=256, 534.798pt x 317.988pt>
 File: figuras/q8_degrau.png Graphic file (type png)
 <use figuras/q8_degrau.png>
-Package pdftex.def Info: figuras/q8_degrau.png  used on input line 424.
-(pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
-<figuras/q8_polos.png, id=148, 787.743pt x 321.87946pt>
+Package pdftex.def Info: figuras/q8_degrau.png  used on input line 896.
+(pdftex.def)             Requested size: 226.70963pt x 134.80103pt.
+<figuras/q8_polos.png, id=257, 787.743pt x 321.87946pt>
 File: figuras/q8_polos.png Graphic file (type png)
 <use figuras/q8_polos.png>
-Package pdftex.def Info: figuras/q8_polos.png  used on input line 428.
+Package pdftex.def Info: figuras/q8_polos.png  used on input line 900.
 (pdftex.def)             Requested size: 226.70963pt x 92.63539pt.
-<figuras/q8_lgr.png, id=149, 498.663pt x 317.988pt>
+<figuras/q8_lgr.png, id=258, 498.10707pt x 317.988pt>
 File: figuras/q8_lgr.png Graphic file (type png)
 <use figuras/q8_lgr.png>
-Package pdftex.def Info: figuras/q8_lgr.png  used on input line 444.
-(pdftex.def)             Requested size: 226.70963pt x 144.56831pt.
-<figuras/q8_comparacao.png, id=150, 498.663pt x 281.29707pt>
+Package pdftex.def Info: figuras/q8_lgr.png  used on input line 916.
+(pdftex.def)             Requested size: 226.70963pt x 144.73328pt.
+<figuras/q8_comparacao.png, id=259, 498.663pt x 281.29707pt>
 File: figuras/q8_comparacao.png Graphic file (type png)
 <use figuras/q8_comparacao.png>
-Package pdftex.def Info: figuras/q8_comparacao.png  used on input line 448.
+Package pdftex.def Info: figuras/q8_comparacao.png  used on input line 920.
 (pdftex.def)             Requested size: 226.70963pt x 127.88734pt.
 
 
-[9 <./figuras/q7_comparacao.png> <./figuras/q8_degrau.png> <./figuras/q8_polos.
-png>]
-
-[10 <./figuras/q8_lgr.png> <./figuras/q8_comparacao.png>]
+[15 <./figuras/q8_degrau.png> <./figuras/q8_polos.png> <./figuras/q8_lgr.png> <
+./figuras/q8_comparacao.png>]
 (./Trabalho_3_Projeto_Controladores_Igor_20103930.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
@@ -710,41 +720,44 @@ Package rerunfilecheck Info: File `Trabalho_3_Projeto_Controladores_Igor_201039
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13680 strings out of 475158
- 219359 string characters out of 5765758
- 620776 words of memory out of 5000000
- 36462 multiletter control sequences out of 15000+600000
- 581646 words of font info for 92 fonts, out of 8000000 for 9000
+ 13779 strings out of 475158
+ 220531 string characters out of 5765758
+ 626804 words of memory out of 5000000
+ 36493 multiletter control sequences out of 15000+600000
+ 582295 words of font info for 94 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 75i,10n,79p,342b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600p
-k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600p
+ 75i,9n,79p,342b,598s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600p
+k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600p
+k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0900.600p
-k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600p
-k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600p
+k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600p
+k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600p
+k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600p
 k> </home/igor/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600p
-k></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb>
-Output written on Trabalho_3_Projeto_Controladores_Igor_20103930.pdf (10 pages,
- 1588724 bytes).
+k></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on Trabalho_3_Projeto_Controladores_Igor_20103930.pdf (15 pages,
+ 1620899 bytes).
 PDF statistics:
- 596 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
+ 763 PDF objects out of 1000 (max. 8388607)
+ 281 compressed objects within 3 object streams
+ 113 named destinations out of 1000 (max. 500000)
  171 words of extra memory for PDF output out of 10000 (max. 10000000)
 
