@@ -1,0 +1,7 @@
+import {
+  "igorufsc/exemplo_moonbit" @lib,
+}
+
+options(
+  "is-main": true,
+)
